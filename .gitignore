@@ -1,0 +1,6 @@
+# Build Paths
+bin/
+build/
+
+# Gradle Files
+.gradle/
