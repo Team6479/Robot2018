@@ -5,6 +5,17 @@ plugins {
     id "jaci.openrio.gradle.GradleRIO" version "2018.01.11"
 }
 
+repositories {
+    mavenCentral()
+    maven {
+         url  "https://dl.bintray.com/team6479/RobotRepo"
+    }
+ }
+
+dependencies {
+    compile group: 'team6479.robotrepo', name: 'robotlib', version: '1.2.0'
+}
+
 def TEAM = 6479
 def ROBOT_CLASS = "org.usfirst.frc.team6479.robot.Robot"
 
