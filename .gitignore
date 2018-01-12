@@ -4,3 +4,9 @@ build/
 
 # Gradle Files
 .gradle/
+
+# IDE Files
+# Eclipse
+.classpath
+.project
+.settings/
