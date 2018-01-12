@@ -45,7 +45,7 @@ public class Robot extends TimedIterativeRobot {
 		stop();
 	}
 	public void stop() {
-		//stop all subsystens
+		//stop all subsystems
 		drivetrain.stop();
 	}
 }
