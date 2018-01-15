@@ -18,6 +18,7 @@ dependencies {
     compile ctre()
     compile navx()
     compile openrio.powerup.matchData()
+    compile group: 'com.jcraft', name: 'jsch', version: '0.1.54'
 }
 
 def TEAM = 6479

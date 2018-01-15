@@ -2,6 +2,9 @@ package org.usfirst.frc.team6479.robot.jetson;
 
 import edu.wpi.first.networktables.NetworkTableInstance;
 
+
+
+//TODO: update with code from learning board
 //Class to control all connections to the jetson
 public class JetsonConnection {
 	
