@@ -17,15 +17,15 @@ public class RobotMap {
 	public static final int rightEncoderAPort = 2;
 	public static final int rightEncoderBPort = 3;
 	
-	//pully motors
-	public static final int pully1Port = 4;
-	public static final int pully2Port = 5;
-	//pully single solenoid
-	public static final int pullySolPort = 0;
+	//pulley motors
+	public static final int pulley1Port = 4;
+	public static final int pulley2Port = 5;
+	//pulley single solenoid
+	public static final int pulleySolPort = 0;
 	
-	//encoder for pully
-	public static final int pullyEncoderAPort = 4;
-	public static final int pullyEncoderBPort = 5;
+	//encoder for pulley
+	public static final int pulleyEncoderAPort = 4;
+	public static final int pulleyEncoderBPort = 5;
 	
 	//sonar
 	public static final int sonarPort = 6;

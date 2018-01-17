@@ -6,12 +6,12 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 
 //TODO: update with code from learning board
 //TODO: make not a singleton so we have more control
-//Class to control all connections to the jetson
+//Class to control all connections to the Jetson
 public class JetsonConnection {
 	
 	//create a server network table
 	private JetsonConnection() {
-		//make a network table insatnce
+		//make a network table instance
 		table = NetworkTableInstance.create();
 		//listen on any address
 		table.startServer("JetsonTable", "", 1182);
@@ -20,7 +20,7 @@ public class JetsonConnection {
 
 	//this will keep the table alive
 	private NetworkTableInstance table;
-	//instance tbat is avaiable to users
+	//instance that is available to users
 	public static JetsonConnection connection = new JetsonConnection();
 	
 }

@@ -13,13 +13,13 @@ public class Grabber extends Subsystem implements SafeSubsystem {
 	
 	public Grabber() {
 		sol = new DoubleSolenoid(RobotMap.grabberOnPort, RobotMap.grabberOffPort); 
-		//defsault state is off
+		//default state is off
 		sol.set(Value.kOff);
 	}
 	
 	@Override
 	protected void initDefaultCommand() {
-		//TODO: set the default command whihc is the button control of the grabber
+		//TODO: set the default command which is the button control of the grabber
 	}
 	public void grab() {
 		sol.set(Value.kForward);
@@ -28,7 +28,7 @@ public class Grabber extends Subsystem implements SafeSubsystem {
 		sol.set(Value.kReverse);
 	}
 	public boolean isGrabbing() {
-		//wether or not it is currently grabbing
+		//whether or not it is currently grabbing
 		boolean isGrabbing = sol.get() == Value.kForward;
 		return isGrabbing;
 	}

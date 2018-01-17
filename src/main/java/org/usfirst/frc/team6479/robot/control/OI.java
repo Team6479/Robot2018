@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.XboxController;
 
 public class OI {
 	
-	//initilaiztion
+	//initialization
 	public OI() {
 		xbox = new XboxController(RobotMap.xboxPort);
 	}

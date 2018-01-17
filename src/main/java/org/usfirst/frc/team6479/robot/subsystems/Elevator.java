@@ -8,21 +8,21 @@ import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-//the eleveator, whihc uses a winch, this is controlled by two cims and a piston
+//the elevator, which uses a winch, this is controlled by two cims and a piston
 public class Elevator extends Subsystem implements SafeSubsystem {
 
-	private SpeedController pully1;
-	private SpeedController pully2;
+	private SpeedController pulley1;
+	private SpeedController pulley2;
 	
 	private SpeedController winch;
 	private Solenoid sol;
 	
 	public Elevator() {
-		pully1 = new Spark(RobotMap.pully1Port);
-		pully2 = new Spark(RobotMap.pully2Port);
+		pulley1 = new Spark(RobotMap.pulley1Port);
+		pulley2 = new Spark(RobotMap.pulley2Port);
 		
-		winch = new SpeedControllerGroup(pully1, pully2);
-		sol = new Solenoid(RobotMap.pullySolPort); 
+		winch = new SpeedControllerGroup(pulley1, pulley2);
+		sol = new Solenoid(RobotMap.pulleySolPort);
 	}
 	
 	@Override
@@ -30,7 +30,7 @@ public class Elevator extends Subsystem implements SafeSubsystem {
 		//TODO: set the default command whihc is the joystick control of the elevator
 	}
 	public void move(double speed) {
-		//if the sol is breaking, dont move the cims
+		//if the sol is breaking, don't move the cims
 		if(!sol.get()) {
 			winch.set(speed);
 		}
@@ -40,7 +40,7 @@ public class Elevator extends Subsystem implements SafeSubsystem {
 	}
 	public void breakState(boolean shouldBreak) {
 		sol.set(shouldBreak);
-		//if the sol is breaking, dont move the cims
+		//if the sol is breaking, don't move the cims
 		if(shouldBreak) {
 			winch.set(0);
 		}
@@ -59,7 +59,7 @@ public class Elevator extends Subsystem implements SafeSubsystem {
 	@Override
 	public void stop() {
 		winch.set(0);
-		//apply break so elevator doesnt crash down
+		//apply break so elevator doesn't crash down
 		sol.set(true);
 	}
 
