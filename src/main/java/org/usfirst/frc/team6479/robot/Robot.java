@@ -3,18 +3,23 @@ package org.usfirst.frc.team6479.robot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import robot.base.TimedIterativeRobot;
 
+import org.usfirst.frc.team6479.robot.config.RobotMap;
 import org.usfirst.frc.team6479.robot.control.OI;
 import org.usfirst.frc.team6479.robot.subsystems.Drivetrain;
 
 public class Robot extends TimedIterativeRobot {
 
-	public static Drivetrain drivetrain;
 	public static OI oi;
+	public static Drivetrain drivetrain;
 
 	@Override
 	public void robotInit() {
-		drivetrain = new Drivetrain();
+		
+		//init the controls in oi
 		oi = new OI();
+		
+		//init subsystems
+		drivetrain = new Drivetrain();
 		
 	}
 	@Override
@@ -36,7 +41,7 @@ public class Robot extends TimedIterativeRobot {
 		
 		
 		//kill switch code
-		if(oi.getXboxDriver().getStartButton()) {
+		if(oi.getXbox().getStartButton()) {
 			stop();
 		}
 	}

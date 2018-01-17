@@ -3,24 +3,39 @@ package org.usfirst.frc.team6479.robot.subsystems;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 import org.usfirst.frc.team6479.robot.commands.RacingDrive;
 import org.usfirst.frc.team6479.robot.config.RobotMap;
 
-public class Drivetrain extends SafeSubsystem {
+//the drive train of the robot
+public class Drivetrain extends Subsystem implements SafeSubsystem {
 	
-	private Spark leftMotorFront = new Spark(RobotMap.leftFront);
-	private Spark leftMotorBack = new Spark(RobotMap.leftBack);
-	private Spark rightMotorFront = new Spark(RobotMap.rightFront);
-	private Spark rightMotorBack = new Spark(RobotMap.rightBack);
+	private SpeedController leftBack;
+	private SpeedController rightBack;
+	private SpeedController leftFront;
+	private SpeedController rightFront;
 	
-	private SpeedControllerGroup leftSide = new SpeedControllerGroup(leftMotorFront, leftMotorBack);
-	private SpeedControllerGroup rightSide = new SpeedControllerGroup(rightMotorFront, rightMotorBack);
+	private SpeedController leftSide;
+	private SpeedController rightSide;
 	
-	private DifferentialDrive drive = new DifferentialDrive(leftSide, rightSide);
+	private DifferentialDrive drive;
 
-	public void initDefaultCommand() {
+	public Drivetrain() {
+		leftBack = new Spark(RobotMap.leftBackPort);
+		rightBack = new Spark(RobotMap.rightBackPort);
+		leftFront = new Spark(RobotMap.leftFrontPort);
+		rightFront = new Spark(RobotMap.rightFrontPort);
+		
+		leftSide = new SpeedControllerGroup(leftBack, leftFront);
+		rightSide = new SpeedControllerGroup(rightBack, rightFront);
+		
+		drive = new DifferentialDrive(leftSide, rightSide);
+	}
+	
+	@Override
+	protected void initDefaultCommand() {
 		setDefaultCommand(new RacingDrive());
 	}
 	public void drive(double throttle, double turn) {

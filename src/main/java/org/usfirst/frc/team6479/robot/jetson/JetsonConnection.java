@@ -5,6 +5,7 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 
 
 //TODO: update with code from learning board
+//TODO: make not a singleton so we have more control
 //Class to control all connections to the jetson
 public class JetsonConnection {
 	

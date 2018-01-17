@@ -6,17 +6,16 @@ import edu.wpi.first.wpilibj.XboxController;
 
 public class OI {
 	
-	//all things controlled by this singleton class
-	private XboxController xboxDriver;
-	
 	//initilaiztion
 	public OI() {
-		xboxDriver = new XboxController(RobotMap.xbox);
+		xbox = new XboxController(RobotMap.xboxPort);
 	}
+	
+	private XboxController xbox;
 
 	//get the things controlled
-	public XboxController getXboxDriver() {
-		return xboxDriver;
+	public XboxController getXbox() {
+		return xbox;
 	}
 
 }
