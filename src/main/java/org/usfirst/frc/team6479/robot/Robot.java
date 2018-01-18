@@ -9,7 +9,7 @@ import org.usfirst.frc.team6479.robot.subsystems.Drivetrain;
 
 public class Robot extends TimedIterativeRobot {
 
-	public static OI oi;
+    public static OI oi;
 	public static Drivetrain drivetrain;
 
 	@Override
