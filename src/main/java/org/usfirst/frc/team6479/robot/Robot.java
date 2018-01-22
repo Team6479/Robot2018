@@ -24,7 +24,6 @@ public class Robot extends TimedIterativeRobot {
 		drivetrain = new Drivetrain();
 		elevator = new Elevator();
 		grabber = new Grabber();
-
 	}
 	@Override
 	public void autonomousInit() {
