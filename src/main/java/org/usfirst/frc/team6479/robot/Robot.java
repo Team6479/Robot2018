@@ -5,6 +5,7 @@ import org.usfirst.frc.team6479.robot.control.OI;
 import org.usfirst.frc.team6479.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team6479.robot.subsystems.Elevator;
 import org.usfirst.frc.team6479.robot.subsystems.Grabber;
+import org.usfirst.frc.team6479.robot.subsystems.Pusher;
 import robot.base.TimedIterativeRobot;
 
 public class Robot extends TimedIterativeRobot {
@@ -13,6 +14,7 @@ public class Robot extends TimedIterativeRobot {
 	public static Drivetrain drivetrain;
 	public static Elevator elevator;
 	public static Grabber grabber;
+	public static Pusher pusher;
 
 	@Override
 	public void robotInit() {
@@ -24,6 +26,7 @@ public class Robot extends TimedIterativeRobot {
 		drivetrain = new Drivetrain();
 		elevator = new Elevator();
 		grabber = new Grabber();
+		pusher = new Pusher();
 	}
 	@Override
 	public void autonomousInit() {

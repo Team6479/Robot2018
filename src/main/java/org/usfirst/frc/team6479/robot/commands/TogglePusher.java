@@ -5,15 +5,14 @@ import org.usfirst.frc.team6479.robot.Robot;
 import robot.xbox.ButtonTracker;
 import robot.xbox.XboxMap;
 
+public class TogglePusher extends Command {
+    private ButtonTracker leftBumper;
 
-public class ToggleGrabber extends Command {
-    private ButtonTracker rightBumper;
-
-    public ToggleGrabber() {
+    public TogglePusher() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.grabber);
+        // eg. requires(chassis);
+        requires(Robot.pusher);
     }
-
 
     /**
      * The initialize method is called just before the first time
@@ -21,9 +20,8 @@ public class ToggleGrabber extends Command {
      */
     @Override
     protected void initialize() {
-        rightBumper = new ButtonTracker(Robot.oi.getXbox(), XboxMap.RightBumper);
+        leftBumper = new ButtonTracker(Robot.oi.getXbox(), XboxMap.LeftBumper);
     }
-
 
     /**
      * The execute method is called repeatedly when this Command is
@@ -31,18 +29,16 @@ public class ToggleGrabber extends Command {
      */
     @Override
     protected void execute() {
-        boolean isGrabbing = Robot.grabber.isGrabbing();
-        boolean RBWasJustPressed = rightBumper.wasJustPressed();
+        boolean isExtended = Robot.pusher.isExtend();
+        boolean LBWasJustPressed = leftBumper.wasJustPressed();
 
-        //TODO: ADD KEYBINDS
-        if (isGrabbing && RBWasJustPressed) {
-            Robot.grabber.release();
+        if (!isExtended && LBWasJustPressed) {
+            Robot.pusher.extend();
         }
-        else if (!isGrabbing && RBWasJustPressed) {
-            Robot.grabber.grab();
+        else if (isExtended && LBWasJustPressed) {
+            Robot.pusher.retract();
         }
     }
-
 
     /**
      * <p>
