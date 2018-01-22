@@ -9,36 +9,36 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 //subsystem for the cube grabber
 public class Grabber extends Subsystem implements SafeSubsystem {
 
-	private DoubleSolenoid sol;
-	
+	private DoubleSolenoid dubSol;
+
 	public Grabber() {
-		sol = new DoubleSolenoid(RobotMap.grabberOnPort, RobotMap.grabberOffPort); 
+		dubSol = new DoubleSolenoid(RobotMap.grabberOnPort, RobotMap.grabberOffPort);
 		//default state is off
-		sol.set(Value.kOff);
+		dubSol.set(Value.kOff);
 	}
-	
+
 	@Override
 	protected void initDefaultCommand() {
 		//TODO: set the default command which is the button control of the grabber
 	}
 	public void grab() {
-		sol.set(Value.kForward);
+		dubSol.set(Value.kForward);
 	}
 	public void release() {
-		sol.set(Value.kReverse);
+		dubSol.set(Value.kReverse);
 	}
 	public boolean isGrabbing() {
 		//whether or not it is currently grabbing
-		boolean isGrabbing = sol.get() == Value.kForward;
+		boolean isGrabbing = dubSol.get() == Value.kForward;
 		return isGrabbing;
 	}
 	public DoubleSolenoid getSolenoid() {
-		return sol;
+		return dubSol;
 	}
-	
+
 	@Override
 	public void stop() {
-		sol.set(Value.kOff);
+		dubSol.set(Value.kOff);
 	}
 
 }
