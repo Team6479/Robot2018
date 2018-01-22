@@ -2,6 +2,8 @@ package org.usfirst.frc.team6479.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team6479.robot.Robot;
+import robot.xbox.ButtonTracker;
+import robot.xbox.XboxMap;
 
 
 public class ToggleGrabber extends Command
@@ -33,12 +35,19 @@ public class ToggleGrabber extends Command
     @Override
     protected void execute()
     {
+        //boolean rightBumper = Robot.oi.getXbox().getRawButton(XboxMap.RightBumper);
+
+        ButtonTracker rightBumper = new ButtonTracker(Robot.oi.getXbox(),XboxMap.RightBumper);
+        boolean isGrabbing = Robot.grabber.isGrabbing();
+        boolean RBWasJustPressed = rightBumper.wasJustPressed();
+
+
         //TODO: ADD KEYBINDS
-        if (Robot.grabber.isGrabbing())
+        if (isGrabbing && RBWasJustPressed)
         {
             Robot.grabber.release();
         }
-        else if (!Robot.grabber.isGrabbing())
+        else if (!isGrabbing && RBWasJustPressed)
         {
             Robot.grabber.grab();
         }
