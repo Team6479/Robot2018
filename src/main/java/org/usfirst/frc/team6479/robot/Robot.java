@@ -22,7 +22,8 @@ public class Robot extends TimedIterativeRobot {
 
 		//init subsystems
 		drivetrain = new Drivetrain();
-
+		elevator = new Elevator();
+		grabber = new Grabber();
 
 	}
 	@Override
