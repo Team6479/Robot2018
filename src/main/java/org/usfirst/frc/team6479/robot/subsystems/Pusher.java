@@ -13,12 +13,11 @@ public class Pusher extends Subsystem implements SafeSubsystem {
         dubSol = new DoubleSolenoid(RobotMap.pusherOnPort, RobotMap.pusherOffPort);
     }
 
-    public void initDefaultCommand() {
-        // TODO: Set the default command, if any, for a subsystem here. Example:
-        //    setDefaultCommand(new MySpecialCommand());
-        setDefaultCommand(new TogglePusher());
+    @Override
+    protected void initDefaultCommand() {
+        
     }
-
+    
     //Extends Piston
     public void extend(){
         dubSol.set(DoubleSolenoid.Value.kForward);

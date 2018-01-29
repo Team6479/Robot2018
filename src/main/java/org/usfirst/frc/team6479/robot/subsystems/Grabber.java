@@ -17,11 +17,10 @@ public class Grabber extends Subsystem implements SafeSubsystem {
 		//default state is off
 		dubSol.set(Value.kOff);
 	}
-
-	@Override
-	protected void initDefaultCommand() {
-		setDefaultCommand(new ToggleGrabber());
-	}
+    @Override
+    protected void initDefaultCommand() {
+        
+    }
 	public void grab() {
 		dubSol.set(Value.kForward);
 	}

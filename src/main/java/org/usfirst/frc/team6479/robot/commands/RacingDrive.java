@@ -10,10 +10,6 @@ public class RacingDrive extends Command {
 		//Use requires() here to declare subsystem dependencies
 		requires(Robot.drivetrain);
 	}
-	//Called just before this Command runs the first time
-	@Override
-	protected void initialize() {
-	}
 	//Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
@@ -36,9 +32,5 @@ public class RacingDrive extends Command {
 	@Override
 	protected void end() {
 		Robot.drivetrain.curveDrive(0, 0);
-	}
-	//Called when another command which requires one or more of the same subsystems is scheduled to run
-	@Override
-	protected void interrupted() {
 	}
 }
