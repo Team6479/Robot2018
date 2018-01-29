@@ -43,7 +43,7 @@ public class Drivetrain extends Subsystem implements SafeSubsystem {
 	protected void initDefaultCommand() {
 		setDefaultCommand(new RacingDrive());
 	}
-    public void goForward() {
+    /*public void goForward() {
         leftSide.setInverted(false);
         rightSide.setInverted(false);
     }
@@ -58,7 +58,7 @@ public class Drivetrain extends Subsystem implements SafeSubsystem {
     public void turnRight(){
         leftSide.setInverted(false);
         rightSide.setInverted(true);
-    }
+    }*/
 	public void curveDrive(double throttle, double turn) {
 		drive.curvatureDrive(throttle, turn, true);
 	}

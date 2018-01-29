@@ -13,8 +13,7 @@ public class GyroDrive extends Command {
     private double prevGyroAngle;
     private double angleGoal;
     private double tmpAngleGoal;
-    private double leftSpeed;
-    private double rightSpeed;
+    private double speed;
 
     private static final double SPEED_THRESHOLD = 0.40;
     private static final int ANGLE_DELTA = 8;
@@ -43,17 +42,9 @@ public class GyroDrive extends Command {
         System.out.println("Starting!!!!");
         Robot.drivetrain.getGyro().reset();
 
-        if (dir == direction.dLeft) {
-            Robot.drivetrain.turnLeft();
-        }
-        else if (dir == direction.dRight) {
-            Robot.drivetrain.turnRight();
-        }
-
         tmpAngleGoal = angleGoal / ANGLE_DELTA;
 
-        leftSpeed = 0.75;
-        rightSpeed = 0.75;
+        speed = 0.75;
     }
 
     /**
@@ -91,10 +82,15 @@ public class GyroDrive extends Command {
 
         angleCOT = this.getAngleCOT(prevGyroAngle, gyroAngle);
 
-        Robot.drivetrain.tankDrive(leftSpeed, rightSpeed);
+        
+        if (dir == direction.dLeft) {
+            Robot.drivetrain.tankDrive(-speed, speed);
+        }
+        else if (dir == direction.dRight) {
+            Robot.drivetrain.tankDrive(speed, -speed);
+        }
 
-        System.out.println("Left Speed: " + leftSpeed);
-        System.out.println("Right Speed: " + rightSpeed);
+        System.out.println("Speed: " + speed);
         if (this.isInRange(gyroAngle, tmpAngleGoal, angleCOT)) {
             //Recalculate Temp Angle Goal
             if (tmpAngleGoal + (angleGoal / ANGLE_DELTA) < angleGoal) {
@@ -108,13 +104,9 @@ public class GyroDrive extends Command {
             SmartDashboard.putNumber("tmpAngleGoal", tmpAngleGoal);
 
             //Recalculate Motor Speeds
-            if (leftSpeed * 0.9375 >= SPEED_THRESHOLD) {
-                leftSpeed *= 0.9375;
-                SmartDashboard.putNumber("Left Speed", leftSpeed);
-            }
-            if (rightSpeed * 0.9375 >= SPEED_THRESHOLD) {
-                rightSpeed *= 0.9375;
-                SmartDashboard.putNumber("Right Speed", rightSpeed);
+            if (speed * 0.9375 >= SPEED_THRESHOLD) {
+                speed *= 0.9375;
+                SmartDashboard.putNumber("Speed", speed);
             }
         }
     }
