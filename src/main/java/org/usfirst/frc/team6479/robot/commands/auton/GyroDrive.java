@@ -16,9 +16,8 @@ public class GyroDrive extends Command {
     private double leftSpeed;
     private double rightSpeed;
 
-    private double speedThreshold;
-
-    private int tmpDivVal;
+    private static final double SPEED_THRESHOLD = 0.40;
+    private static final int ANGLE_DELTA = 8;
 
     //COT = Change over time
     private double angleCOT;
@@ -43,7 +42,6 @@ public class GyroDrive extends Command {
     protected void initialize() {
         System.out.println("Starting!!!!");
         Robot.drivetrain.getGyro().reset();
-        //Robot.drivetrain.getGyro().calibrate();
 
         if (dir == direction.dLeft) {
             Robot.drivetrain.turnLeft();
@@ -52,14 +50,7 @@ public class GyroDrive extends Command {
             Robot.drivetrain.turnRight();
         }
 
-        tmpDivVal = 8;
-
-        tmpAngleGoal = angleGoal / tmpDivVal;
-
-        //leftSpeed = 0.5775;
-        //rightSpeed = 0.5775;
-
-        speedThreshold = 0.4;
+        tmpAngleGoal = angleGoal / ANGLE_DELTA;
 
         leftSpeed = 0.75;
         rightSpeed = 0.75;
@@ -106,8 +97,8 @@ public class GyroDrive extends Command {
         System.out.println("Right Speed: " + rightSpeed);
         if (this.isInRange(gyroAngle, tmpAngleGoal, angleCOT)) {
             //Recalculate Temp Angle Goal
-            if (tmpAngleGoal + (angleGoal / tmpDivVal) < angleGoal) {
-                tmpAngleGoal += (angleGoal / tmpDivVal);
+            if (tmpAngleGoal + (angleGoal / ANGLE_DELTA) < angleGoal) {
+                tmpAngleGoal += (angleGoal / ANGLE_DELTA);
             }
             else {
                 tmpAngleGoal = angleGoal;
@@ -117,11 +108,11 @@ public class GyroDrive extends Command {
             SmartDashboard.putNumber("tmpAngleGoal", tmpAngleGoal);
 
             //Recalculate Motor Speeds
-            if (leftSpeed * 0.9375 >= speedThreshold) {
+            if (leftSpeed * 0.9375 >= SPEED_THRESHOLD) {
                 leftSpeed *= 0.9375;
                 SmartDashboard.putNumber("Left Speed", leftSpeed);
             }
-            if (rightSpeed * 0.9375 >= speedThreshold) {
+            if (rightSpeed * 0.9375 >= SPEED_THRESHOLD) {
                 rightSpeed *= 0.9375;
                 SmartDashboard.putNumber("Right Speed", rightSpeed);
             }
@@ -162,7 +153,7 @@ public class GyroDrive extends Command {
     protected void end() {
         System.out.println("Stopping!!!");
         Robot.drivetrain.getLeftSideMotors().set(0);
-        Robot.drivetrain.getLeftSideMotors().set(0);
+        Robot.drivetrain.getRightSideMotors().set(0);
         System.out.println("Final Gyro Read: " + gyroAngle);
         SmartDashboard.putNumber("Final Gyro Val", gyroAngle);
         System.out.println("Accuracy Rating: " + (Math.abs(angleGoal - gyroAngle)));
