@@ -1,11 +1,16 @@
 package org.usfirst.frc.team6479.robot;
 
 import edu.wpi.first.wpilibj.command.Scheduler;
+
+import org.usfirst.frc.team6479.robot.connection.JetsonServer;
 import org.usfirst.frc.team6479.robot.control.OI;
+import org.usfirst.frc.team6479.robot.custom.ButtonTracker;
 import org.usfirst.frc.team6479.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team6479.robot.subsystems.Elevator;
 import org.usfirst.frc.team6479.robot.subsystems.Grabber;
 import org.usfirst.frc.team6479.robot.subsystems.Pusher;
+
+import communication.JetsonPacket.ModePacket;
 import robot.base.TimedIterativeRobot;
 
 public class Robot extends TimedIterativeRobot {
@@ -15,6 +20,7 @@ public class Robot extends TimedIterativeRobot {
 	public static Elevator elevator;
 	public static Grabber grabber;
 	public static Pusher pusher;
+	public static JetsonServer server;
 
 	@Override
 	public void robotInit() {
@@ -27,6 +33,13 @@ public class Robot extends TimedIterativeRobot {
 		elevator = new Elevator();
 		grabber = new Grabber();
 		pusher = new Pusher();
+		
+		server = new JetsonServer(1182);
+	    server.setMode(ModePacket.Mode.CUBE);
+	}
+	@Override
+	public void robotPeriodic() {
+	    ButtonTracker.updateAll();
 	}
 	@Override
 	public void autonomousInit() {
