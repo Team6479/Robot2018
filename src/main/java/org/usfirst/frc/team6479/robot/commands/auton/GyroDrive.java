@@ -144,8 +144,7 @@ public class GyroDrive extends Command {
     @Override
     protected void end() {
         System.out.println("Stopping!!!");
-        Robot.drivetrain.getLeftSideMotors().set(0);
-        Robot.drivetrain.getRightSideMotors().set(0);
+        Robot.drivetrain.stop();
         System.out.println("Final Gyro Read: " + gyroAngle);
         SmartDashboard.putNumber("Final Gyro Val", gyroAngle);
         System.out.println("Accuracy Rating: " + (Math.abs(angleGoal - gyroAngle)));
