@@ -24,7 +24,7 @@ public class RacingDrive extends Command {
 		// to make left trigger reverse, subtract axis value from right trigger
 		double throttle = right - left;
 		double turn = Robot.oi.getXbox().getRawAxis(XboxMap.LeftJoystickX) * -1;
-		Robot.drivetrain.drive(throttle, turn);
+		Robot.drivetrain.curveDrive(throttle, turn);
 	}
 	//Make this return true when this Command no longer needs to run execute()
 	//must always run to allow for operator control
@@ -35,7 +35,7 @@ public class RacingDrive extends Command {
 	//Called once after isFinished returns true
 	@Override
 	protected void end() {
-		Robot.drivetrain.drive(0, 0);
+		Robot.drivetrain.curveDrive(0, 0);
 	}
 	//Called when another command which requires one or more of the same subsystems is scheduled to run
 	@Override
