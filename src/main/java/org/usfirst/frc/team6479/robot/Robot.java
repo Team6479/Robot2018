@@ -4,7 +4,6 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 
 import org.usfirst.frc.team6479.robot.connection.JetsonServer;
 import org.usfirst.frc.team6479.robot.control.OI;
-import org.usfirst.frc.team6479.robot.custom.ButtonTracker;
 import org.usfirst.frc.team6479.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team6479.robot.subsystems.Elevator;
 import org.usfirst.frc.team6479.robot.subsystems.Grabber;
@@ -12,6 +11,7 @@ import org.usfirst.frc.team6479.robot.subsystems.Pusher;
 
 import communication.JetsonPacket.ModePacket;
 import robot.base.TimedIterativeRobot;
+import robot.xbox.ButtonTracker;
 
 public class Robot extends TimedIterativeRobot {
 
