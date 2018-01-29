@@ -158,11 +158,5 @@ public class GyroDrive extends Command {
         SmartDashboard.putNumber("Final Gyro Val", gyroAngle);
         System.out.println("Accuracy Rating: " + (Math.abs(angleGoal - gyroAngle)));
         SmartDashboard.putNumber("Gyro Accuracy", (Math.abs(angleGoal - gyroAngle)));
-        try {
-            Thread.sleep(5000);
-        }
-        catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 }

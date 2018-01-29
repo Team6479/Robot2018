@@ -1,6 +1,8 @@
 package org.usfirst.frc.team6479.robot.commandgroups;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
+
 import org.usfirst.frc.team6479.robot.commands.auton.GyroDrive;
 
 public class MultiAngleDrive extends CommandGroup {
@@ -22,6 +24,7 @@ public class MultiAngleDrive extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the arm.
 
         addSequential(new GyroDrive(90.0, GyroDrive.direction.dRight));
+        addSequential(new WaitCommand(2));
         addSequential(new GyroDrive(90.0, GyroDrive.direction.dLeft));
     }
 }
