@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
-import org.usfirst.frc.team6479.robot.commands.RacingDrive;
+import org.usfirst.frc.team6479.robot.commands.teleop.RacingDrive;
 import org.usfirst.frc.team6479.robot.config.RobotMap;
 
 //the drive train of the robot

@@ -2,8 +2,6 @@ package org.usfirst.frc.team6479.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import org.usfirst.frc.team6479.robot.commands.ToggleGrabber;
-import org.usfirst.frc.team6479.robot.commands.TogglePusher;
 import org.usfirst.frc.team6479.robot.config.RobotMap;
 
 public class Pusher extends Subsystem implements SafeSubsystem {
@@ -15,9 +13,9 @@ public class Pusher extends Subsystem implements SafeSubsystem {
 
     @Override
     protected void initDefaultCommand() {
-        
+
     }
-    
+
     //Extends Piston
     public void extend(){
         dubSol.set(DoubleSolenoid.Value.kForward);
