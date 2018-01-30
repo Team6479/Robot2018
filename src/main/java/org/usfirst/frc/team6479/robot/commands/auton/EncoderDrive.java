@@ -8,12 +8,16 @@ public class EncoderDrive extends Command {
         dForward, dBackward
     }
 
+    private double distance;
+    private direction direction;
+
     public EncoderDrive(double distance, direction direction) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         requires(Robot.drivetrain);
 
-
+        this.distance = distance;
+        this.direction = direction;
     }
 
 
@@ -23,6 +27,8 @@ public class EncoderDrive extends Command {
      */
     @Override
     protected void initialize() {
+
+        
 
     }
 
