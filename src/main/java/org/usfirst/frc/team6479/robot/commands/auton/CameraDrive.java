@@ -27,7 +27,7 @@ public class CameraDrive extends Command {
     @Override
     protected void initialize() {
 
-        distanceToTarget = Robot.server.getDistance();
+        distanceToTarget = Robot.camera.getJetson().getDistance();
         
         speed = 0.75;
     }
@@ -39,7 +39,7 @@ public class CameraDrive extends Command {
     @Override
     protected void execute() {
         
-        distanceToTarget = Robot.server.getDistance();
+        distanceToTarget = Robot.camera.getJetson().getDistance();
         
         if (distanceToTarget <= 0) {
             Robot.drivetrain.tankDrive(-speed, speed);
