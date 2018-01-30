@@ -23,8 +23,8 @@ public class MultiAngleDrive extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the arm.
 
-        addSequential(new GyroDrive(90.0, GyroDrive.direction.dRight));
+        addSequential(new GyroDrive(90.0, GyroDrive.Direction.dRight));
         addSequential(new WaitCommand(2));
-        addSequential(new GyroDrive(90.0, GyroDrive.direction.dLeft));
+        addSequential(new GyroDrive(90.0, GyroDrive.Direction.dLeft));
     }
 }
