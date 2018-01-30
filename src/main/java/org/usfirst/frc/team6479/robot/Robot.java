@@ -2,14 +2,14 @@ package org.usfirst.frc.team6479.robot;
 
 import edu.wpi.first.wpilibj.command.Scheduler;
 
-import org.usfirst.frc.team6479.robot.connection.JetsonServer;
 import org.usfirst.frc.team6479.robot.control.OI;
+import org.usfirst.frc.team6479.robot.subsystems.Camera;
 import org.usfirst.frc.team6479.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team6479.robot.subsystems.Elevator;
 import org.usfirst.frc.team6479.robot.subsystems.Grabber;
 import org.usfirst.frc.team6479.robot.subsystems.Pusher;
 
-import communication.JetsonPacket.ModePacket;
+import communication.JetsonPacket.ModePacket.Mode;
 import robot.base.TimedIterativeRobot;
 import robot.xbox.ButtonTracker;
 
@@ -20,7 +20,7 @@ public class Robot extends TimedIterativeRobot {
 	public static Elevator elevator;
 	public static Grabber grabber;
 	public static Pusher pusher;
-	public static JetsonServer server;
+	public static Camera camera;
 
 	@Override
 	public void robotInit() {
@@ -34,8 +34,8 @@ public class Robot extends TimedIterativeRobot {
 		grabber = new Grabber();
 		pusher = new Pusher();
 		
-		server = new JetsonServer(1182);
-	    server.setMode(ModePacket.Mode.CUBE);
+		camera = new Camera();
+		camera.getJetson().setMode(Mode.CUBE);
 	}
 	@Override
 	public void robotPeriodic() {
@@ -70,6 +70,11 @@ public class Robot extends TimedIterativeRobot {
 	}
 	public void stop() {
 		//stop all subsystems
+	    //TODO: need to find a better way of doing this, very very error prone
 		drivetrain.stop();
+		elevator.stop();
+        grabber.stop();
+        pusher.stop();
+        camera.stop();
 	}
 }
