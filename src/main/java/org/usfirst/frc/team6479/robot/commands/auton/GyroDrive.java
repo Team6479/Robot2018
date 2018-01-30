@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team6479.robot.Robot;
 
 public class GyroDrive extends Command {
-    public enum direction{
+    public enum Direction {
         dLeft, dRight
     }
 
@@ -21,10 +21,10 @@ public class GyroDrive extends Command {
     //COT = Change over time
     private double angleCOT;
 
-    private direction dir;
+    private Direction dir;
 
 
-    public GyroDrive(double angle, direction dir) {
+    public GyroDrive(double angle, Direction dir) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         requires(Robot.drivetrain);
@@ -83,10 +83,10 @@ public class GyroDrive extends Command {
         angleCOT = this.getAngleCOT(prevGyroAngle, gyroAngle);
 
         
-        if (dir == direction.dLeft) {
+        if (dir == Direction.dLeft) {
             Robot.drivetrain.tankDrive(-speed, speed);
         }
-        else if (dir == direction.dRight) {
+        else if (dir == Direction.dRight) {
             Robot.drivetrain.tankDrive(speed, -speed);
         }
 

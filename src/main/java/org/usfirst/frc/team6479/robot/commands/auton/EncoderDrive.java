@@ -4,14 +4,14 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team6479.robot.Robot;
 
 public class EncoderDrive extends Command {
-    public enum direction {
+    public enum Direction {
         dForward, dBackward
     }
 
     private double distance;
-    private direction direction;
+    private Direction direction;
 
-    public EncoderDrive(double distance, direction direction) {
+    public EncoderDrive(double distance, Direction direction) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         requires(Robot.drivetrain);

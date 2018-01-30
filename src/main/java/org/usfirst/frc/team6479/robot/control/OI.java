@@ -4,6 +4,7 @@ import org.usfirst.frc.team6479.robot.commands.auton.CameraDrive;
 import org.usfirst.frc.team6479.robot.commands.auton.EncoderDrive;
 import org.usfirst.frc.team6479.robot.commands.auton.GyroDrive;
 import org.usfirst.frc.team6479.robot.commands.auton.ToggleLight;
+import org.usfirst.frc.team6479.robot.commands.deadreckoning.DeadReckonDrive;
 import org.usfirst.frc.team6479.robot.commands.teleop.ToggleGrabber;
 import org.usfirst.frc.team6479.robot.commands.teleop.TogglePusher;
 import org.usfirst.frc.team6479.robot.config.RobotMap;
@@ -24,10 +25,16 @@ public class OI {
 	    leftBumper.toggleWhenPressed(new TogglePusher());
 	    
 	    //testing code for auto commands
-	    SmartDashboard.putData("Drive Forward", new EncoderDrive(10, EncoderDrive.direction.dForward));
-	    SmartDashboard.putData("Turn", new GyroDrive(15, GyroDrive.direction.dRight));
+	    SmartDashboard.putData("Drive Forward", new EncoderDrive(10, EncoderDrive.Direction.dForward));
+	    SmartDashboard.putData("Turn", new GyroDrive(15, GyroDrive.Direction.dRight));
 	    SmartDashboard.putData("Toggle Light", new ToggleLight());
 	    SmartDashboard.putData("Turn on Camera", new CameraDrive());
+	    
+	    SmartDashboard.putData("Dead Reckon Forward", new DeadReckonDrive(2, 0.5, DeadReckonDrive.Direction.dForward));
+	    SmartDashboard.putData("Dead Reckon Backward", new DeadReckonDrive(2, 0.5, DeadReckonDrive.Direction.dBackward));
+	    SmartDashboard.putData("Dead Reckon Right", new DeadReckonDrive(2, 0.5, DeadReckonDrive.Direction.dRight));
+	    SmartDashboard.putData("Dead Reckon Left", new DeadReckonDrive(2, 0.5, DeadReckonDrive.Direction.dLeft));
+	    
 	}
 
 	private XboxController xbox;
@@ -37,6 +44,12 @@ public class OI {
 	//get the things controlled
 	public XboxController getXbox() {
 		return xbox;
+	}
+	public ButtonTracker getRightBumper() {
+	    return rightBumper;
+	}
+	public ButtonTracker getLeftBumper() {
+	    return leftBumper;
 	}
 
 }
