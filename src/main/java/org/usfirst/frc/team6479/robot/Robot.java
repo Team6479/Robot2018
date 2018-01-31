@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team6479.robot.control.OI;
+import org.usfirst.frc.team6479.robot.sensors.RangeFinder;
 import org.usfirst.frc.team6479.robot.subsystems.Camera;
 import org.usfirst.frc.team6479.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team6479.robot.subsystems.Elevator;
@@ -24,7 +25,9 @@ public class Robot extends IterativeRobot {
 	public static Grabber grabber;
 	public static Pusher pusher;
 	public static Camera camera;
-
+	public static RangeFinder sonar;
+	
+	
 	@Override
 	public void robotInit() {
 
@@ -46,11 +49,20 @@ public class Robot extends IterativeRobot {
 	}
 	@Override
 	public void autonomousInit() {
-
+	    
 	}
 	@Override
 	public void autonomousPeriodic() {
-
+	    //IN THE NAME OF ALL THAT IS GOOD AND HOLY, 
+	    //DO
+	    //NOT
+	    //RUN
+	    //THIS
+	    //CODE
+	    /*if(drivetrain.getSonar().getDistance() > 20) {
+	       drivetrain.tankDrive(0.75,0.75);
+	    }*/
+	    //Disclaimer: only uncomment if you are 1000% positive
 	}
 	@Override
 	public void teleopInit() {

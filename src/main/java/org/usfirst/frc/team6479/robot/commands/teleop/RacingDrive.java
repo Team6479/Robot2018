@@ -7,7 +7,7 @@ import robot.xbox.XboxMap;
 
 public class RacingDrive extends Command {
     
-    private static final double DEADZONE = 0.1;
+    private static final double DEADZONE = 0.3;
     
 	public RacingDrive() {
 		//Use requires() here to declare subsystem dependencies
