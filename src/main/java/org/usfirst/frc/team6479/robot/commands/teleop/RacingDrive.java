@@ -19,7 +19,7 @@ public class RacingDrive extends Command {
 		// each trigger has an axis range of 0 to 1
 		// to make left trigger reverse, subtract axis value from right trigger
 		double throttle = right - left;
-		double turn = Robot.oi.getXbox().getRawAxis(XboxMap.LeftJoystickX) * -1;
+		double turn = Robot.oi.getXbox().getRawAxis(XboxMap.LeftJoystickX);
 		Robot.drivetrain.curveDrive(throttle, turn);
 	}
 	//Make this return true when this Command no longer needs to run execute()

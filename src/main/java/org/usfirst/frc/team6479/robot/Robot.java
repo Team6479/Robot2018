@@ -1,6 +1,9 @@
 package org.usfirst.frc.team6479.robot;
 
+import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.IterativeRobotBase;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team6479.robot.control.OI;
 import org.usfirst.frc.team6479.robot.subsystems.Camera;
@@ -13,7 +16,7 @@ import communication.JetsonPacket.ModePacket.Mode;
 import robot.base.TimedIterativeRobot;
 import robot.xbox.ButtonTracker;
 
-public class Robot extends TimedIterativeRobot {
+public class Robot extends IterativeRobot {
 
     public static OI oi;
 	public static Drivetrain drivetrain;
@@ -25,9 +28,6 @@ public class Robot extends TimedIterativeRobot {
 	@Override
 	public void robotInit() {
 
-		//init the controls in oi
-		oi = new OI();
-
 		//init subsystems
 		drivetrain = new Drivetrain();
 		elevator = new Elevator();
@@ -36,6 +36,9 @@ public class Robot extends TimedIterativeRobot {
 		
 		camera = new Camera();
 		camera.getJetson().setMode(Mode.CUBE);
+		
+	      //init the controls in oi
+        oi = new OI();
 	}
 	@Override
 	public void robotPeriodic() {
@@ -57,7 +60,8 @@ public class Robot extends TimedIterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 
-
+        
+        SmartDashboard.putNumber("Range", drivetrain.getSonar().getDistance());
 
 		//kill switch code
 		if(oi.getXbox().getStartButton()) {

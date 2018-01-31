@@ -26,7 +26,7 @@ public class OI {
 	    
 	    //testing code for auto commands
 	    SmartDashboard.putData("Drive Forward", new EncoderDrive(10, EncoderDrive.Direction.dForward));
-	    SmartDashboard.putData("Turn", new GyroDrive(15, GyroDrive.Direction.dRight));
+	    SmartDashboard.putData("Turn", new GyroDrive(90, GyroDrive.Direction.dRight));
 	    SmartDashboard.putData("Toggle Light", new ToggleLight());
 	    SmartDashboard.putData("Turn on Camera", new CameraDrive());
 	    
