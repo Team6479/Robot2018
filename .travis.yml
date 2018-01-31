@@ -1,6 +1,6 @@
 before_install:
   - sudo apt-get update -q
-  - sudo apt-get install protobuf-compiler
+  - sudo apt-get install libprotobuf-dev protobuf-compiler
 
 install: gradle wrapper
 
