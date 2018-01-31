@@ -6,6 +6,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import robot.xbox.XboxMap;
 
 public class RacingDrive extends Command {
+    
+    private static final double DEADZONE = 0.1;
+    
 	public RacingDrive() {
 		//Use requires() here to declare subsystem dependencies
 		requires(Robot.drivetrain);
@@ -20,6 +23,10 @@ public class RacingDrive extends Command {
 		// to make left trigger reverse, subtract axis value from right trigger
 		double throttle = right - left;
 		double turn = Robot.oi.getXbox().getRawAxis(XboxMap.LeftJoystickX);
+		//if turn is in deadzone, turn equal 0
+		if(Math.abs(turn) <= DEADZONE) {
+		    turn = 0.0;
+		}
 		Robot.drivetrain.curveDrive(throttle, turn);
 	}
 	//Make this return true when this Command no longer needs to run execute()
