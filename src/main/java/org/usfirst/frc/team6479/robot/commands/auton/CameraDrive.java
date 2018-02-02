@@ -3,6 +3,7 @@ package org.usfirst.frc.team6479.robot.commands.auton;
 import org.usfirst.frc.team6479.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 //turns based on camera input on distance to target
 //works with box CUBE mode and GOAL mode
@@ -29,7 +30,7 @@ public class CameraDrive extends Command {
 
         distanceToTarget = Robot.camera.getJetson().getDistance();
         
-        speed = 0.75;
+        speed = 0.4;
     }
 
     /**
@@ -41,11 +42,13 @@ public class CameraDrive extends Command {
         
         distanceToTarget = Robot.camera.getJetson().getDistance();
         
+        SmartDashboard.putNumber("CAMERA DISTANCE", distanceToTarget);
+        
         if (distanceToTarget <= 0) {
-            Robot.drivetrain.tankDrive(-speed, speed);
+            Robot.drivetrain.tankDrive(speed, -speed);
         }
         else if (distanceToTarget >= 0) {
-            Robot.drivetrain.tankDrive(speed, -speed);
+            Robot.drivetrain.tankDrive(-speed, speed);
         }
     }
     

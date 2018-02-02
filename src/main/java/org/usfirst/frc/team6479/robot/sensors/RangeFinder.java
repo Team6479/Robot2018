@@ -13,9 +13,9 @@ public class RangeFinder extends AnalogInput {
 		
 		
 		//blue triangle with green sensor
-		//return super.getAverageVoltage() * 113.545817;
+		return super.getAverageVoltage() * 113.545817;
 		
 		//black blank
-		return super.getAverageVoltage() * 41.666666666;
+		//return super.getAverageVoltage() * 41.666666666;
 	}
 }
