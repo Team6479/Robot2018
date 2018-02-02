@@ -1,7 +1,9 @@
 package org.usfirst.frc.team6479.robot;
 
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.IterativeRobotBase;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -26,7 +28,6 @@ public class Robot extends IterativeRobot {
 	public static Pusher pusher;
 	public static Camera camera;
 	public static RangeFinder sonar;
-	
 	
 	@Override
 	public void robotInit() {
@@ -59,9 +60,11 @@ public class Robot extends IterativeRobot {
 	    //RUN
 	    //THIS
 	    //CODE
-	    /*if(drivetrain.getSonar().getDistance() > 20) {
-	       drivetrain.tankDrive(0.75,0.75);
-	    }*/
+	    double distance = drivetrain.getSonar().getDistance();
+	    if(distance > 24) {
+	       //double spd = 
+	       drivetrain.tankDrive(0.5, 0.5);
+	    }
 	    //Disclaimer: only uncomment if you are 1000% positive
 	}
 	@Override
@@ -71,8 +74,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-
-        
+		
         SmartDashboard.putNumber("Range", drivetrain.getSonar().getDistance());
 
 		//kill switch code

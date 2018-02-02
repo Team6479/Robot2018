@@ -24,9 +24,9 @@ public class RacingDrive extends Command {
 		double throttle = right - left;
 		double turn = Robot.oi.getXbox().getRawAxis(XboxMap.LeftJoystickX);
 		//if turn is in deadzone, turn equal 0
-		if(Math.abs(turn) <= DEADZONE) {
+		/*if(Math.abs(turn) <= DEADZONE) {
 		    turn = 0.0;
-		}
+		}*/
 		Robot.drivetrain.curveDrive(throttle, turn);
 	}
 	//Make this return true when this Command no longer needs to run execute()

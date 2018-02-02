@@ -54,9 +54,13 @@ public class Drivetrain extends Subsystem implements SafeSubsystem {
         double distancePerPulse = (6 * Math.PI) / 360;
         leftEncoder.setDistancePerPulse(distancePerPulse);
         rightEncoder.setDistancePerPulse(distancePerPulse);
+        
+        leftEncoder.setSamplesToAverage(5);
+        rightEncoder.setSamplesToAverage(7);
 
-		SmartDashboard.putData("LEFT", leftEncoder);
-		SmartDashboard.putData("RIGHT", rightEncoder);
+		SmartDashboard.putData("Left Encoder", leftEncoder);
+		SmartDashboard.putData("Right Encoder", rightEncoder);
+		SmartDashboard.putData("Drivetrain", drive);
         
         gyro = new ADXRS450_Gyro();
         
@@ -68,9 +72,9 @@ public class Drivetrain extends Subsystem implements SafeSubsystem {
 		setDefaultCommand(new RacingDrive());
 	}
 	public void curveDrive(double throttle, double turn) {
-		drive.curvatureDrive(throttle, turn, true);
+		//drive.curvatureDrive(throttle, turn, true);
 		
-		//drive.arcadeDrive(throttle, turn, true);
+		drive.arcadeDrive(throttle, turn, false);
 	}
 	public void tankDrive(double leftSpeed, double rightSpeed) {
 	    drive.tankDrive(leftSpeed, rightSpeed);
