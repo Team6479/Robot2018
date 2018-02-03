@@ -25,12 +25,12 @@ public class Drivetrain extends Subsystem implements SafeSubsystem {
 	private SpeedController rightSide;
 
 	private DifferentialDrive drive;
-	
+
 	private Encoder leftEncoder;
 	private Encoder rightEncoder;
 
     private ADXRS450_Gyro gyro;
-    
+
     private RangeFinder sonar;
 
 	public Drivetrain() {
@@ -54,16 +54,12 @@ public class Drivetrain extends Subsystem implements SafeSubsystem {
         double distancePerPulse = (6 * Math.PI) / 360;
         leftEncoder.setDistancePerPulse(distancePerPulse);
         rightEncoder.setDistancePerPulse(distancePerPulse);
-        
+
         leftEncoder.setSamplesToAverage(5);
         rightEncoder.setSamplesToAverage(7);
 
-		SmartDashboard.putData("Left Encoder", leftEncoder);
-		SmartDashboard.putData("Right Encoder", rightEncoder);
-		SmartDashboard.putData("Drivetrain", drive);
-        
         gyro = new ADXRS450_Gyro();
-        
+
         sonar = new RangeFinder(0);
 	}
 
@@ -73,7 +69,7 @@ public class Drivetrain extends Subsystem implements SafeSubsystem {
 	}
 	public void curveDrive(double throttle, double turn) {
 		//drive.curvatureDrive(throttle, turn, true);
-		
+
 		drive.arcadeDrive(throttle, turn, false);
 	}
 	public void tankDrive(double leftSpeed, double rightSpeed) {
@@ -92,10 +88,20 @@ public class Drivetrain extends Subsystem implements SafeSubsystem {
     public DifferentialDrive getDrive() {
         return drive;
     }
+
     public RangeFinder getSonar() {
         return sonar;
     }
-	@Override
+
+    public Encoder getLeftEncoder() {
+        return leftEncoder;
+    }
+
+    public Encoder getRightEncoder() {
+        return rightEncoder;
+    }
+
+    @Override
 	public void stop() {
 		leftSide.set(0);
 		rightSide.set(0);

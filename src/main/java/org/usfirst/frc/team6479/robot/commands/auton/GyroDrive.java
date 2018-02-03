@@ -82,7 +82,8 @@ public class GyroDrive extends Command {
 
         angleCOT = this.getAngleCOT(prevGyroAngle, gyroAngle);
 
-        
+        speed = 0.15 + ( 0.45 * ((angleGoal - gyroAngle)/angleGoal));
+
         if (dir == Direction.dLeft) {
             Robot.drivetrain.tankDrive(-speed, speed);
         }
@@ -90,7 +91,7 @@ public class GyroDrive extends Command {
             Robot.drivetrain.tankDrive(speed, -speed);
         }
 
-        System.out.println("Speed: " + speed);
+        /*System.out.println("Speed: " + speed);
         if (this.isInRange(gyroAngle, tmpAngleGoal, angleCOT)) {
             //Recalculate Temp Angle Goal
             if (tmpAngleGoal + (angleGoal / ANGLE_DELTA) < angleGoal) {
@@ -108,7 +109,7 @@ public class GyroDrive extends Command {
                 speed *= 0.9375;
                 SmartDashboard.putNumber("Speed", speed);
             }
-        }
+        }*/
     }
 
 
