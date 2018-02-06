@@ -4,6 +4,8 @@ import communication.JetsonPacket.ModePacket.Mode;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import org.usfirst.frc.team6479.robot.autonomous.manager.AutonomousManager;
 import org.usfirst.frc.team6479.robot.control.OI;
 import org.usfirst.frc.team6479.robot.subsystems.*;
 import robot.xbox.ButtonTracker;
@@ -16,6 +18,7 @@ public class Robot extends IterativeRobot {
 	public static Grabber grabber;
 	public static Pusher pusher;
 	public static Camera camera;
+	public static AutonomousManager autoManager;
 
 	@Override
 	public void robotInit() {
@@ -31,6 +34,8 @@ public class Robot extends IterativeRobot {
 
 		//init the controls in oi
         oi = new OI();
+        
+        autoManager = new AutonomousManager();
 
         //Initialize SmartDashboard tracking
         //IMPORTANT: THIS NEEDS TO BE LAST!
@@ -49,11 +54,11 @@ public class Robot extends IterativeRobot {
 	}
 	@Override
 	public void autonomousInit() {
-
+		autoManager.startAuto();
 	}
 	@Override
 	public void autonomousPeriodic() {
-
+		Scheduler.getInstance().run();
 	}
 	@Override
 	public void teleopInit() {

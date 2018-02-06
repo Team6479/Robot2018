@@ -4,7 +4,6 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
 
 import org.usfirst.frc.team6479.robot.commands.auton.CameraDrive;
-import org.usfirst.frc.team6479.robot.commands.auton.GyroDrive;
 import org.usfirst.frc.team6479.robot.commands.deadreckoning.DeadReckonDrive;
 
 public class CameraTurnGetCube extends CommandGroup {
