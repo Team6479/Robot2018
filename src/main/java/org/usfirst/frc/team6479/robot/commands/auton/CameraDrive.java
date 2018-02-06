@@ -12,6 +12,7 @@ public class CameraDrive extends Command {
     public CameraDrive() {
         //uses drivetrain
         requires(Robot.drivetrain);
+        requires(Robot.camera);
     }
     
     //distance in pixels, aquired from camera
@@ -28,7 +29,7 @@ public class CameraDrive extends Command {
     @Override
     protected void initialize() {
 
-        distanceToTarget = Robot.camera.getJetson().getDistance();
+        distanceToTarget = Robot.camera.currentDistance();
         
         speed = 0.4;
     }
@@ -40,7 +41,7 @@ public class CameraDrive extends Command {
     @Override
     protected void execute() {
         
-        distanceToTarget = Robot.camera.getJetson().getDistance();
+        distanceToTarget = Robot.camera.currentDistance();
         
         SmartDashboard.putNumber("CAMERA DISTANCE", distanceToTarget);
         

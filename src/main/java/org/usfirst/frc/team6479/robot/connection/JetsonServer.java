@@ -68,7 +68,10 @@ public class JetsonServer {
     public synchronized void setMode(ModePacket.Mode mode) {
         dataOutput = ModePacket.newBuilder().setMode(mode).build();
     }
-
+    public synchronized ModePacket.Mode getMode() {
+    		return dataOutput.getMode();
+    }
+    
     private ModePacket dataOutput;
     private CameraPacket dataRecieved;
 }

@@ -1,6 +1,5 @@
 package org.usfirst.frc.team6479.robot;
 
-import communication.JetsonPacket.ModePacket.Mode;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -30,7 +29,6 @@ public class Robot extends IterativeRobot {
 		pusher = new Pusher();
 
 		camera = new Camera();
-		camera.getJetson().setMode(Mode.CUBE);
 
 		//init the controls in oi
         oi = new OI();

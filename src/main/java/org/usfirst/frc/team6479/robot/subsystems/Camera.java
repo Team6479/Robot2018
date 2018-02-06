@@ -3,6 +3,7 @@ package org.usfirst.frc.team6479.robot.subsystems;
 import org.usfirst.frc.team6479.robot.config.RobotMap;
 import org.usfirst.frc.team6479.robot.connection.JetsonServer;
 
+import communication.JetsonPacket.ModePacket.Mode;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Relay.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -33,8 +34,14 @@ public class Camera extends Subsystem implements SafeSubsystem {
     public boolean isLightOn() {
         return light.get() != Value.kOff;
     }
-    public JetsonServer getJetson() {
-        return jetson;
+    public Mode currentCameraMode() {
+    		return jetson.getMode();
+    }
+    public void setCameraMode(Mode mode) {
+    		jetson.setMode(mode);
+    }
+    public Double currentDistance() {
+		return jetson.getDistance();
     }
     @Override
     public void stop() {
