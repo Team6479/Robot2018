@@ -55,8 +55,9 @@ public class Drivetrain extends Subsystem implements SafeSubsystem {
         leftEncoder.setDistancePerPulse(distancePerPulse);
         rightEncoder.setDistancePerPulse(distancePerPulse);
 
-        leftEncoder.setSamplesToAverage(5);
-        rightEncoder.setSamplesToAverage(7);
+        //TODO: adjust as needed
+        leftEncoder.setSamplesToAverage(10);
+        rightEncoder.setSamplesToAverage(10);
 
         gyro = new ADXRS450_Gyro();
 
