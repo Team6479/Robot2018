@@ -23,7 +23,6 @@ public class OI {
 	    leftBumper.toggleWhenPressed(new TogglePusher());
 
 	    //Testing Commands
-        SmartDashboard.putData("Drive Forward", new SonarDrive(10, SonarDrive.Direction.dForward));
         SmartDashboard.putData("Turn", new GyroDrive(90, GyroDrive.Direction.dRight));
         SmartDashboard.putData("Toggle Light", new ToggleLight());
         SmartDashboard.putData("Turn on Camera", new CameraDrive());

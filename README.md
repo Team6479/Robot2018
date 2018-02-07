@@ -17,7 +17,7 @@ Our team uses a Nvidia Jetson TX1 to process camera input and send that data to 
 
 | Repository                         | Creator   |
 |:---------------------------------- |:--------- |
-| [Vision Processing][2]            | Team 6479 |
+| [Vision Processing][2]             | Team 6479 |
 | [Driver Station Image Receiver][3] | Team 6479 |
 | [Shuffleboard][4]                  | WPI       |
 
@@ -28,16 +28,16 @@ The mapping of our code to a single Xbox360 Controller.
 ### Buttons
 | Name         | Port | Value      | Function       | Location                |
 |:------------ |:---- |:---------- |:-------------- |:----------------------- |
-| A            | 1    | true/false |                | Not Applicable          |
-| B            | 2    | true/false |                | Not Applicable          |
-| X            | 3    | true/false |                | Not Applicable          |
-| Y            | 4    | true/false |                | Not Applicable          |
+| A            | 1    | true/false |                |                         |
+| B            | 2    | true/false |                |                         |
+| X            | 3    | true/false |                |                         |
+| Y            | 4    | true/false |                |                         |
 | Left Bumper  | 5    | true/false | Toggle Pusher  | [TogglePusher.java][7]  |
 | Right Bumper | 6    | true/false | Toggle Grabber | [ToggleGrabber.java][8] |
-| Back         | 7    | true/false |                | Not Applicable          |
-| Start        | 8    | true/false |                | Not Applicable          |
-| Left Stick   | 9    | true/false |                | Not Applicable          |
-| Right Stick  | 10   | true/false |                | Not Applicable          |
+| Back         | 7    | true/false |                |                         |
+| Start        | 8    | true/false |                |                         |
+| Left Stick   | 9    | true/false |                |                         |
+| Right Stick  | 10   | true/false |                |                         |
 
 ### Axes
 | Name          | Port | Value   | Function      | Location              |
