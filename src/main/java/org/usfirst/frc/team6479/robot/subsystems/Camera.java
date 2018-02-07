@@ -40,7 +40,7 @@ public class Camera extends Subsystem implements SafeSubsystem {
     public void setCameraMode(Mode mode) {
     		jetson.setMode(mode);
     }
-    public Double currentDistance() {
+    public Double getCurrentDistance() {
 		return jetson.getDistance();
     }
     @Override

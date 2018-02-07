@@ -1,20 +1,29 @@
 package org.usfirst.frc.team6479.robot.commands.auton;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team6479.robot.Robot;
 
-
 public class StraightDrive extends Command {
+	public enum Mode {
+		encoderDrive, sonarDrive
+	}
     private double speed;
+
+	/*
+	distance is in Inches
+	Sonar - distanceGoal is desired distance from programming
+	Encoder - Distance to travel
+	 */
     private double distanceGoal;
     private double distance;
     private double totalDistance;
+    private Mode mode;
 
-    public StraightDrive(double distance) {
+    public StraightDrive(Mode mode, double distance) {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
         requires(Robot.drivetrain);
+        this.mode = mode;
         this.distanceGoal = distance;
 	}
 
@@ -28,6 +37,7 @@ public class StraightDrive extends Command {
 	    Robot.drivetrain.getGyro().reset();
 	    speed = 0.2;
 
+	    //Distance that needs to be traveled
 	    totalDistance = Robot.drivetrain.getSonar().getDistance() - distanceGoal;
 	}
 
@@ -38,14 +48,34 @@ public class StraightDrive extends Command {
 	 */
 	@Override
 	protected void execute() {
-        double Kp = 0.03;
+        //kP = constant to prevent jerky angle correction
+		double kP = 0.03;
 	    double angle = Robot.drivetrain.getGyro().getAngle();
-	    distance = Robot.drivetrain.getSonar().getDistance();
 
-	    speed = 0.2 + (0.45 * Math.pow(((distance-distanceGoal)/totalDistance), 1));
-        //speed = .2;
+	    if (mode == Mode.sonarDrive) {
+		    distance = Robot.drivetrain.getSonar().getDistance();
 
-        Robot.drivetrain.curveDrive(speed, -angle*Kp);
+		    //Equation that decreases speed as the the robot approached the angle goal with precision
+	        /*
+	        0.2 = min speed
+	        0.45 = speed. (Increase for speed increase/ decrease for speed decrease)
+	        The parentheses stuff is an equation that goes from 1 to 0 as the angle approaches the goal
+	        */
+		    speed = 0.2 + (0.45 * ((distance - distanceGoal) / totalDistance));
+	    }
+	    else {
+	    	distance = Robot.drivetrain.getEncoder().getDistance();
+
+		    //Equation that decreases speed as the the robot approached the angle goal with precision
+	        /*
+	        0.2 = min speed
+	        0.45 = speed. (Increase for speed increase/ decrease for speed decrease)
+	        The parentheses stuff is an equation that goes from 1 to 0 as the angle approaches the goal
+	        */
+		    speed = 0.2 + (0.45 * ((distanceGoal - distance) / distanceGoal));
+	    }
+
+        Robot.drivetrain.curveDrive(speed, -angle*kP);
 	}
 
 

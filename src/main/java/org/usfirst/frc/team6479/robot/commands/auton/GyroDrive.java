@@ -15,7 +15,6 @@ public class GyroDrive extends Command {
     private double tmpAngleGoal;
     private double speed;
 
-    private static final double SPEED_THRESHOLD = 0.40;
     private static final int ANGLE_DELTA = 8;
 
     //COT = Change over time
@@ -82,6 +81,12 @@ public class GyroDrive extends Command {
 
         angleCOT = this.getAngleCOT(prevGyroAngle, gyroAngle);
 
+        //Equation that decreases speed as the the robot approached the angle goal with precision
+	    /*
+	    0.4 = min speed
+	    0.25 = speed. (Increase for speed increase/ decrease for speed decrease)
+	    The parentheses stuff is an equation that goes from 1 to 0 as the angle approaches the goal
+	     */
         speed = 0.4 + ( 0.25 * ((angleGoal - gyroAngle)/angleGoal));
 
         if (dir == Direction.dLeft) {
@@ -90,26 +95,6 @@ public class GyroDrive extends Command {
         else if (dir == Direction.dRight) {
             Robot.drivetrain.tankDrive(speed, -speed);
         }
-
-        /*System.out.println("Speed: " + speed);
-        if (this.isInRange(gyroAngle, tmpAngleGoal, angleCOT)) {
-            //Recalculate Temp Angle Goal
-            if (tmpAngleGoal + (angleGoal / ANGLE_DELTA) < angleGoal) {
-                tmpAngleGoal += (angleGoal / ANGLE_DELTA);
-            }
-            else {
-                tmpAngleGoal = angleGoal;
-            }
-
-            System.out.println("Temp Angle Goal " + tmpAngleGoal);
-            SmartDashboard.putNumber("tmpAngleGoal", tmpAngleGoal);
-
-            //Recalculate Motor Speeds
-            if (speed * 0.9375 >= SPEED_THRESHOLD) {
-                speed *= 0.9375;
-                SmartDashboard.putNumber("Speed", speed);
-            }
-        }*/
     }
 
 
