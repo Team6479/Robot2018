@@ -12,21 +12,19 @@ public class Scale extends BaseAutonomous {
 	//what happens when robot is positioned on the center
 	@Override
 	protected void center() {
-		
+		System.out.println("Baseline Center Autonomous");
 	}
 
 	//what happens when robot is positioned on the left
 	@Override
 	protected void left() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("Baseline Left Autonomous");
 	}
 
 	//what happens when robot is positioned on the right
 	@Override
 	protected void right() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("Baseline Right Autonomous");
 	}
 	
 }
