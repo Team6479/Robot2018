@@ -52,8 +52,8 @@ The mapping of our code to a single Xbox360 Controller.
 
 ## Autonomous Modes
 All of our autonomous routines are handled by [AutonomousManager.java][9]. This is an overview of what the autonomous routine are and what they do.
-| Name | Function  |
-|:---- |:--------- |
+| Name            | Function                                                                         |
+|:--------------- |:-------------------------------------------------------------------------------- |
 | Left Baseline   | Move the robot past the baseline when the robot starts on the left               |
 | Right Baseline  | Move the robot past the baseline when the robot starts on the right              |
 | Center Baseline | Move the robot past the baseline when the robot starts in the center             |
@@ -82,7 +82,7 @@ All of our autonomous routines are handled by [AutonomousManager.java][9]. This 
 [3]: https://github.com/Team6479/JetsonStream
 [4]: https://github.com/wpilibsuite/shuffleboard
 [5]: https://developers.google.com/protocol-buffers/
-[6]: src/main/java/org/usfirst/team6479/robot/commands/teleop/RacingDrive.java
-[7]: src/main/java/org/usfirst/team6479/robot/commands/teleop/TogglePusher.java
-[8]: src/main/java/org/usfirst/team6479/robot/commands/teleop/ToggleGrabber.java
-[9]: src/main/java/org/usfirst/team6479/robot/autonomous/manager/AutonomousManager.java
+[6]: ./src/main/java/org/usfirst/team6479/robot/commands/teleop/RacingDrive.java
+[7]: ./src/main/java/org/usfirst/team6479/robot/commands/teleop/TogglePusher.java
+[8]: ./src/main/java/org/usfirst/team6479/robot/commands/teleop/ToggleGrabber.java
+[9]: ./src/main/java/org/usfirst/team6479/robot/autonomous/manager/AutonomousManager.java
