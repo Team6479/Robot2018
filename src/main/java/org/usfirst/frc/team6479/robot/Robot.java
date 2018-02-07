@@ -41,8 +41,9 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Drivetrain", Robot.drivetrain.getDrive());
 
         //Encoders
-        SmartDashboard.putData("Left Encoder", Robot.drivetrain.getLeftEncoder());
-        SmartDashboard.putData("Right Encoder", Robot.drivetrain.getRightEncoder());
+        SmartDashboard.putData("Drivetrain Encoder", Robot.drivetrain.getEncoder());
+        SmartDashboard.putData("Left Encoder", Robot.drivetrain.getEncoder().getLeft());
+        SmartDashboard.putData("Right Encoder", Robot.drivetrain.getEncoder().getRight());
 	}
 	@Override
 	public void robotPeriodic() {

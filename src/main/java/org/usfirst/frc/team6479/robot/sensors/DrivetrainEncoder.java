@@ -18,6 +18,13 @@ public class DrivetrainEncoder extends SendableBase {
 		this(new Encoder(leftA, leftB, reverseLeft, encoding), new Encoder(rightA, rightB, reverseRight, encoding));
 	}
 
+	public Encoder getLeft() {
+		return left;
+	}
+	public Encoder getRight() {
+		return right;
+	}
+	
 
 	//accesor methods take avergaes
 	public double getDistance() {

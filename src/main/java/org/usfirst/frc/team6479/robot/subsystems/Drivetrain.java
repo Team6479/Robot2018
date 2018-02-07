@@ -3,7 +3,6 @@ package org.usfirst.frc.team6479.robot.subsystems;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team6479.robot.commands.teleop.RacingDrive;
 import org.usfirst.frc.team6479.robot.config.RobotMap;
@@ -88,7 +87,7 @@ public class Drivetrain extends Subsystem implements SafeSubsystem {
         return sonar;
     }
 
-    public DrivetrainEncoder getLeftEncoder() {
+    public DrivetrainEncoder getEncoder() {
         return encoder;
     }
 
