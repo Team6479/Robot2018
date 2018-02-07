@@ -82,7 +82,7 @@ public class GyroDrive extends Command {
 
         angleCOT = this.getAngleCOT(prevGyroAngle, gyroAngle);
 
-        speed = 0.15 + ( 0.45 * ((angleGoal - gyroAngle)/angleGoal));
+        speed = 0.4 + ( 0.25 * ((angleGoal - gyroAngle)/angleGoal));
 
         if (dir == Direction.dLeft) {
             Robot.drivetrain.tankDrive(-speed, speed);

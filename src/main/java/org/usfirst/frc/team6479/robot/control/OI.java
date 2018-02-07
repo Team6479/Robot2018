@@ -17,6 +17,7 @@ public class OI {
 	//initialization
 	public OI() {
 		xbox = new XboxController(RobotMap.xboxPort);
+		xbox.ger
 		rightBumper = new ButtonTracker(xbox, XboxMap.RightBumper);
 		rightBumper.toggleWhenPressed(new ToggleGrabber());
 	    leftBumper = new ButtonTracker(xbox, XboxMap.LeftBumper);
