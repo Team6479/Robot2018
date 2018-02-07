@@ -14,30 +14,40 @@ public class XboxControllerDeadzone extends XboxController {
 	 */
 	public XboxControllerDeadzone(int port) {
 		super(port);
-		deadZone = 2.0;
+		deadZone = 0.2;
 	}
 
 	@Override
 	public double getRawAxis(int axis) {
-		double rawAxis = super.getRawAxis(axis);
-		//double  mag = Math.sq
+		double x;
+		double y;
 
-		if (axis == XboxMap.LeftJoystickX) {
-
-		}
-		else if (axis == XboxMap.LeftJoystickY) {
-
-		}
-		else if (axis == XboxMap.RightJoystickX) {
-
-		}
-		else if (axis == XboxMap.RightJoyStickY) {
-
+		if (axis == XboxMap.LeftJoystickX || axis == XboxMap.LeftJoystickY) {
+			x = super.getRawAxis(XboxMap.LeftJoystickX);
+			y = super.getRawAxis(XboxMap.LeftJoystickY);
 		}
 		else {
-		
+			x = super.getRawAxis(XboxMap.RightJoystickX);
+			y = super.getRawAxis(XboxMap.RightJoyStickY);
 		}
-		return rawAxis;
+
+		//Magnitude
+		double mag = Math.sqrt((x * x) + (y * y));
+
+		if (mag > deadZone) {
+			double range = 1.0 - deadZone;
+			double normMag = Math.min(1.0, (mag - deadZone) / range);
+			double scale = normMag / mag;
+			x = x * scale;
+			y = y * scale;
+		}
+
+		if (axis == XboxMap.LeftJoystickX || axis == XboxMap.RightJoystickX) {
+			return x;
+		}
+		else {
+			return y;
+		}
 	}
 
 }

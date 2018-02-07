@@ -9,6 +9,7 @@ import org.usfirst.frc.team6479.robot.commands.teleop.TogglePusher;
 import org.usfirst.frc.team6479.robot.config.RobotMap;
 
 import edu.wpi.first.wpilibj.XboxController;
+import org.usfirst.frc.team6479.robot.util.XboxControllerDeadzone;
 import robot.xbox.ButtonTracker;
 import robot.xbox.XboxMap;
 
@@ -16,14 +17,14 @@ public class OI {
 
 	//initialization
 	public OI() {
-		xbox = new XboxController(RobotMap.xboxPort);
+		xbox = new XboxControllerDeadzone(RobotMap.xboxPort);
 		rightBumper = new ButtonTracker(xbox, XboxMap.RightBumper);
 		rightBumper.toggleWhenPressed(new ToggleGrabber());
 	    leftBumper = new ButtonTracker(xbox, XboxMap.LeftBumper);
 	    leftBumper.toggleWhenPressed(new TogglePusher());
 
 	    //Testing Commands
-        SmartDashboard.putData("Drive Forward", new SonarDrive(10, SonarDrive.Direction.dForward));
+        //SmartDashboard.putData("Drive Forward", new SonarDrive(10, SonarDrive.Direction.dForward));
         SmartDashboard.putData("Turn", new GyroDrive(90, GyroDrive.Direction.dRight));
         SmartDashboard.putData("Toggle Light", new ToggleLight());
         SmartDashboard.putData("Turn on Camera", new CameraDrive());
