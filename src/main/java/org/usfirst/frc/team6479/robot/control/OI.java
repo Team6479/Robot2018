@@ -28,7 +28,7 @@ public class OI {
         SmartDashboard.putData("Toggle Light", new ToggleLight());
         SmartDashboard.putData("Turn on Camera", new CameraDrive());
         SmartDashboard.putData("GET DA CUBE", new CameraTurnGetCube());
-        SmartDashboard.putData("Straight Drive", new StraightDrive(24));
+        //SmartDashboard.putData("Straight Drive", new StraightDrive(24));
 
         SmartDashboard.putData("Dead Reckon Forward", new DeadReckonDrive(2, 0.5, DeadReckonDrive.Direction.dForward));
         SmartDashboard.putData("Dead Reckon Backward", new DeadReckonDrive(2, 0.5, DeadReckonDrive.Direction.dBackward));
