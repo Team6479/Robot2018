@@ -12,18 +12,18 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 //this controls the spike for the light and manages the JetsonServer
 public class Camera extends Subsystem implements SafeSubsystem {
 
-    private JetsonServer jetson; 
+    private JetsonServer jetson;
     //spike for the light
     private Relay light;
     public Camera() {
-        
+
         jetson = new JetsonServer(1182);
-        
+
         light = new Relay(RobotMap.lightSpikePort);
     }
     @Override
     protected void initDefaultCommand() {
-        
+
     }
     public void lightOn() {
         light.set(Value.kForward);
@@ -46,6 +46,7 @@ public class Camera extends Subsystem implements SafeSubsystem {
     @Override
     public void stop() {
         lightOff();
+        setCameraMode(Mode.NONE);
     }
 
 }

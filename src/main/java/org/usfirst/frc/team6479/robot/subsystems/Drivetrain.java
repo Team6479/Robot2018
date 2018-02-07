@@ -1,16 +1,13 @@
 package org.usfirst.frc.team6479.robot.subsystems;
 
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Spark;
-import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team6479.robot.commands.teleop.RacingDrive;
 import org.usfirst.frc.team6479.robot.config.RobotMap;
+import org.usfirst.frc.team6479.robot.sensors.DrivetrainEncoder;
 import org.usfirst.frc.team6479.robot.sensors.RangeFinder;
 
 //the drive train of the robot
@@ -26,8 +23,7 @@ public class Drivetrain extends Subsystem implements SafeSubsystem {
 
 	private DifferentialDrive drive;
 
-	private Encoder leftEncoder;
-	private Encoder rightEncoder;
+	private DrivetrainEncoder encoder;
 
     private ADXRS450_Gyro gyro;
 
@@ -44,20 +40,18 @@ public class Drivetrain extends Subsystem implements SafeSubsystem {
 
 		drive = new DifferentialDrive(leftSide, rightSide);
 
-		// init the encoders
-        leftEncoder = new Encoder(RobotMap.leftEncoderAPort, RobotMap.leftEncoderBPort, false, Encoder.EncodingType.k4X);
-        rightEncoder = new Encoder(RobotMap.rightEncoderAPort, RobotMap.rightEncoderBPort, true, Encoder.EncodingType.k4X);
-        // set the time until when the robot is considered stopped, set in seconds
-        leftEncoder.setMaxPeriod(.05);
-        rightEncoder.setMaxPeriod(.05);
+
+		//init encoder
+		encoder = new DrivetrainEncoder(RobotMap.leftEncoderAPort, RobotMap.leftEncoderBPort,false,
+			RobotMap.rightEncoderAPort, RobotMap.rightEncoderBPort, true, Encoder.EncodingType.k4X);
+		// set the time until when the robot is considered stopped, set in seconds
+		encoder.setMaxPeriod(0.05);
         // set distance per pulse to be 1 inch
         double distancePerPulse = (6 * Math.PI) / 360;
-        leftEncoder.setDistancePerPulse(distancePerPulse);
-        rightEncoder.setDistancePerPulse(distancePerPulse);
+        encoder.setDistancePerPulse(distancePerPulse);
 
         //TODO: adjust as needed
-        leftEncoder.setSamplesToAverage(10);
-        rightEncoder.setSamplesToAverage(10);
+        encoder.setSamplesToAverage(10);
 
         gyro = new ADXRS450_Gyro();
 
@@ -94,12 +88,8 @@ public class Drivetrain extends Subsystem implements SafeSubsystem {
         return sonar;
     }
 
-    public Encoder getLeftEncoder() {
-        return leftEncoder;
-    }
-
-    public Encoder getRightEncoder() {
-        return rightEncoder;
+    public DrivetrainEncoder getLeftEncoder() {
+        return encoder;
     }
 
     @Override
