@@ -10,7 +10,6 @@ This is Team 6479's code for the 2018 FIRST Robotics Competition season.
 |:--------------------- |:--------- |
 | [Robot Library][1]    | Team 6479 |
 | [Protocol Buffers][5] | Google    |
-|
 
 
 ## About The Code
@@ -83,7 +82,7 @@ All of our autonomous routines are handled by [AutonomousManager.java][9]. This 
 [3]: https://github.com/Team6479/JetsonStream
 [4]: https://github.com/wpilibsuite/shuffleboard
 [5]: https://developers.google.com/protocol-buffers/
-[6]: (src/main/java/org/usfirst/team6479/robot/commands/teleop/RacingDrive.java)
-[7]: (src/main/java/org/usfirst/team6479/robot/commands/teleop/TogglePusher.java)
-[8]: (src/main/java/org/usfirst/team6479/robot/commands/teleop/ToggleGrabber.java)
-[9]: (src/main/java/org/usfirst/team6479/robot/autonomous/manager/AutonomousManager.java)
+[6]: src/main/java/org/usfirst/team6479/robot/commands/teleop/RacingDrive.java
+[7]: src/main/java/org/usfirst/team6479/robot/commands/teleop/TogglePusher.java
+[8]: src/main/java/org/usfirst/team6479/robot/commands/teleop/ToggleGrabber.java
+[9]: src/main/java/org/usfirst/team6479/robot/autonomous/manager/AutonomousManager.java
