@@ -10,7 +10,6 @@ This is Team 6479's code for the 2018 FIRST Robotics Competition season.
 |:--------------------- |:--------- |
 | [Robot Library][1]    | Team 6479 |
 | [Protocol Buffers][5] | Google    |
-|
 
 
 ## About The Code
@@ -18,7 +17,7 @@ Our team uses a Nvidia Jetson TX1 to process camera input and send that data to 
 
 | Repository                         | Creator   |
 |:---------------------------------- |:--------- |
-| [Vision Processing][2]            | Team 6479 |
+| [Vision Processing][2]             | Team 6479 |
 | [Driver Station Image Receiver][3] | Team 6479 |
 | [Shuffleboard][4]                  | WPI       |
 
@@ -29,16 +28,16 @@ The mapping of our code to a single Xbox360 Controller.
 ### Buttons
 | Name         | Port | Value      | Function       | Location                |
 |:------------ |:---- |:---------- |:-------------- |:----------------------- |
-| A            | 1    | true/false |                | Not Applicable          |
-| B            | 2    | true/false |                | Not Applicable          |
-| X            | 3    | true/false |                | Not Applicable          |
-| Y            | 4    | true/false |                | Not Applicable          |
+| A            | 1    | true/false |                |                         |
+| B            | 2    | true/false |                |                         |
+| X            | 3    | true/false |                |                         |
+| Y            | 4    | true/false |                |                         |
 | Left Bumper  | 5    | true/false | Toggle Pusher  | [TogglePusher.java][7]  |
 | Right Bumper | 6    | true/false | Toggle Grabber | [ToggleGrabber.java][8] |
-| Back         | 7    | true/false |                | Not Applicable          |
-| Start        | 8    | true/false |                | Not Applicable          |
-| Left Stick   | 9    | true/false |                | Not Applicable          |
-| Right Stick  | 10   | true/false |                | Not Applicable          |
+| Back         | 7    | true/false |                |                         |
+| Start        | 8    | true/false |                |                         |
+| Left Stick   | 9    | true/false |                |                         |
+| Right Stick  | 10   | true/false |                |                         |
 
 ### Axes
 | Name          | Port | Value   | Function      | Location              |
@@ -53,8 +52,8 @@ The mapping of our code to a single Xbox360 Controller.
 
 ## Autonomous Modes
 All of our autonomous routines are handled by [AutonomousManager.java][9]. This is an overview of what the autonomous routine are and what they do.
-| Name | Function  |
-|:---- |:--------- |
+| Name            | Function                                                                         |
+|:--------------- |:-------------------------------------------------------------------------------- |
 | Left Baseline   | Move the robot past the baseline when the robot starts on the left               |
 | Right Baseline  | Move the robot past the baseline when the robot starts on the right              |
 | Center Baseline | Move the robot past the baseline when the robot starts in the center             |
@@ -83,7 +82,7 @@ All of our autonomous routines are handled by [AutonomousManager.java][9]. This 
 [3]: https://github.com/Team6479/JetsonStream
 [4]: https://github.com/wpilibsuite/shuffleboard
 [5]: https://developers.google.com/protocol-buffers/
-[6]: (src/main/java/org/usfirst/team6479/robot/commands/teleop/RacingDrive.java)
-[7]: (src/main/java/org/usfirst/team6479/robot/commands/teleop/TogglePusher.java)
-[8]: (src/main/java/org/usfirst/team6479/robot/commands/teleop/ToggleGrabber.java)
-[9]: (src/main/java/org/usfirst/team6479/robot/autonomous/manager/AutonomousManager.java)
+[6]: ./src/main/java/org/usfirst/frc/team6479/robot/commands/teleop/RacingDrive.java
+[7]: ./src/main/java/org/usfirst/frc/team6479/robot/commands/teleop/TogglePusher.java
+[8]: ./src/main/java/org/usfirst/frc/team6479/robot/commands/teleop/ToggleGrabber.java
+[9]: ./src/main/java/org/usfirst/frc/team6479/robot/autonomous/manager/AutonomousManager.java
