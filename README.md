@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/Team6479/Robot2018.svg?branch=master)](https://travis-ci.org/Team6479/Robot2018)
 
-This is Team 6479's code for the 2018 FIRST Robotics Competition season. 
+This is Team 6479's code for the 2018 FIRST Robotics Competition season.
 
 
 ## Libraries Used
@@ -75,6 +75,7 @@ All of our autonomous routines are handled by [AutonomousManager.java][9]. This 
 - [ ] Add detection for reflective tape
 - [ ] Implement autonomous commands into the autonomous manager
 - [ ] Improve cube detection
+- [ ] Add collision detection
 
 
 [1]: https://github.com/Team6479/RobotLibrary
