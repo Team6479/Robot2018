@@ -52,6 +52,7 @@ The mapping of our code to a single Xbox360 Controller.
 
 ## Autonomous Modes
 All of our autonomous routines are handled by [AutonomousManager.java][9]. This is an overview of what the autonomous routine are and what they do.
+
 | Name            | Function                                                                         |
 |:--------------- |:-------------------------------------------------------------------------------- |
 | Left Baseline   | Move the robot past the baseline when the robot starts on the left               |
@@ -66,16 +67,11 @@ All of our autonomous routines are handled by [AutonomousManager.java][9]. This 
 
 
 ## TODO List
-- [ ] Solve dead zone issues on controllers
-- [x] Implement exponential formula on CameraDrive
 - [ ] Improve encoder accuracy
-- [x] Add encoders to StraightDrive
-- [x] Have StraightDrive use either encoders to go certain distance or use sonar to go until a distance
-- [x] Remove SonarDrive
-- [ ] Add detection for reflective tape
 - [ ] Implement autonomous commands into the autonomous manager
-- [ ] Improve cube detection
 - [ ] Add collision detection
+- [ ] Implement a new CameraDrive that functions like StraightDrive but uses Camera instead of Gyro
+
 
 
 [1]: https://github.com/Team6479/RobotLibrary
