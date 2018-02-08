@@ -64,15 +64,21 @@ public class StraightDrive extends Command {
 		    speed = 0.2 + (0.45 * ((distance - distanceGoal) / totalDistance));
 	    }
 	    else {
-	    	distance = Robot.drivetrain.getEncoder().getDistance();
+	    	//Collision detection: Checks if an object is 30 in. in front of it
+	    	if (Robot.drivetrain.getSonar().getDistance() <= 30) {
+	    		speed = 0;
+		    }
+		    else {
+			    distance = Robot.drivetrain.getEncoder().getDistance();
 
-		    //Equation that decreases speed as the the robot approached the angle goal with precision
-	        /*
-	        0.2 = min speed
-	        0.45 = speed. (Increase for speed increase/ decrease for speed decrease)
-	        The parentheses stuff is an equation that goes from 1 to 0 as the angle approaches the goal
-	        */
-		    speed = 0.2 + (0.45 * ((distanceGoal - distance) / distanceGoal));
+			    //Equation that decreases speed as the the robot approached the angle goal with precision
+	            /*
+	            0.2 = min speed
+	            0.45 = speed. (Increase for speed increase/ decrease for speed decrease)
+	            The parentheses stuff is an equation that goes from 1 to 0 as the angle approaches the goal
+	            */
+			    speed = 0.2 + (0.45 * ((distanceGoal - distance) / distanceGoal));
+		    }
 	    }
 
         Robot.drivetrain.curveDrive(speed, -angle*kP);
