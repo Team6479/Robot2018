@@ -52,6 +52,7 @@ The mapping of our code to a single Xbox360 Controller.
 
 ## Autonomous Modes
 All of our autonomous routines are handled by [AutonomousManager.java][9]. This is an overview of what the autonomous routine are and what they do.
+
 | Name            | Function                                                                         |
 |:--------------- |:-------------------------------------------------------------------------------- |
 | Left Baseline   | Move the robot past the baseline when the robot starts on the left               |
