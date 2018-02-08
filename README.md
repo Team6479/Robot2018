@@ -73,6 +73,7 @@ All of our autonomous routines are handled by [AutonomousManager.java][9]. This 
 - [x] Implement a new CameraDrive that functions like StraightDrive but uses Camera instead of Gyro
 - [ ] Add fancy formula to FlushDrive
 - [ ] Add fancy formula to CameraDrive
+- [ ] Test all code in safe environment in small tests before testing in large environment
 
 
 
