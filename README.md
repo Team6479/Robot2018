@@ -67,17 +67,9 @@ All of our autonomous routines are handled by [AutonomousManager.java][9]. This 
 
 
 ## TODO List
-- [x] Solve dead zone issues on controllers
-- [x] Implement exponential formula on CameraDrive
 - [ ] Improve encoder accuracy
-- [x] Add encoders to StraightDrive
-- [x] Have StraightDrive use either encoders to go certain distance or use sonar to go until a distance
-- [x] Remove SonarDrive
-- [x] Add detection for reflective tape
 - [ ] Implement autonomous commands into the autonomous manager
-- [ ] Improve cube detection
 - [ ] Add collision detection
-- [ ] Refactor CameraDrive to CameraRotate
 - [ ] Implement a new CameraDrive that functions like StraightDrive but uses Camera instead of Gyro
 
 
