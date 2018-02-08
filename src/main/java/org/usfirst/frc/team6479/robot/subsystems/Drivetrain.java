@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 import org.usfirst.frc.team6479.robot.commands.teleop.RacingDrive;
 import org.usfirst.frc.team6479.robot.config.RobotMap;
+import org.usfirst.frc.team6479.robot.sensors.DoubleUltrasonic;
 import org.usfirst.frc.team6479.robot.sensors.DrivetrainEncoder;
 import org.usfirst.frc.team6479.robot.sensors.RangeFinder;
 
@@ -27,6 +28,8 @@ public class Drivetrain extends Subsystem implements SafeSubsystem {
     private ADXRS450_Gyro gyro;
 
     private RangeFinder sonar;
+    
+    private DoubleUltrasonic ultrasonic;
 
 	public Drivetrain() {
 		leftBack = new Spark(RobotMap.leftBackPort);
@@ -54,7 +57,9 @@ public class Drivetrain extends Subsystem implements SafeSubsystem {
 
         gyro = new ADXRS450_Gyro();
 
-        sonar = new RangeFinder(0);
+        sonar = new RangeFinder(RobotMap.sonarPort);
+        
+        ultrasonic = new DoubleUltrasonic(RobotMap.leftInputPing, RobotMap.leftOutputEcho, RobotMap.rightInputPing, RobotMap.rightOutputEcho);
 	}
 
 	@Override
@@ -89,6 +94,10 @@ public class Drivetrain extends Subsystem implements SafeSubsystem {
 
     public DrivetrainEncoder getEncoder() {
         return encoder;
+    }
+    
+    public DoubleUltrasonic getUltrasonic() {
+    		return ultrasonic;
     }
 
     @Override

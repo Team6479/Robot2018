@@ -71,6 +71,7 @@ All of our autonomous routines are handled by [AutonomousManager.java][9]. This 
 - [ ] Implement autonomous commands into the autonomous manager
 - [ ] Add collision detection
 - [ ] Implement a new CameraDrive that functions like StraightDrive but uses Camera instead of Gyro
+- [ ] Add fancy formula to FlushDrive
 
 
 

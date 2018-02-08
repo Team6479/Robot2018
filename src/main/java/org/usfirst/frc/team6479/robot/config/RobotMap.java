@@ -26,6 +26,11 @@ public class RobotMap {
 	//encoder for pulley
     public static final int pulleyEncoderAPort = 4;
     public static final int pulleyEncoderBPort = 5;
+    //vex sonar
+    public static final int leftInputPing = 6;
+    public static final int leftOutputEcho = 7;
+    public static final int rightInputPing = 8;
+    public static final int rightOutputEcho = 9;
 
     //ANALOG
     //sonar
