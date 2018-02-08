@@ -69,9 +69,10 @@ All of our autonomous routines are handled by [AutonomousManager.java][9]. This 
 ## TODO List
 - [ ] Improve encoder accuracy
 - [ ] Implement autonomous commands into the autonomous manager
-- [ ] Add collision detection
-- [ ] Implement a new CameraDrive that functions like StraightDrive but uses Camera instead of Gyro
+- [x] Add collision detection
+- [x] Implement a new CameraDrive that functions like StraightDrive but uses Camera instead of Gyro
 - [ ] Add fancy formula to FlushDrive
+- [ ] Add fancy formula to CameraDrive
 
 
 
