@@ -1,13 +1,14 @@
 package org.usfirst.frc.team6479.robot.subsystems;
 
+import org.usfirst.frc.team6479.robot.commands.teleop.ElevatorControl;
+import org.usfirst.frc.team6479.robot.config.RobotMap;
+
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import org.usfirst.frc.team6479.robot.commands.teleop.ElevatorControl;
-import org.usfirst.frc.team6479.robot.config.RobotMap;
 
 //the elevator, which uses a winch, this is controlled by two cims and a piston
 public class Elevator extends Subsystem implements SafeSubsystem {

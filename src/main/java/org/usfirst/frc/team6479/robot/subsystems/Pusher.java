@@ -1,8 +1,9 @@
 package org.usfirst.frc.team6479.robot.subsystems;
 
+import org.usfirst.frc.team6479.robot.config.RobotMap;
+
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import org.usfirst.frc.team6479.robot.config.RobotMap;
 
 public class Pusher extends Subsystem implements SafeSubsystem {
     DoubleSolenoid dubSol;

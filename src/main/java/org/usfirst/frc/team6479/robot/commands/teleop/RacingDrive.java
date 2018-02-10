@@ -3,12 +3,13 @@ package org.usfirst.frc.team6479.robot.commands.teleop;
 import org.usfirst.frc.team6479.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+
 import robot.xbox.XboxMap;
 
 public class RacingDrive extends Command {
-    
+
     private static final double DEADZONE = 0.3;
-    
+
 	public RacingDrive() {
 		//Use requires() here to declare subsystem dependencies
 		requires(Robot.drivetrain);

@@ -1,7 +1,8 @@
 package org.usfirst.frc.team6479.robot.commands.auton;
 
-import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team6479.robot.Robot;
+
+import edu.wpi.first.wpilibj.command.Command;
 
 public class StraightDrive extends Command {
 	public enum Mode {

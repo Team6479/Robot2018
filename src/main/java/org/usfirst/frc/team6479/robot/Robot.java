@@ -1,8 +1,5 @@
 package org.usfirst.frc.team6479.robot;
 
-import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team6479.robot.autonomous.manager.AutonomousManager;
 import org.usfirst.frc.team6479.robot.control.OI;
 import org.usfirst.frc.team6479.robot.subsystems.Camera;
@@ -10,6 +7,11 @@ import org.usfirst.frc.team6479.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team6479.robot.subsystems.Elevator;
 import org.usfirst.frc.team6479.robot.subsystems.Grabber;
 import org.usfirst.frc.team6479.robot.subsystems.Pusher;
+
+import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import robot.xbox.ButtonTracker;
 
 public class Robot extends IterativeRobot {

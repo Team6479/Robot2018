@@ -1,8 +1,9 @@
 package org.usfirst.frc.team6479.robot.commands.auton;
 
+import org.usfirst.frc.team6479.robot.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team6479.robot.Robot;
 
 public class GyroDrive extends Command {
     public enum Direction {

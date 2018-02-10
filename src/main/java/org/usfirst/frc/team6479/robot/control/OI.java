@@ -1,7 +1,5 @@
 package org.usfirst.frc.team6479.robot.control;
 
-import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team6479.robot.commands.auton.CameraDrive;
 import org.usfirst.frc.team6479.robot.commands.auton.FlushDrive;
 import org.usfirst.frc.team6479.robot.commands.auton.StraightDrive;
@@ -10,6 +8,10 @@ import org.usfirst.frc.team6479.robot.commands.teleop.ToggleGrabber;
 import org.usfirst.frc.team6479.robot.commands.teleop.TogglePusher;
 import org.usfirst.frc.team6479.robot.config.RobotMap;
 import org.usfirst.frc.team6479.robot.util.XboxControllerDeadzone;
+
+import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import robot.xbox.ButtonTracker;
 import robot.xbox.XboxMap;
 

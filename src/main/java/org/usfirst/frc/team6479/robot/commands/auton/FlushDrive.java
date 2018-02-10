@@ -20,13 +20,13 @@ public class FlushDrive extends Command {
     //tolerance in inches of how flush it should get
     private static final double TOLERANCE = 1;
 
-    
+
     private double distance() {
 		double left = Robot.drivetrain.getUltrasonic().getLeft();
 		double right = Robot.drivetrain.getUltrasonic().getRight();
 		return left - right;
     }
-    
+
     /**
      * The initialize method is called just before the first time
      * this Command is run after being started.

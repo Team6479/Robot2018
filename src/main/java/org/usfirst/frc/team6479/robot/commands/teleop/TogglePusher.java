@@ -1,8 +1,8 @@
 package org.usfirst.frc.team6479.robot.commands.teleop;
 
-import edu.wpi.first.wpilibj.command.InstantCommand;
-
 import org.usfirst.frc.team6479.robot.Robot;
+
+import edu.wpi.first.wpilibj.command.InstantCommand;
 
 public class TogglePusher extends InstantCommand {
 

@@ -3,10 +3,11 @@ package org.usfirst.frc.team6479.robot.subsystems;
 import org.usfirst.frc.team6479.robot.config.RobotMap;
 import org.usfirst.frc.team6479.robot.connection.JetsonServer;
 
-import communication.JetsonPacket.ModePacket.Mode;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Relay.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
+
+import communication.JetsonPacket.ModePacket.Mode;
 
 //not a true subsystem
 //this controls the spike for the light and manages the JetsonServer

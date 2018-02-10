@@ -1,10 +1,12 @@
 package org.usfirst.frc.team6479.robot.autonomous;
 
-import edu.wpi.first.wpilibj.command.WaitCommand;
-import openrio.powerup.MatchData;
 import org.usfirst.frc.team6479.robot.autonomous.manager.StartPosition;
 import org.usfirst.frc.team6479.robot.commands.auton.GyroDrive;
 import org.usfirst.frc.team6479.robot.commands.auton.StraightDrive;
+
+import edu.wpi.first.wpilibj.command.WaitCommand;
+
+import openrio.powerup.MatchData;
 
 public class Baseline extends BaseAutonomous {
 

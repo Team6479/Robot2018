@@ -1,7 +1,9 @@
 package org.usfirst.frc.team6479.robot.commands.teleop;
 
-import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team6479.robot.Robot;
+
+import edu.wpi.first.wpilibj.command.Command;
+
 import robot.xbox.XboxMap;
 
 

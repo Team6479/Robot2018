@@ -1,10 +1,8 @@
 package org.usfirst.frc.team6479.robot.commands.auton;
 
 import org.usfirst.frc.team6479.robot.Robot;
-import org.usfirst.frc.team6479.robot.commands.auton.StraightDrive.Mode;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 //essential follows the camera
 //drives towards it until it reaches a certain distance, then waits until the object moves away
@@ -17,7 +15,7 @@ public class CameraDrive extends Command {
     private static final double PIXEL_TOLERANCE = 2;
     //how close to the object this code should get, will get within 20 inches
     private static final double STOP_RANGE = 20;
-	
+
     public CameraDrive() {
         //uses drivetrain
         requires(Robot.drivetrain);
@@ -65,8 +63,8 @@ public class CameraDrive extends Command {
         return (Robot.drivetrain.getSonar().getDistance() <= STOP_RANGE);
     }
 
-    
-    
+
+
     @Override
     protected boolean isFinished() {
         //if its in range its done

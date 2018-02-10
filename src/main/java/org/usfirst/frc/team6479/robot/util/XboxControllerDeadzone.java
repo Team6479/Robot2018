@@ -1,6 +1,7 @@
 package org.usfirst.frc.team6479.robot.util;
 
 import edu.wpi.first.wpilibj.XboxController;
+
 import robot.xbox.XboxMap;
 
 public class XboxControllerDeadzone extends XboxController {
