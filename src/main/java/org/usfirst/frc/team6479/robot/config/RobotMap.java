@@ -2,9 +2,10 @@ package org.usfirst.frc.team6479.robot.config;
 
 public class RobotMap {
 
-    //driver station
+    //DS
 	//controllers
 	public static final int xboxPort = 0;
+	//END DS
 
 	
 	//PWM
@@ -16,6 +17,7 @@ public class RobotMap {
 	 //pulley motors
     public static final int pulley1Port = 4;
     public static final int pulley2Port = 5;
+    //END PWM
     
     //DIO
 	//encoders for the drive train
@@ -31,14 +33,17 @@ public class RobotMap {
     public static final int leftOutputEcho = 7;
     public static final int rightInputPing = 8;
     public static final int rightOutputEcho = 9;
+    //END DIO
 
     //ANALOG
     //sonar
     public static final int sonarPort = 0;
+    //END ANALOG
     
     //RELAY
     //spike to turn light on and off
     public static final int lightSpikePort = 0;
+    //END RELAY
 	
 	//PCM
 	//pulley single solenoid
@@ -49,6 +54,7 @@ public class RobotMap {
     //Pusher Piston
     public static  final int pusherOnPort = 3;
     public static final int pusherOffPort = 4;
+    //END PCM
 
 	//compressor
 	public static final int compressorPort = 0;
