@@ -51,7 +51,7 @@ The mapping of our code to a single Xbox360 Controller.
 
 
 ## Autonomous Modes
-All of our autonomous routines are handled by [AutonomousManager.java][9]. This is an overview of what the autonomous routine are and what they do.
+All of our autonomous routines are handled by [AutonomousManager.java][9]. This is an overview of what the autonomous routine are and what they do. There is also a switch in the driver station to use either sensors or dead reckoning for the autonomous. The default is to use sensors, the only reason for this is as a backup if sensors fail.
 
 | Name            | Function                                                                         |
 |:--------------- |:-------------------------------------------------------------------------------- |
@@ -69,8 +69,6 @@ All of our autonomous routines are handled by [AutonomousManager.java][9]. This 
 ## TODO List
 - [ ] Improve encoder accuracy
 - [ ] Implement autonomous commands into the autonomous manager
-- [x] Add collision detection
-- [x] Implement a new CameraDrive that functions like StraightDrive but uses Camera instead of Gyro
 - [ ] Add fancy formula to FlushDrive
 - [ ] Add fancy formula to CameraDrive
 - [ ] Test all code in safe environment in small tests before testing in large environment
