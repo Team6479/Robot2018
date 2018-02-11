@@ -13,6 +13,7 @@ public class AutonomousManager {
 
     private SendableChooser<StartPosition> startPosChooser;
     private SendableChooser<AutoGoal> goalChooser;
+    private static final String SENSOR_DRIVE = "Sensor Drive";
 
     //init all autonomous routines
     //put chooser on smart dashboard
@@ -31,6 +32,10 @@ public class AutonomousManager {
         goalChooser.addObject(AutoGoal.a_scale.getKey(), AutoGoal.a_scale);
         goalChooser.addObject(AutoGoal.a_baseline.getKey(), AutoGoal.a_baseline);
         SmartDashboard.putData(AutoGoal.name, goalChooser);
+        
+        //wether or not to use dead rckoning
+        //default is to use sensors, no dead reckon
+        SmartDashboard.putBoolean(SENSOR_DRIVE, true);
     }
 
     //get the auto routine at init
@@ -38,15 +43,16 @@ public class AutonomousManager {
 
     		StartPosition pos = startPosChooser.getSelected();
     		AutoGoal goal = goalChooser.getSelected();
+    		boolean shoudldUseSensors = SmartDashboard.getBoolean(SENSOR_DRIVE, true);
 
     		//get the data from the choosers
     		switch(goal) {
 			case a_baseline:
-				return new Baseline(pos);
+				return new Baseline(pos, shoudldUseSensors);
 			case a_scale:
-				return new Scale(pos);
+				return new Scale(pos, shoudldUseSensors);
 			case a_switch:
-				return new Switch(pos);
+				return new Switch(pos, shoudldUseSensors);
 			default:
 				return null;
     		}

@@ -5,26 +5,44 @@ import org.usfirst.frc.team6479.robot.autonomous.manager.StartPosition;
 public class Switch extends BaseAutonomous {
 	
 	//nothing should be done
-	public Switch(StartPosition pos) {
-		super(pos);
+	public Switch(StartPosition pos, boolean shouldUseSensors) {
+		super(pos, shouldUseSensors);
 	}
 
 	//what happens when robot is positioned on the center
 	@Override
 	protected void center() {
-		System.out.println("Baseline Center Autonomous");
+		System.out.println("Switch Center Autonomous");
 	}
 
 	//what happens when robot is positioned on the left
 	@Override
 	protected void left() {
-		System.out.println("Baseline Left Autonomous");
+		System.out.println("Switch Left Autonomous");
 	}
 
 	//what happens when robot is positioned on the right
 	@Override
 	protected void right() {
-		System.out.println("Baseline Right Autonomous");
+		System.out.println("Switch Right Autonomous");
+	}
+	
+	//what happens when robot is positioned in the center
+	@Override
+	protected void deadReckonCenter() {
+		System.out.println("DEADRECKON Switch Center Autonomous");
+	}
+
+	//what happens when robot is positioned on the left
+	@Override
+	protected void deadReckonLeft() {
+		System.out.println("DEADRECKON Switch Left Autonomous");
+	}
+
+	//what happens when robot is positioned on the right
+	@Override
+	protected void deadReckonRight() {
+		System.out.println("DEADRECKON Switch Right Autonomous");
 	}
 	
 }

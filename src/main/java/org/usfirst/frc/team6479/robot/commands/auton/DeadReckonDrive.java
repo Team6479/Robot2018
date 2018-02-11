@@ -1,4 +1,4 @@
-package org.usfirst.frc.team6479.robot.commands.deadreckoning;
+package org.usfirst.frc.team6479.robot.commands.auton;
 
 import org.usfirst.frc.team6479.robot.Robot;
 
