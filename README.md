@@ -40,14 +40,14 @@ The mapping of our code to a single Xbox360 Controller.
 | Right Stick  | 10   | true/false |                |                         |
 
 ### Axes
-| Name          | Port | Value   | Function      | Location              |
-|:------------- |:---- |:------- |:------------- |:--------------------- |
-| X Left Stick  | 0    | -1 to 1 | Drive Turn    | [RacingDrive.java][6] |
-| Y Left Stick  | 1    | -1 to 1 |               |                       |
-| Left Trigger  | 2    | 0 to 1  | Drive Reverse | [RacingDrive.java][6] |
-| Right Trigger | 3    | 0 to 1  | Drive Forward | [RacingDrive.java][6] |
-| X Right Stick | 4    | -1 to 1 |               |                       |
-| Y Right Stick | 5    | -1 to 1 |               |                       |
+| Name          | Port | Value   | Function      | Location                   |
+|:------------- |:---- |:------- |:------------- |:-------------------------- |
+| X Left Stick  | 0    | -1 to 1 | Drive Turn    | [RacingDrive.java][6]      |
+| Y Left Stick  | 1    | -1 to 1 |               |                            |
+| Left Trigger  | 2    | 0 to 1  | Drive Reverse | [RacingDrive.java][6]      |
+| Right Trigger | 3    | 0 to 1  | Drive Forward | [RacingDrive.java][6]      |
+| X Right Stick | 4    | -1 to 1 |               |                            |
+| Y Right Stick | 5    | -1 to 1 | Move Elevator | [ElevatorControl.java][10] |
 
 
 ## Autonomous Modes
@@ -84,3 +84,4 @@ All of our autonomous routines are handled by [AutonomousManager.java][9]. This 
 [7]: ./src/main/java/org/usfirst/frc/team6479/robot/commands/teleop/TogglePusher.java
 [8]: ./src/main/java/org/usfirst/frc/team6479/robot/commands/teleop/ToggleGrabber.java
 [9]: ./src/main/java/org/usfirst/frc/team6479/robot/autonomous/manager/AutonomousManager.java
+[10]: ./src/main/java/org/usfirst/frc/team6479/robot/commands/teleop/ElevatorControl.java
