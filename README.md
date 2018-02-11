@@ -74,6 +74,8 @@ All of our autonomous routines are handled by [AutonomousManager.java][9]. This 
 - [ ] Test all code in safe environment in small tests before testing in large environment
 - [ ] Implement camera offset in vision code
 - [ ] look into calculating angle offset with camera instead of pixel offset
+- [ ] possibly mount camera in center bottom, then have cube be lifted up to reveal camera
+- [ ] find distance using camera
 
 
 
