@@ -72,6 +72,8 @@ All of our autonomous routines are handled by [AutonomousManager.java][9]. This 
 - [ ] Add fancy formula to FlushDrive
 - [ ] Add fancy formula to CameraDrive
 - [ ] Test all code in safe environment in small tests before testing in large environment
+- [ ] Implement camera offset in vision code
+- [ ] look into calculating angle offset with camera instead of pixel offset
 
 
 
