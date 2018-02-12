@@ -15,8 +15,8 @@ public class RobotMap {
 	public static final int leftFrontPort = 2;
 	public static final int rightFrontPort = 3;
 	 //pulley motors
-    public static final int pulley1Port = 4;
-    public static final int pulley2Port = 5;
+    public static final int winchTopPort = 4;
+    public static final int winchBottomPort = 5;
     //END PWM
     
     //DIO
@@ -47,13 +47,14 @@ public class RobotMap {
 	
 	//PCM
 	//pulley single solenoid
-	public static final int pulleySolPort = 0;
+	public static final int winchSolPort = 0;
+	public static final int gearboxSolPort = 1;
 	//grabber piston
-    public static final int grabberOnPort = 1;
-    public static final int grabberOffPort = 2;
+    public static final int grabberOnPort = 2;
+    public static final int grabberOffPort = 3;
     //Pusher Piston
-    public static  final int pusherOnPort = 3;
-    public static final int pusherOffPort = 4;
+    public static  final int pusherOnPort = 4;
+    public static final int pusherOffPort = 5;
     //END PCM
 
 	//compressor

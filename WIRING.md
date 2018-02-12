@@ -25,10 +25,11 @@
 
 | Port | Device |
 |:--- |:--- |
-| pulleySolPort | 0 |
-| grabberOnPort | 1 |
-| grabberOffPort | 2 |
-| pusherOffPort | 4 |
+| winchSolPort | 0 |
+| gearboxSolPort | 1 |
+| grabberOnPort | 2 |
+| grabberOffPort | 3 |
+| pusherOffPort | 5 |
 
 ## PWM
 
@@ -38,8 +39,8 @@
 | rightBackPort | 1 |
 | leftFrontPort | 2 |
 | rightFrontPort | 3 |
-| pulley1Port | 4 |
-| pulley2Port | 5 |
+| winchTopPort | 4 |
+| winchBottomPort | 5 |
 
 ## DS
 

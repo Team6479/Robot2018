@@ -13,19 +13,21 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 //the elevator, which uses a winch, this is controlled by two cims and a piston
 public class Elevator extends Subsystem implements SafeSubsystem {
 
-	private SpeedController pulley1;
-	private SpeedController pulley2;
+	private SpeedController winchMotorTop;
+	private SpeedController winchMotorBottom;
 
 	private SpeedController winch;
-	private Solenoid sol;
+	private Solenoid winchSol;
+	private Solenoid gearboxSol;
 	private Encoder encoder;
 
 	public Elevator() {
-		pulley1 = new Spark(RobotMap.pulley1Port);
-		pulley2 = new Spark(RobotMap.pulley2Port);
+		winchMotorTop = new Spark(RobotMap.winchTopPort);
+		winchMotorBottom = new Spark(RobotMap.winchBottomPort);
 
-		winch = new SpeedControllerGroup(pulley1, pulley2);
-		sol = new Solenoid(RobotMap.pulleySolPort);
+		winch = new SpeedControllerGroup(winchMotorTop, winchMotorBottom);
+		winchSol = new Solenoid(RobotMap.winchSolPort);
+		gearboxSol = new Solenoid(RobotMap.winchSolPort);
 		encoder = new Encoder(RobotMap.pulleyEncoderAPort, RobotMap.pulleyEncoderBPort);
 	}
 
@@ -35,7 +37,7 @@ public class Elevator extends Subsystem implements SafeSubsystem {
 	}
 	public void move(double speed) {
 		//if the sol is breaking, don't move the cims
-		if(!sol.get()) {
+		if(!winchSol.get()) {
 			winch.set(speed);
 		}
 		else {
@@ -43,21 +45,24 @@ public class Elevator extends Subsystem implements SafeSubsystem {
 		}
 	}
 	public void breakState(boolean shouldBreak) {
-		sol.set(shouldBreak);
+		winchSol.set(shouldBreak);
 		//if the sol is breaking, don't move the cims
 		if(shouldBreak) {
 			winch.set(0);
 		}
 	}
 	public void flipBreak() {
-		boolean currentState = sol.get();
+		boolean currentState = winchSol.get();
 		breakState(!currentState);
 	}
 	public SpeedController getWinch() {
 		return winch;
 	}
 	public Solenoid getStopperSolenoid() {
-		return sol;
+		return winchSol;
+	}
+	public Solenoid getGearboxSolenoid() {
+		return gearboxSol;
 	}
 
 	public Encoder getEncoder() {
@@ -68,7 +73,7 @@ public class Elevator extends Subsystem implements SafeSubsystem {
 	public void stop() {
 		winch.set(0);
 		//apply break so elevator doesn't crash down
-		sol.set(true);
+		winchSol.set(true);
 	}
 
 }
