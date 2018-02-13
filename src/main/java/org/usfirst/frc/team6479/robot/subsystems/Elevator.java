@@ -27,7 +27,7 @@ public class Elevator extends Subsystem implements SafeSubsystem {
 
 		winch = new SpeedControllerGroup(winchMotorTop, winchMotorBottom);
 		winchSol = new Solenoid(RobotMap.winchSolPort);
-		gearboxSol = new Solenoid(RobotMap.winchSolPort);
+		gearboxSol = new Solenoid(RobotMap.gearboxSolPort);
 		encoder = new Encoder(RobotMap.pulleyEncoderAPort, RobotMap.pulleyEncoderBPort);
 	}
 

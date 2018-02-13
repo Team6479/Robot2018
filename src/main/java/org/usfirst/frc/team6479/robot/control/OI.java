@@ -34,12 +34,12 @@ public class OI {
         SmartDashboard.putData("Flush Drive", new FlushDrive());
 	}
 
-	private XboxController xbox;
+	private XboxControllerDeadzone xbox;
 	private ButtonTracker rightBumper;
 	private ButtonTracker leftBumper;
 
 	//get the things controlled
-	public XboxController getXbox() {
+	public XboxControllerDeadzone getXbox() {
 		return xbox;
 	}
 	public ButtonTracker getRightBumper() {

@@ -73,7 +73,7 @@ public class Drivetrain extends Subsystem implements SafeSubsystem {
 	public void curveDrive(double throttle, double turn) {
 		//drive.curvatureDrive(throttle, turn, true);
 
-		drive.arcadeDrive(throttle, turn, false);
+		drive.arcadeDrive(throttle, turn, true);
 	}
 	public void tankDrive(double leftSpeed, double rightSpeed) {
 	    drive.tankDrive(leftSpeed, rightSpeed);

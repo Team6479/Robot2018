@@ -76,6 +76,8 @@ All of our autonomous routines are handled by [AutonomousManager.java][9]. This 
 - [ ] look into calculating angle offset with camera instead of pixel offset
 - [ ] possibly mount camera in center bottom, then have cube be lifted up to reveal camera
 - [ ] find distance using camera
+- [ ] Reduce acceleration to reduce tipping
+- [ ] Look into "Sniper Mode" for increased accuracy but reduced speed.
 
 
 
