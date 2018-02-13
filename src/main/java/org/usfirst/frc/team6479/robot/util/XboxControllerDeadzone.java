@@ -18,8 +18,12 @@ public class XboxControllerDeadzone extends XboxController {
 		deadZone = 0.2;
 	}
 
-	//@Override
-	/*public double getRawAxis(int axis) {
+	@Override
+	public double getRawAxis(int axis) {
+		if (axis == XboxMap.LeftTrigger || axis == XboxMap.RightTrigger) {
+			return super.getRawAxis(axis);
+		}
+
 		double x;
 		double y;
 
@@ -48,7 +52,7 @@ public class XboxControllerDeadzone extends XboxController {
 		}
 		else {
 			return y;
-		}*/
-	//}
+		}
+	}
 
 }
