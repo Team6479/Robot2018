@@ -26,18 +26,18 @@ Our team uses a Nvidia Jetson TX1 to process camera input and send that data to 
 The mapping of our code to a single Xbox360 Controller.
 
 ### Buttons
-| Name         | Port | Value      | Function       | Location                |
-|:------------ |:---- |:---------- |:-------------- |:----------------------- |
-| A            | 1    | true/false |                |                         |
-| B            | 2    | true/false |                |                         |
-| X            | 3    | true/false |                |                         |
-| Y            | 4    | true/false |                |                         |
-| Left Bumper  | 5    | true/false | Toggle Pusher  | [TogglePusher.java][7]  |
-| Right Bumper | 6    | true/false | Toggle Grabber | [ToggleGrabber.java][8] |
-| Back         | 7    | true/false |                |                         |
-| Start        | 8    | true/false |                |                         |
-| Left Stick   | 9    | true/false |                |                         |
-| Right Stick  | 10   | true/false |                |                         |
+| Name         | Port | Value      | Function                         | Location                 |
+|:------------ |:---- |:---------- |:-------------------------------- |:------------------------ |
+| A            | 1    | true/false |                                  |                          |
+| B            | 2    | true/false | Toggle Between Winch and Climber | [ToggleShifter.java][11] |
+| X            | 3    | true/false | Toggle Winch Lock                | [ToggleStopper.java][12] |
+| Y            | 4    | true/false |                                  |                          |
+| Left Bumper  | 5    | true/false | Toggle Pusher                    | [TogglePusher.java][7]   |
+| Right Bumper | 6    | true/false | Toggle Grabber                   | [ToggleGrabber.java][8]  |
+| Back         | 7    | true/false |                                  |                          |
+| Start        | 8    | true/false |                                  |                          |
+| Left Stick   | 9    | true/false |                                  |                          |
+| Right Stick  | 10   | true/false |                                  |                          |
 
 ### Axes
 | Name          | Port | Value   | Function      | Location                   |
@@ -91,3 +91,5 @@ All of our autonomous routines are handled by [AutonomousManager.java][9]. This 
 [8]: ./src/main/java/org/usfirst/frc/team6479/robot/commands/teleop/ToggleGrabber.java
 [9]: ./src/main/java/org/usfirst/frc/team6479/robot/autonomous/manager/AutonomousManager.java
 [10]: ./src/main/java/org/usfirst/frc/team6479/robot/commands/teleop/ElevatorControl.java
+[11]: ./src/main/java/org/usfirst/frc/team6479/robot/commands/teleop/ToggleShifter.java
+[12]: ./src/main/java/org/usfirst/frc/team6479/robot/commands/teleop/ToggleStopper.java
