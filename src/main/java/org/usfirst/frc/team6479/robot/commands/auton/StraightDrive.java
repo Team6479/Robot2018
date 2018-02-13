@@ -82,7 +82,7 @@ public class StraightDrive extends Command {
 		    }
 	    }
 
-        Robot.drivetrain.curveDrive(speed, -angle*kP);
+        Robot.drivetrain.racingDrive(speed, -angle*kP);
 	}
 
 

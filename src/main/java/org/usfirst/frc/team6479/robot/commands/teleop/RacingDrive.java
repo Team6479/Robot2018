@@ -28,7 +28,7 @@ public class RacingDrive extends Command {
 		/*if(Math.abs(turn) <= DEADZONE) {
 		    turn = 0.0;
 		}*/
-		Robot.drivetrain.curveDrive(throttle, turn);
+		Robot.drivetrain.racingDrive(throttle, turn);
 	}
 	//Make this return true when this Command no longer needs to run execute()
 	//must always run to allow for operator control
@@ -39,6 +39,6 @@ public class RacingDrive extends Command {
 	//Called once after isFinished returns true
 	@Override
 	protected void end() {
-		Robot.drivetrain.curveDrive(0, 0);
+		Robot.drivetrain.racingDrive(0, 0);
 	}
 }

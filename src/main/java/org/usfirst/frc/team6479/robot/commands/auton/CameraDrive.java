@@ -59,7 +59,7 @@ public class CameraDrive extends Command {
 	        */
 	        //speed = 0.2 + (0.45 * ((Robot.drivetrain.getSonar().getDistance() - STOP_RANGE) / totalDistance));
 
-    	    Robot.drivetrain.curveDrive(speed, -angle*kP);
+    	    Robot.drivetrain.racingDrive(speed, -angle*kP);
     }
 
     private boolean inTolerance() {
