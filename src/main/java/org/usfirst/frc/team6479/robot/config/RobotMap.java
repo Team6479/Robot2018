@@ -53,7 +53,7 @@ public class RobotMap {
     public static final int grabberOnPort = 2;
     public static final int grabberOffPort = 3;
     //Pusher Piston
-    public static  final int pusherOnPort = 4;
+    public static final int pusherOnPort = 4;
     public static final int pusherOffPort = 5;
     //END PCM
 

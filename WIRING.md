@@ -29,6 +29,7 @@
 | gearboxSolPort | 1 |
 | grabberOnPort | 2 |
 | grabberOffPort | 3 |
+| pusherOnPort | 4 |
 | pusherOffPort | 5 |
 
 ## PWM
