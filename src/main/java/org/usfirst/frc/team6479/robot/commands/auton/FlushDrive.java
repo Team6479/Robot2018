@@ -17,6 +17,8 @@ public class FlushDrive extends Command {
     private double distance;
     //speed of the motors
     private double speed;
+    //Initial Distance
+	private double initDistance;
     //tolerance in inches of how flush it should get
     private static final double TOLERANCE = 1;
 
@@ -34,6 +36,7 @@ public class FlushDrive extends Command {
     @Override
     protected void initialize() {
         distance = distance();
+	    initDistance = distance;
 
         speed = 0.4;
     }
@@ -48,6 +51,14 @@ public class FlushDrive extends Command {
         distance = distance();
 
         SmartDashboard.putNumber("CHANGE IN DISTANCE", distance);
+
+	    //Equation that decreases speed as the the robot approached the angle goal with precision
+	    /*
+	    0.2 = min speed
+	    0.45 = speed. (Increase for speed increase/ decrease for speed decrease)
+	    The parentheses stuff is an equation that goes from 1 to 0 as the angle approaches the goal
+	    */
+	    speed = 0.2 + (0.45 * (distance / initDistance));
 
         if (distance <= 0) {
             Robot.drivetrain.tankDrive(-speed, speed);

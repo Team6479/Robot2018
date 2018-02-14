@@ -29,9 +29,11 @@ public class Robot extends IterativeRobot {
 	public static Camera camera;
 	public static Map<String, SafeSubsystem> subsystemManager;
 	public static AutonomousManager autoManager;
+	private static int ticks;
 
 	@Override
 	public void robotInit() {
+		ticks = 0;
 
 		//init subsystems
 		drivetrain = new Drivetrain();
@@ -46,8 +48,8 @@ public class Robot extends IterativeRobot {
 		subsystemManager.put("Grabber", grabber);
 		subsystemManager.put("Pusher", pusher);
 		subsystemManager.put("Camera", camera);
-		
-		
+
+
 		//init the controls in oi
         oi = new OI();
 
@@ -65,7 +67,10 @@ public class Robot extends IterativeRobot {
 	}
 	@Override
 	public void robotPeriodic() {
+		ticks++;
+
 	    ButtonTracker.updateAll();
+
         //Sonar
         SmartDashboard.putNumber("Range", Robot.drivetrain.getSonar().getDistance());
 	}
@@ -99,5 +104,9 @@ public class Robot extends IterativeRobot {
         for(Entry<String, SafeSubsystem> entry: subsystemManager.entrySet()) {
         		entry.getValue().stop();
         }
+	}
+
+	public int getCurrentTick() {
+		return ticks;
 	}
 }
