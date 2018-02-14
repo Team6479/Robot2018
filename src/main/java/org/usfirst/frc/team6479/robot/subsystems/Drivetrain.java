@@ -5,6 +5,7 @@ import org.usfirst.frc.team6479.robot.config.RobotMap;
 import org.usfirst.frc.team6479.robot.sensors.DoubleUltrasonic;
 import org.usfirst.frc.team6479.robot.sensors.DrivetrainEncoder;
 import org.usfirst.frc.team6479.robot.sensors.RangeFinder;
+import org.usfirst.frc.team6479.robot.util.DifferentialDriveLimiter;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.Encoder;
@@ -25,7 +26,7 @@ public class Drivetrain extends Subsystem implements SafeSubsystem {
 	private SpeedController leftSide;
 	private SpeedController rightSide;
 
-	private DifferentialDrive drive;
+	private DifferentialDriveLimiter drive;
 
 	private DrivetrainEncoder encoder;
 
@@ -44,7 +45,7 @@ public class Drivetrain extends Subsystem implements SafeSubsystem {
 		leftSide = new SpeedControllerGroup(leftBack, leftFront);
 		rightSide = new SpeedControllerGroup(rightBack, rightFront);
 
-		drive = new DifferentialDrive(leftSide, rightSide);
+		drive = new DifferentialDriveLimiter(leftSide, rightSide);
 
 
 		//init encoder
@@ -71,11 +72,10 @@ public class Drivetrain extends Subsystem implements SafeSubsystem {
 		setDefaultCommand(new RacingDrive());
 	}
 	public void racingDrive(double throttle, double turn) {
-
-		drive.arcadeDrive(throttle, turn, true);
+		drive.arcadeDriveLimiter(throttle, turn);
 	}
 	public void tankDrive(double leftSpeed, double rightSpeed) {
-	    drive.tankDrive(leftSpeed, rightSpeed);
+	    drive.tankDriveLimiter(leftSpeed, rightSpeed);
     }
 	public SpeedController getLeftSideMotors() {
 		return leftSide;
@@ -87,7 +87,7 @@ public class Drivetrain extends Subsystem implements SafeSubsystem {
         return gyro;
     }
 
-    public DifferentialDrive getDrive() {
+    public DifferentialDriveLimiter getDrive() {
         return drive;
     }
 
