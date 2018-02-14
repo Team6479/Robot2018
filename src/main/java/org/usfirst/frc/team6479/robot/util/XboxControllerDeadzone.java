@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import robot.xbox.XboxMap;
 
 public class XboxControllerDeadzone extends XboxController {
-	double deadZone;
+	private double deadZone;
 
 	/**
 	 * Construct an instance of a joystick. The joystick index is the USB port on the drivers
