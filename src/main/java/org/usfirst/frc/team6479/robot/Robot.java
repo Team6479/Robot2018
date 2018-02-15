@@ -44,11 +44,19 @@ public class Robot extends IterativeRobot {
 		grabber = new Grabber();
 		pusher = new Pusher();
 		camera = new Camera();
+<<<<<<< HEAD
 		
 		//elevator.getStopperSolenoid().set(false);
 		//elevator.getGearboxSolenoid().set(false);
 		//pusher.retract();
 		//grabber.release();
+=======
+
+		elevator.getStopperSolenoid().set(true);
+		elevator.getGearboxSolenoid().set(true);
+		pusher.retract();
+		grabber.release();
+>>>>>>> ac7c1864e47927ffc41a84c8211e1947ed98f422
 
 		subsystemManager = new HashMap<String, SafeSubsystem>();
 		subsystemManager.put("Drivetrain", drivetrain);
@@ -65,8 +73,8 @@ public class Robot extends IterativeRobot {
 
         compressor = new Compressor();
         compressor.setClosedLoopControl(true);
-        
-        
+
+
         //Initialize SmartDashboard tracking
         //IMPORTANT: THIS NEEDS TO BE LAST!
         //Drivetrain
@@ -109,7 +117,7 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 
 		//kill switch code
-		if(oi.getXbox().getStartButton()) {
+		if(oi.getDriverController().getStartButton()) {
 			stop();
 		}
 	}

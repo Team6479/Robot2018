@@ -11,23 +11,49 @@ import org.usfirst.frc.team6479.robot.commands.teleop.ToggleStopper;
 import org.usfirst.frc.team6479.robot.config.RobotMap;
 import org.usfirst.frc.team6479.robot.util.XboxControllerDeadzone;
 
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import robot.xbox.ButtonTracker;
 import robot.xbox.XboxMap;
 
 public class OI {
+	private XboxControllerDeadzone driverController;
+	private XboxControllerDeadzone assistantController;
+	private ButtonTracker driverRightBumper;
+	private ButtonTracker driverLeftBumper;
+	private ButtonTracker driverXButton;
+	private ButtonTracker driverBButton;
+	private ButtonTracker assistantRightBumper;
+	private ButtonTracker assistantLeftBumper;
+	private ButtonTracker assistantXButton;
+	private ButtonTracker assistantBButton;
 
 	//initialization
 	public OI() {
-		xbox = new XboxControllerDeadzone(RobotMap.xboxPort);
-		rightBumper = new ButtonTracker(xbox, XboxMap.RightBumper);
-		rightBumper.toggleWhenPressed(new ToggleGrabber());
-	    leftBumper = new ButtonTracker(xbox, XboxMap.LeftBumper);
-	    leftBumper.toggleWhenPressed(new TogglePusher());
-	    xButton = new ButtonTracker(xbox, XboxMap.XButton);
-	    xButton.toggleWhenPressed(new ToggleStopper());
-	    bButton = new ButtonTracker(xbox, XboxMap.BButton);
-	    bButton.toggleWhenPressed(new ToggleShifter());
+		driverController = new XboxControllerDeadzone(RobotMap.driverController);
+		assistantController = new XboxControllerDeadzone(RobotMap.assistantController);
+
+		//Driver Button Trackers
+		/*
+		driverRightBumper = new ButtonTracker(driverController, XboxMap.RightBumper);
+		driverRightBumper.toggleWhenPressed(new ToggleGrabber());
+	    driverLeftBumper = new ButtonTracker(driverController, XboxMap.LeftBumper);
+	    driverLeftBumper.toggleWhenPressed(new TogglePusher());
+	    driverXButton = new ButtonTracker(driverController, XboxMap.XButton);
+	    driverXButton.toggleWhenPressed(new ToggleStopper());
+	    driverBButton = new ButtonTracker(driverController, XboxMap.BButton);
+	    driverBButton.toggleWhenPressed(new ToggleShifter());
+	    */
+
+	    //Assistant Button Trackers
+	    assistantLeftBumper = new ButtonTracker(assistantController, XboxMap.LeftBumper);
+	    assistantLeftBumper.toggleWhenPressed(new ToggleGrabber());
+	    assistantRightBumper = new ButtonTracker(assistantController, XboxMap.RightBumper);
+	    assistantRightBumper.toggleWhenPressed(new TogglePusher());
+	    assistantXButton = new ButtonTracker(assistantController, XboxMap.XButton);
+	    assistantXButton.toggleWhenPressed(new ToggleStopper());
+	    assistantBButton = new ButtonTracker(assistantController, XboxMap.BButton);
+	    assistantBButton.toggleWhenPressed(new ToggleShifter());
 
 	    //Testing Commands
         SmartDashboard.putData("Camera Drive", new CameraDrive());
@@ -38,27 +64,24 @@ public class OI {
         SmartDashboard.putData("Flush Drive", new FlushDrive());
 	}
 
-	private XboxControllerDeadzone xbox;
-	private ButtonTracker rightBumper;
-	private ButtonTracker leftBumper;
-	private ButtonTracker xButton;
-	private ButtonTracker bButton;
-
 	//get the things controlled
-	public XboxControllerDeadzone getXbox() {
-		return xbox;
+	public XboxControllerDeadzone getDriverController() {
+		return driverController;
 	}
-	public ButtonTracker getRightBumper() {
-	    return rightBumper;
+	public XboxControllerDeadzone getAssistantController() {
+		return assistantController;
 	}
-	public ButtonTracker getLeftBumper() {
-	    return leftBumper;
+	public ButtonTracker getAssistantRightBumper() {
+	    return assistantRightBumper;
 	}
-	public ButtonTracker getXButton() {
-	    return xButton;
+	public ButtonTracker getAssistantLeftBumper() {
+	    return assistantLeftBumper;
 	}
-	public ButtonTracker getBButton() {
-	    return bButton;
+	public ButtonTracker getAssistantXButton() {
+	    return assistantXButton;
+	}
+	public ButtonTracker getAssistantBButton() {
+	    return assistantBButton;
 	}
 
 }
