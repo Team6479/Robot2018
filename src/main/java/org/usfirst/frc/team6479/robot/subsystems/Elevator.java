@@ -17,7 +17,9 @@ public class Elevator extends Subsystem implements SafeSubsystem {
 	private SpeedController winchMotorBottom;
 
 	private SpeedController winch;
+	//when solenoid is on, the winch is stopped
 	private Solenoid winchSol;
+	//when the solenoid is on, power will go to the winch
 	private Solenoid gearboxSol;
 	private Encoder encoder;
 
@@ -36,38 +38,37 @@ public class Elevator extends Subsystem implements SafeSubsystem {
 		setDefaultCommand(new ElevatorControl());
 	}
 	public void move(double speed) {
-		//if the sol is breaking, don't move the cims
-		if(!winchSol.get()) {
-			winch.set(speed);
+		//if locked and on winch mode, do not move
+		if(isLocked() && isOnWinch()) {
+			winch.set(0);
 		}
 		else {
-			winch.set(0);
+			winch.set(speed);
 		}
 	}
-	public void breakState(boolean shouldBreak) {
-		winchSol.set(shouldBreak);
-		//if the sol is breaking, don't move the cims
-		if(shouldBreak) {
-			winch.set(0);
-		}
+	public void switchToWinch() {
+		gearboxSol.set(true);
 	}
-	public void flipBreak() {
-		boolean currentState = winchSol.get();
-		breakState(!currentState);
+	public void switchToClimber() {
+		gearboxSol.set(false);
 	}
-	public void gearboxState(boolean shouldBreak) {
-		//get the current winch value
-		double winchVal = winch.get();
-		//stop the winch
-		winch.set(0);
-		//now shift
-		gearboxSol.set(shouldBreak);
-		//then restart winch
-		winch.set(winchVal);
+	public boolean isOnWinch() {
+		return gearboxSol.get();
 	}
-	public void flipGearbox() {
-		boolean currentState = gearboxSol.get();
-		gearboxState(!currentState);
+	public boolean isOnClimber() {
+		return !isOnWinch();
+	}
+	public void lock() {
+		winchSol.set(true);
+	}
+	public void unlock() {
+		winchSol.set(false);
+	}
+	public boolean isLocked() {
+		return winchSol.get();
+	}
+	public boolean isUnLocked() {
+		return !isLocked();
 	}
 	public SpeedController getWinch() {
 		return winch;

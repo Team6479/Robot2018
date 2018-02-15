@@ -45,8 +45,8 @@ public class Robot extends IterativeRobot {
 		pusher = new Pusher();
 		camera = new Camera();
 
-		elevator.breakState(false);
-		elevator.gearboxState(true);
+		elevator.switchToWinch();
+		elevator.unlock();
 		pusher.retract();
 		grabber.release();
 

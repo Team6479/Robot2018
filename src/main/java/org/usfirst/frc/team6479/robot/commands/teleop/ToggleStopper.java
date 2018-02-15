@@ -17,7 +17,13 @@ public class ToggleStopper extends InstantCommand {
      */
     @Override
     protected void execute() {
-    		Robot.elevator.flipBreak();
+        boolean isLocked = Robot.elevator.isLocked();
+        if(isLocked) {
+            Robot.elevator.unlock();;
+        }
+        else {
+            Robot.elevator.lock();
+        }
     }
 
 }

@@ -17,7 +17,13 @@ public class ToggleShifter extends InstantCommand {
      */
     @Override
     protected void execute() {
-        Robot.elevator.flipGearbox();
+        boolean isOnClimber = Robot.elevator.isOnClimber();
+        if(isOnClimber) {
+            Robot.elevator.switchToWinch();
+        }
+        else {
+            Robot.elevator.switchToClimber();
+        }
     }
 
 }
