@@ -45,8 +45,8 @@ public class Robot extends IterativeRobot {
 		pusher = new Pusher();
 		camera = new Camera();
 
-		elevator.getStopperSolenoid().set(true);
-		elevator.getGearboxSolenoid().set(true);
+		elevator.breakState(false);
+		elevator.gearboxState(true);
 		pusher.retract();
 		grabber.release();
 
@@ -86,7 +86,7 @@ public class Robot extends IterativeRobot {
 			compressor.start();
 		}*/
 		ticks++;
-
+		
 	    ButtonTracker.updateAll();
 
         //Sonar

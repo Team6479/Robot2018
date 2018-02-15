@@ -55,16 +55,16 @@ public class DifferentialDriveLimiter extends DifferentialDrive {
 			int tick = Robot.getCurrentTick();
 			//calc left speed
 			if (leftSpeed > lastLeftSpeed) {
-				lastLeftSpeed = Math.min(leftSpeed, lastLeftSpeed + (Robot.getCurrentTick() - lastTick) * 1);
+				lastLeftSpeed = Math.min(leftSpeed, lastLeftSpeed + (Robot.getCurrentTick() - lastTick));
 			} else {
-				lastLeftSpeed = Math.max(leftSpeed, lastLeftSpeed - (Robot.getCurrentTick() - lastTick) * 1);
+				lastLeftSpeed = Math.max(leftSpeed, lastLeftSpeed - (Robot.getCurrentTick() - lastTick));
 			}
 
 			//calc right speed
 			if (leftSpeed > lastLeftSpeed) {
-				lastRightSpeed = Math.min(rightSpeed, lastRightSpeed + (Robot.getCurrentTick() - lastTick) * 1);
+				lastRightSpeed = Math.min(rightSpeed, lastRightSpeed + (Robot.getCurrentTick() - lastTick));
 			} else {
-				lastRightSpeed = Math.max(rightSpeed, lastRightSpeed - (Robot.getCurrentTick() - lastTick) * 1);
+				lastRightSpeed = Math.max(rightSpeed, lastRightSpeed - (Robot.getCurrentTick() - lastTick));
 			}
 			lastTick = tick;
 
