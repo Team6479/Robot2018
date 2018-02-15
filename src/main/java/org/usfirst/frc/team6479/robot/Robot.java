@@ -45,7 +45,7 @@ public class Robot extends IterativeRobot {
 		pusher = new Pusher();
 		camera = new Camera();
 		
-		elevator.getStopperSolenoid().set(true);
+		elevator.getStopperSolenoid().set(false);
 		elevator.getGearboxSolenoid().set(true);
 		pusher.retract();
 		grabber.release();

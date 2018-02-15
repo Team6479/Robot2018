@@ -67,7 +67,7 @@ public class Elevator extends Subsystem implements SafeSubsystem {
 	}
 	public void flipGearbox() {
 		boolean currentState = gearboxSol.get();
-		gearboxState(!currentState);
+		breakState(!currentState);
 	}
 	public SpeedController getWinch() {
 		return winch;
