@@ -72,10 +72,10 @@ public class Drivetrain extends Subsystem implements SafeSubsystem {
 		setDefaultCommand(new RacingDrive());
 	}
 	public void racingDrive(double throttle, double turn) {
-		drive.arcadeDrive(throttle, turn, false);
+		drive.arcadeDrive(throttle, turn, false, true);
 	}
 	public void tankDrive(double leftSpeed, double rightSpeed) {
-	    drive.tankDrive(leftSpeed, rightSpeed, false);
+	    drive.tankDrive(leftSpeed, rightSpeed, false, true);
     }
 	public SpeedController getLeftSideMotors() {
 		return leftSide;
