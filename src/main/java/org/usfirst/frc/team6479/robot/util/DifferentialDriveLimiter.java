@@ -21,7 +21,7 @@ public class DifferentialDriveLimiter extends DifferentialDrive {
 		super(leftMotor, rightMotor);
 	}
 
-	@Override
+	/*@Override
 	public void arcadeDrive(double throttle, double turn, boolean limit) {
 		if (limit) {
 			int tick = Robot.getCurrentTick();
@@ -75,5 +75,5 @@ public class DifferentialDriveLimiter extends DifferentialDrive {
 		leftSpeed = Math.copySign(Math.pow(leftSpeed, RATE_LIMITER), leftSpeed);
 		rightSpeed = Math.copySign(Math.pow(rightSpeed, RATE_LIMITER), rightSpeed);
 		super.tankDrive(leftSpeed, rightSpeed);
-	}
+	}*/
 }

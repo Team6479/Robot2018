@@ -45,10 +45,10 @@ public class Robot extends IterativeRobot {
 		pusher = new Pusher();
 		camera = new Camera();
 		
-		elevator.getStopperSolenoid().set(false);
-		elevator.getGearboxSolenoid().set(true);
-		pusher.retract();
-		grabber.release();
+		//elevator.getStopperSolenoid().set(false);
+		//elevator.getGearboxSolenoid().set(false);
+		//pusher.retract();
+		//grabber.release();
 
 		subsystemManager = new HashMap<String, SafeSubsystem>();
 		subsystemManager.put("Drivetrain", drivetrain);
@@ -86,7 +86,7 @@ public class Robot extends IterativeRobot {
 			compressor.start();
 		}*/
 		ticks++;
-
+		
 	    ButtonTracker.updateAll();
 
         //Sonar

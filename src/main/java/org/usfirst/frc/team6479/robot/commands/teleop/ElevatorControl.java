@@ -21,7 +21,7 @@ public class ElevatorControl extends Command {
 	 */
 	@Override
 	protected void execute() {
-		double speed = Math.abs(Robot.oi.getXbox().getRawAxis(XboxMap.RightJoyStickY));
+		double speed = Robot.oi.getXbox().getRawAxis(XboxMap.RightJoyStickY) * -1;
 		Robot.elevator.move(speed);
 	}
 
