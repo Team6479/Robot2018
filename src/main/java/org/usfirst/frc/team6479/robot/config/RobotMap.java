@@ -4,10 +4,11 @@ public class RobotMap {
 
     //DS
 	//controllers
-	public static final int xboxPort = 0;
+	public static final int driverController = 0;
+	public static final int assistantController = 1;
 	//END DS
 
-	
+
 	//PWM
 	//drivetrain
 	public static final int leftBackPort = 0;
@@ -18,7 +19,7 @@ public class RobotMap {
     public static final int winchTopPort = 4;
     public static final int winchBottomPort = 5;
     //END PWM
-    
+
     //DIO
 	//encoders for the drive train
 	public static final int leftEncoderAPort = 0;
@@ -39,12 +40,12 @@ public class RobotMap {
     //sonar
     public static final int sonarPort = 0;
     //END ANALOG
-    
+
     //RELAY
     //spike to turn light on and off
     public static final int lightSpikePort = 0;
     //END RELAY
-	
+
 	//PCM
 	//pulley single solenoid
 	public static final int winchSolPort = 0;

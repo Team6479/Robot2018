@@ -44,7 +44,7 @@ public class Robot extends IterativeRobot {
 		grabber = new Grabber();
 		pusher = new Pusher();
 		camera = new Camera();
-		
+
 		elevator.getStopperSolenoid().set(true);
 		elevator.getGearboxSolenoid().set(true);
 		pusher.retract();
@@ -65,8 +65,8 @@ public class Robot extends IterativeRobot {
 
         compressor = new Compressor();
         compressor.setClosedLoopControl(true);
-        
-        
+
+
         //Initialize SmartDashboard tracking
         //IMPORTANT: THIS NEEDS TO BE LAST!
         //Drivetrain
@@ -109,7 +109,7 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 
 		//kill switch code
-		if(oi.getXbox().getStartButton()) {
+		if(oi.getDriverController().getStartButton()) {
 			stop();
 		}
 	}
