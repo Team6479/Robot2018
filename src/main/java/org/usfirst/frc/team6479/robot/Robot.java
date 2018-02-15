@@ -44,19 +44,11 @@ public class Robot extends IterativeRobot {
 		grabber = new Grabber();
 		pusher = new Pusher();
 		camera = new Camera();
-<<<<<<< HEAD
-		
-		//elevator.getStopperSolenoid().set(false);
-		//elevator.getGearboxSolenoid().set(false);
-		//pusher.retract();
-		//grabber.release();
-=======
 
-		elevator.getStopperSolenoid().set(true);
-		elevator.getGearboxSolenoid().set(true);
+		elevator.breakState(false);
+		elevator.gearboxState(true);
 		pusher.retract();
 		grabber.release();
->>>>>>> ac7c1864e47927ffc41a84c8211e1947ed98f422
 
 		subsystemManager = new HashMap<String, SafeSubsystem>();
 		subsystemManager.put("Drivetrain", drivetrain);
