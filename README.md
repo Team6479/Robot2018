@@ -23,9 +23,38 @@ Our team uses a Nvidia Jetson TX1 to process camera input and send that data to 
 
 
 ## Controller Mappings
-The mapping of our code to a single Xbox360 Controller.
+Our code is mapped to two controllers. One drives the robot and the other controls the elevator and pistons.
 
-### Buttons
+### Driver Controller
+
+#### Buttons
+| Name         | Port | Value      | Function | Location |
+|:------------ |:---- |:---------- |:-------- |:-------- |
+| A            | 1    | true/false |          |          |
+| B            | 2    | true/false |          |          |
+| X            | 3    | true/false |          |          |
+| Y            | 4    | true/false |          |          |
+| Left Bumper  | 5    | true/false |          |          |
+| Right Bumper | 6    | true/false |          |          |
+| Back         | 7    | true/false |          |          |
+| Start        | 8    | true/false |          |          |
+| Left Stick   | 9    | true/false |          |          |
+| Right Stick  | 10   | true/false |          |          |
+
+#### Axes
+| Name          | Port | Value   | Function      | Location                   |
+|:------------- |:---- |:------- |:------------- |:-------------------------- |
+| X Left Stick  | 0    | -1 to 1 | Drive Turn    | [RacingDrive.java][6]      |
+| Y Left Stick  | 1    | -1 to 1 |               |                            |
+| Left Trigger  | 2    | 0 to 1  | Drive Reverse | [RacingDrive.java][6]      |
+| Right Trigger | 3    | 0 to 1  | Drive Forward | [RacingDrive.java][6]      |
+| X Right Stick | 4    | -1 to 1 |               |                            |
+| Y Right Stick | 5    | -1 to 1 |               |                            |
+
+
+### Elevator Controller
+
+#### Buttons
 | Name         | Port | Value      | Function                         | Location                 |
 |:------------ |:---- |:---------- |:-------------------------------- |:------------------------ |
 | A            | 1    | true/false |                                  |                          |
@@ -39,13 +68,13 @@ The mapping of our code to a single Xbox360 Controller.
 | Left Stick   | 9    | true/false |                                  |                          |
 | Right Stick  | 10   | true/false |                                  |                          |
 
-### Axes
+#### Axes
 | Name          | Port | Value   | Function      | Location                   |
 |:------------- |:---- |:------- |:------------- |:-------------------------- |
-| X Left Stick  | 0    | -1 to 1 | Drive Turn    | [RacingDrive.java][6]      |
+| X Left Stick  | 0    | -1 to 1 |               |                            |
 | Y Left Stick  | 1    | -1 to 1 |               |                            |
-| Left Trigger  | 2    | 0 to 1  | Drive Reverse | [RacingDrive.java][6]      |
-| Right Trigger | 3    | 0 to 1  | Drive Forward | [RacingDrive.java][6]      |
+| Left Trigger  | 2    | 0 to 1  |               |                            |
+| Right Trigger | 3    | 0 to 1  |               |                            |
 | X Right Stick | 4    | -1 to 1 |               |                            |
 | Y Right Stick | 5    | -1 to 1 | Move Elevator | [ElevatorControl.java][10] |
 
