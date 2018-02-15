@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.usfirst.frc.team6479.robot.autonomous.manager.AutonomousManager;
+import org.usfirst.frc.team6479.robot.config.RobotMap;
 import org.usfirst.frc.team6479.robot.control.OI;
 import org.usfirst.frc.team6479.robot.subsystems.Camera;
 import org.usfirst.frc.team6479.robot.subsystems.Drivetrain;
@@ -13,6 +14,7 @@ import org.usfirst.frc.team6479.robot.subsystems.Grabber;
 import org.usfirst.frc.team6479.robot.subsystems.Pusher;
 import org.usfirst.frc.team6479.robot.subsystems.SafeSubsystem;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -29,6 +31,7 @@ public class Robot extends IterativeRobot {
 	public static Camera camera;
 	public static Map<String, SafeSubsystem> subsystemManager;
 	public static AutonomousManager autoManager;
+	public static Compressor compressor;
 	private static int ticks;
 
 	@Override
@@ -41,6 +44,11 @@ public class Robot extends IterativeRobot {
 		grabber = new Grabber();
 		pusher = new Pusher();
 		camera = new Camera();
+		
+		elevator.getStopperSolenoid().set(true);
+		elevator.getGearboxSolenoid().set(true);
+		pusher.retract();
+		grabber.release();
 
 		subsystemManager = new HashMap<String, SafeSubsystem>();
 		subsystemManager.put("Drivetrain", drivetrain);
@@ -55,6 +63,10 @@ public class Robot extends IterativeRobot {
 
         autoManager = new AutonomousManager();
 
+        compressor = new Compressor();
+        compressor.setClosedLoopControl(true);
+        
+        
         //Initialize SmartDashboard tracking
         //IMPORTANT: THIS NEEDS TO BE LAST!
         //Drivetrain
@@ -67,6 +79,12 @@ public class Robot extends IterativeRobot {
 	}
 	@Override
 	public void robotPeriodic() {
+		/*if(compressor.getPressureSwitchValue()) {
+			compressor.stop();
+		}
+		else {
+			compressor.start();
+		}*/
 		ticks++;
 
 	    ButtonTracker.updateAll();
