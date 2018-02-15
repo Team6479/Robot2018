@@ -10,6 +10,12 @@ public class DifferentialDriveLimiter extends DifferentialDrive {
 	public static final double RATE_LIMITER = 3/5;
 
 	private int lastTick;
+	//Arcade
+	private double lastThrottle;
+
+	//Tank
+	private double lastLeftSpeed;
+	private double lastRightSpeed;
 
 	public DifferentialDriveLimiter(SpeedController leftMotor, SpeedController rightMotor) {
 		super(leftMotor, rightMotor);
@@ -17,9 +23,16 @@ public class DifferentialDriveLimiter extends DifferentialDrive {
 
 	@Override
 	public void arcadeDrive(double throttle, double turn, boolean limit) {
-		//int tick = Robot.getCurrentTick();
 		if (limit) {
+			int tick = Robot.getCurrentTick();
+			if (throttle > lastThrottle) {
+				lastThrottle = Math.min(throttle, lastThrottle + (Robot.getCurrentTick() - lastTick) * 1);
+			} else {
+				lastThrottle = Math.max(throttle, lastThrottle - (Robot.getCurrentTick() - lastTick) * 1);
+			}
+			lastTick = tick;
 
+			super.arcadeDrive(lastThrottle, turn);
 		}
 		else {
 			super.arcadeDrive(throttle, turn);
@@ -29,10 +42,26 @@ public class DifferentialDriveLimiter extends DifferentialDrive {
 	@Override
 	public void tankDrive(double leftSpeed, double rightSpeed, boolean limit) {
 		if (limit) {
+			int tick = Robot.getCurrentTick();
+			//calc left speed
+			if (leftSpeed > lastLeftSpeed) {
+				lastLeftSpeed = Math.min(leftSpeed, lastLeftSpeed + (Robot.getCurrentTick() - lastTick) * 1);
+			} else {
+				lastLeftSpeed = Math.max(leftSpeed, lastLeftSpeed - (Robot.getCurrentTick() - lastTick) * 1);
+			}
 
+			//calc right speed
+			if (leftSpeed > lastLeftSpeed) {
+				lastRightSpeed = Math.min(rightSpeed, lastRightSpeed + (Robot.getCurrentTick() - lastTick) * 1);
+			} else {
+				lastRightSpeed = Math.max(rightSpeed, lastRightSpeed - (Robot.getCurrentTick() - lastTick) * 1);
+			}
+			lastTick = tick;
+
+			super.tankDrive(lastLeftSpeed, lastRightSpeed);
 		}
 		else {
-
+			super.tankDrive(leftSpeed, rightSpeed);
 		}
 	}
 

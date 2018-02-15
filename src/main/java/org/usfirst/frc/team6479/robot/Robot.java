@@ -106,7 +106,7 @@ public class Robot extends IterativeRobot {
         }
 	}
 
-	public int getCurrentTick() {
+	public static int getCurrentTick() {
 		return ticks;
 	}
 }
