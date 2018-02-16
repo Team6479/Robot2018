@@ -1,7 +1,7 @@
 package org.usfirst.frc.team6479.robot.commandgroups;
 
-import org.usfirst.frc.team6479.robot.commands.auton.CameraDrive;
-import org.usfirst.frc.team6479.robot.commands.auton.DeadReckonDrive;
+import org.usfirst.frc.team6479.robot.commands.auton.drive.CameraDrive;
+import org.usfirst.frc.team6479.robot.commands.auton.drive.DeadReckonDrive;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;

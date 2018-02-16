@@ -1,27 +1,33 @@
-package org.usfirst.frc.team6479.robot.commands.auton;
+package org.usfirst.frc.team6479.robot.commands.auton.drive;
 
 import org.usfirst.frc.team6479.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-//turns based on camera input on distance to target
-//works with box CUBE mode and GOAL mode
-public class CameraTurn extends Command {
-	private double initialDistance;
+//adjust the robot so that it is perpedicular to the surface it is facing
+public class FlushDrive extends Command {
 
-    public CameraTurn() {
+    public FlushDrive() {
         //uses drivetrain
         requires(Robot.drivetrain);
-        requires(Robot.camera);
     }
 
-    //distance in pixels, aquired from camera
-    private double distanceToTarget;
+    //distance to reduce
+    private double distance;
     //speed of the motors
     private double speed;
-    //pixel tolerance
-    private static final double PIXEL_TOLERANCE = 2;
+    //Initial Distance
+	private double initDistance;
+    //tolerance in inches of how flush it should get
+    private static final double TOLERANCE = 1;
+
+
+    private double distance() {
+		double left = Robot.drivetrain.getUltrasonic().getLeft();
+		double right = Robot.drivetrain.getUltrasonic().getRight();
+		return left - right;
+    }
 
     /**
      * The initialize method is called just before the first time
@@ -29,9 +35,8 @@ public class CameraTurn extends Command {
      */
     @Override
     protected void initialize() {
-        distanceToTarget = Robot.camera.getCurrentDistance();
-
-        initialDistance = distanceToTarget;
+        distance = distance();
+	    initDistance = distance;
 
         speed = 0.4;
     }
@@ -43,29 +48,29 @@ public class CameraTurn extends Command {
     @Override
     protected void execute() {
 
-        distanceToTarget = Robot.camera.getCurrentDistance();
+        distance = distance();
 
-        SmartDashboard.putNumber("CAMERA DISTANCE", distanceToTarget);
+        SmartDashboard.putNumber("CHANGE IN DISTANCE", distance);
 
 	    //Equation that decreases speed as the the robot approached the angle goal with precision
 	    /*
-	    0.4 = min speed
-	    0.25 = speed. (Increase for speed increase/ decrease for speed decrease)
+	    0.2 = min speed
+	    0.45 = speed. (Increase for speed increase/ decrease for speed decrease)
 	    The parentheses stuff is an equation that goes from 1 to 0 as the angle approaches the goal
-	     */
-        speed = 0.4 + (0.25 * (Math.abs(distanceToTarget / initialDistance)));
+	    */
+	    speed = 0.2 + (0.45 * (distance / initDistance));
 
-        if (distanceToTarget <= 0) {
-            Robot.drivetrain.tankDrive(speed, -speed);
-        }
-        else if (distanceToTarget >= 0) {
+        if (distance <= 0) {
             Robot.drivetrain.tankDrive(-speed, speed);
+        }
+        else if (distance >= 0) {
+            Robot.drivetrain.tankDrive(speed, -speed);
         }
     }
 
     private boolean inRange() {
 
-        return (Math.abs(distanceToTarget) <= PIXEL_TOLERANCE);
+        return (Math.abs(distance) <= TOLERANCE);
     }
 
 
@@ -79,4 +84,5 @@ public class CameraTurn extends Command {
     protected void end() {
         Robot.drivetrain.stop();
     }
+
 }

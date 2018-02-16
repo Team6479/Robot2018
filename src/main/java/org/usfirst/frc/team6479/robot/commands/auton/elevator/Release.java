@@ -1,12 +1,12 @@
-package org.usfirst.frc.team6479.robot.commands.teleop;
+package org.usfirst.frc.team6479.robot.commands.auton.elevator;
 
 import org.usfirst.frc.team6479.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
 
-public class ToggleGrabber extends InstantCommand {
+public class Release extends InstantCommand {
 
-    public ToggleGrabber() {
+    public Release() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.grabber);
     }
@@ -17,13 +17,6 @@ public class ToggleGrabber extends InstantCommand {
      */
     @Override
     protected void execute() {
-        boolean isGrabbing = Robot.grabber.isGrabbing();
-
-        if(isGrabbing) {
-            Robot.grabber.release();
-        }
-        else {
-            Robot.grabber.grab();
-        }
+    		Robot.grabber.release();
     }
 }

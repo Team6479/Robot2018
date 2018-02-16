@@ -1,9 +1,9 @@
 package org.usfirst.frc.team6479.robot.control;
 
-import org.usfirst.frc.team6479.robot.commands.auton.CameraDrive;
-import org.usfirst.frc.team6479.robot.commands.auton.FlushDrive;
-import org.usfirst.frc.team6479.robot.commands.auton.StraightDrive;
-import org.usfirst.frc.team6479.robot.commands.auton.ToggleLight;
+import org.usfirst.frc.team6479.robot.commands.auton.camera.ToggleLight;
+import org.usfirst.frc.team6479.robot.commands.auton.drive.CameraDrive;
+import org.usfirst.frc.team6479.robot.commands.auton.drive.FlushDrive;
+import org.usfirst.frc.team6479.robot.commands.auton.drive.StraightDrive;
 import org.usfirst.frc.team6479.robot.commands.teleop.ToggleGrabber;
 import org.usfirst.frc.team6479.robot.commands.teleop.TogglePusher;
 import org.usfirst.frc.team6479.robot.commands.teleop.ToggleShifter;

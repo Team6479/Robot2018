@@ -8,6 +8,7 @@ import org.usfirst.frc.team6479.robot.sensors.RangeFinder;
 import org.usfirst.frc.team6479.robot.util.DifferentialDriveLimiter;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedController;
@@ -31,8 +32,8 @@ public class Drivetrain extends Subsystem implements SafeSubsystem {
 	private DrivetrainEncoder encoder;
 
     private ADXRS450_Gyro gyro;
-
-    //private RangeFinder sonar;
+    
+    //private DigitalInput button;
 
     private DoubleUltrasonic ultrasonic;
 
@@ -61,8 +62,7 @@ public class Drivetrain extends Subsystem implements SafeSubsystem {
         encoder.setSamplesToAverage(10);
 
         gyro = new ADXRS450_Gyro();
-
-        //sonar = new RangeFinder(RobotMap.sonarPort);
+        
 
         ultrasonic = new DoubleUltrasonic(RobotMap.leftInputPing, RobotMap.leftOutputEcho, RobotMap.rightInputPing, RobotMap.rightOutputEcho);
 	}

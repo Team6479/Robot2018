@@ -37,8 +37,7 @@ public class RobotMap {
     //END DIO
 
     //ANALOG
-    //sonar
-    public static final int sonarPort = 0;
+    
     //END ANALOG
 
     //RELAY

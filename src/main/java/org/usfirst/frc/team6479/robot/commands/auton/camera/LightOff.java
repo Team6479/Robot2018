@@ -1,13 +1,13 @@
-package org.usfirst.frc.team6479.robot.commands.auton;
+package org.usfirst.frc.team6479.robot.commands.auton.camera;
 
 import org.usfirst.frc.team6479.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
 
 
-public class ToggleLight extends InstantCommand {
+public class LightOff extends InstantCommand {
 
-    public ToggleLight() {
+    public LightOff() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.camera);
     }
@@ -18,13 +18,6 @@ public class ToggleLight extends InstantCommand {
      */
     @Override
     protected void execute() {
-        boolean isOn = Robot.camera.isLightOn();
-
-        if(isOn) {
-            Robot.camera.lightOff();
-        }
-        else {
-            Robot.camera.lightOn();
-        }
+           Robot.camera.lightOff();;
     }
 }

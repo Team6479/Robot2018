@@ -47,10 +47,10 @@
 
 | Port | Device |
 |:--- |:--- |
-| xboxPort | 0 |
+| driverController | 0 |
+| assistantController | 1 |
 
 ## ANALOG
 
 | Port | Device |
 |:--- |:--- |
-| sonarPort | 0 |

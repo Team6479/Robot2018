@@ -1,20 +1,15 @@
-package org.usfirst.frc.team6479.robot.commands.auton;
+package org.usfirst.frc.team6479.robot.commands.auton.camera;
 
 import org.usfirst.frc.team6479.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
 
-import communication.JetsonPacket.ModePacket.Mode;
 
-public class ToggleCamera extends InstantCommand {
+public class ToggleLight extends InstantCommand {
 
-	//the mode this command will change the camera to
-	private Mode changeTo;
-
-    public ToggleCamera(Mode changeModeTo) {
+    public ToggleLight() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.camera);
-        changeTo = changeModeTo;
     }
 
     /**
@@ -23,6 +18,13 @@ public class ToggleCamera extends InstantCommand {
      */
     @Override
     protected void execute() {
-    		Robot.camera.setCameraMode(changeTo);
+        boolean isOn = Robot.camera.isLightOn();
+
+        if(isOn) {
+            Robot.camera.lightOff();
+        }
+        else {
+            Robot.camera.lightOn();
+        }
     }
 }

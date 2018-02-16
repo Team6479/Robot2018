@@ -1,8 +1,8 @@
 package org.usfirst.frc.team6479.robot.autonomous;
 
 import org.usfirst.frc.team6479.robot.autonomous.manager.StartPosition;
-import org.usfirst.frc.team6479.robot.commands.auton.GyroDrive;
-import org.usfirst.frc.team6479.robot.commands.auton.StraightDrive;
+import org.usfirst.frc.team6479.robot.commands.auton.drive.GyroDrive;
+import org.usfirst.frc.team6479.robot.commands.auton.drive.StraightDrive;
 
 import edu.wpi.first.wpilibj.command.WaitCommand;
 
