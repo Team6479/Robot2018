@@ -4,9 +4,9 @@ import org.usfirst.frc.team6479.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
 
-public class Retract extends InstantCommand {
+public class PistonRetract extends InstantCommand {
 
-    public Retract() {
+    public PistonRetract() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         requires(Robot.pusher);

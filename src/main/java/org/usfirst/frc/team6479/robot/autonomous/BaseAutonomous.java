@@ -1,6 +1,9 @@
 package org.usfirst.frc.team6479.robot.autonomous;
 
 import org.usfirst.frc.team6479.robot.autonomous.manager.StartPosition;
+import org.usfirst.frc.team6479.robot.commands.auton.elevator.GrabberGrab;
+import org.usfirst.frc.team6479.robot.commands.auton.elevator.PistonPush;
+import org.usfirst.frc.team6479.robot.commands.auton.elevator.PistonRetract;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -24,6 +27,7 @@ public abstract class BaseAutonomous extends CommandGroup {
 		nearSwitch = MatchData.getOwnedSide(GameFeature.SWITCH_NEAR);
 		scale = MatchData.getOwnedSide(GameFeature.SCALE);
 		farSwitch = MatchData.getOwnedSide(GameFeature.SWITCH_FAR);
+		base();
 		switch(pos) {
 			case s_center:
 				if (shouldUseSensors) {
@@ -53,6 +57,12 @@ public abstract class BaseAutonomous extends CommandGroup {
 				break;
 
 		}
+	}
+
+	private void base() {
+		addSequential(new PistonPush());
+		addSequential(new GrabberGrab());
+		addSequential(new PistonRetract());
 	}
 
 	//auto routine for different modes
