@@ -6,9 +6,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 //adjust the robot so that it is perpedicular to the surface it is facing
-public class FlushDrive extends Command {
+public class FlushTurn extends Command {
 
-    public FlushDrive() {
+    public FlushTurn() {
         //uses drivetrain
         requires(Robot.drivetrain);
     }

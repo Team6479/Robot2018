@@ -2,7 +2,7 @@ package org.usfirst.frc.team6479.robot.control;
 
 import org.usfirst.frc.team6479.robot.commands.auton.camera.ToggleLight;
 import org.usfirst.frc.team6479.robot.commands.auton.drive.CameraDrive;
-import org.usfirst.frc.team6479.robot.commands.auton.drive.FlushDrive;
+import org.usfirst.frc.team6479.robot.commands.auton.drive.FlushTurn;
 import org.usfirst.frc.team6479.robot.commands.auton.drive.StraightDrive;
 import org.usfirst.frc.team6479.robot.commands.teleop.ToggleGrabber;
 import org.usfirst.frc.team6479.robot.commands.teleop.TogglePusher;
@@ -11,7 +11,6 @@ import org.usfirst.frc.team6479.robot.commands.teleop.ToggleStopper;
 import org.usfirst.frc.team6479.robot.config.RobotMap;
 import org.usfirst.frc.team6479.robot.util.XboxControllerDeadzone;
 
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import robot.xbox.ButtonTracker;
 import robot.xbox.XboxMap;
@@ -61,7 +60,7 @@ public class OI {
         SmartDashboard.putData("Encoder Drive", new StraightDrive(StraightDrive.Mode.encoderDrive, 30));
         SmartDashboard.putData("Sonar Drive", new StraightDrive(StraightDrive.Mode.encoderDrive, 30));
         SmartDashboard.putData("Toggle Light", new ToggleLight());
-        SmartDashboard.putData("Flush Drive", new FlushDrive());
+        SmartDashboard.putData("Flush Drive", new FlushTurn());
 	}
 
 	//get the things controlled

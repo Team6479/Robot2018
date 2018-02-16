@@ -10,9 +10,10 @@ public class MoveElevator extends Command {
 	public enum PreSetHeight {
 		Switch,
 		Scale,
-		Home;
+		Home,
+		Vision;
 	}
-	
+
     public MoveElevator(PreSetHeight height) {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
@@ -37,7 +38,7 @@ public class MoveElevator extends Command {
 	 */
 	@Override
 	protected void execute() {
-		
+
 	}
 
 
