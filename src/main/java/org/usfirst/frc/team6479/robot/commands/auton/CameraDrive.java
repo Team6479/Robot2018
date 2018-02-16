@@ -32,7 +32,7 @@ public class CameraDrive extends Command {
     		pixelDistance = Robot.camera.getCurrentDistance();
     		speed = 0.4;
 
-    		totalDistance = Robot.drivetrain.getSonar().getDistance() - STOP_RANGE;
+    		totalDistance = Robot.drivetrain.getUltrasonic().get() - STOP_RANGE;
     }
 
     /**
@@ -60,7 +60,7 @@ public class CameraDrive extends Command {
 	        0.45 = speed. (Increase for speed increase/ decrease for speed decrease)
 	        The parentheses stuff is an equation that goes from 1 to 0 as the angle approaches the goal
 	        */
-	        speed = 0.2 + (0.45 * ((Robot.drivetrain.getSonar().getDistance() - STOP_RANGE) / totalDistance));
+	        speed = 0.2 + (0.45 * ((Robot.drivetrain.getUltrasonic().get() - STOP_RANGE) / totalDistance));
 
     	    Robot.drivetrain.racingDrive(speed, -angle*kP);
     }
@@ -71,7 +71,7 @@ public class CameraDrive extends Command {
     }
     private boolean inRange() {
 
-        return (Robot.drivetrain.getSonar().getDistance() <= STOP_RANGE);
+        return (Robot.drivetrain.getUltrasonic().get() <= STOP_RANGE);
     }
 
 

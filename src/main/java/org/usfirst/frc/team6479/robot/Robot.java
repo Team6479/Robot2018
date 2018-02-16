@@ -86,11 +86,11 @@ public class Robot extends IterativeRobot {
 			compressor.start();
 		}*/
 		ticks++;
-		
+
 	    ButtonTracker.updateAll();
 
         //Sonar
-        SmartDashboard.putNumber("Range", Robot.drivetrain.getSonar().getDistance());
+        SmartDashboard.putNumber("Range", Robot.drivetrain.getUltrasonic().get());
 	}
 	@Override
 	public void autonomousInit() {

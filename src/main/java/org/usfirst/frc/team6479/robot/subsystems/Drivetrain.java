@@ -32,7 +32,7 @@ public class Drivetrain extends Subsystem implements SafeSubsystem {
 
     private ADXRS450_Gyro gyro;
 
-    private RangeFinder sonar;
+    //private RangeFinder sonar;
 
     private DoubleUltrasonic ultrasonic;
 
@@ -62,7 +62,7 @@ public class Drivetrain extends Subsystem implements SafeSubsystem {
 
         gyro = new ADXRS450_Gyro();
 
-        sonar = new RangeFinder(RobotMap.sonarPort);
+        //sonar = new RangeFinder(RobotMap.sonarPort);
 
         ultrasonic = new DoubleUltrasonic(RobotMap.leftInputPing, RobotMap.leftOutputEcho, RobotMap.rightInputPing, RobotMap.rightOutputEcho);
 	}
@@ -91,9 +91,11 @@ public class Drivetrain extends Subsystem implements SafeSubsystem {
         return drive;
     }
 
+    /*
     public RangeFinder getSonar() {
         return sonar;
     }
+    */
 
     public DrivetrainEncoder getEncoder() {
         return encoder;

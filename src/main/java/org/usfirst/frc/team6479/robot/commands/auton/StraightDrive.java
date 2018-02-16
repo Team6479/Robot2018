@@ -39,7 +39,7 @@ public class StraightDrive extends Command {
 	    speed = 0.2;
 
 	    //Distance that needs to be traveled
-	    totalDistance = Robot.drivetrain.getSonar().getDistance() - distanceGoal;
+	    totalDistance = Robot.drivetrain.getUltrasonic().get() - distanceGoal;
 	}
 
 
@@ -54,7 +54,7 @@ public class StraightDrive extends Command {
 	    double angle = Robot.drivetrain.getGyro().getAngle();
 
 	    if (mode == Mode.sonarDrive) {
-		    distance = Robot.drivetrain.getSonar().getDistance();
+		    distance = Robot.drivetrain.getUltrasonic().get();
 
 		    //Equation that decreases speed as the the robot approached the angle goal with precision
 	        /*
@@ -66,7 +66,7 @@ public class StraightDrive extends Command {
 	    }
 	    else {
 	    	//Collision detection: Checks if an object is 30 in. in front of it
-	    	if (Robot.drivetrain.getSonar().getDistance() <= 30) {
+	    	if (Robot.drivetrain.getUltrasonic().get() <= 30) {
 	    		speed = 0;
 		    }
 		    else {
