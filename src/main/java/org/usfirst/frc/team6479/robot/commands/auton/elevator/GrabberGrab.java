@@ -4,9 +4,9 @@ import org.usfirst.frc.team6479.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
 
-public class Grab extends InstantCommand {
+public class GrabberGrab extends InstantCommand {
 
-    public Grab() {
+    public GrabberGrab() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.grabber);
     }

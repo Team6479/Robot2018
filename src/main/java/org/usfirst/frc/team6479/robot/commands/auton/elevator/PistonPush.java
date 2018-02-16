@@ -4,9 +4,9 @@ import org.usfirst.frc.team6479.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
 
-public class Push extends InstantCommand {
+public class PistonPush extends InstantCommand {
 
-    public Push() {
+    public PistonPush() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         requires(Robot.pusher);
