@@ -29,8 +29,8 @@ public class Robot extends IterativeRobot {
 	public static Grabber grabber;
 	public static Pusher pusher;
 	public static Camera camera;
-	public static Map<String, SafeSubsystem> subsystemManager;
-	public static AutonomousManager autoManager;
+	private static Map<String, SafeSubsystem> subsystemManager;
+	private static AutonomousManager autoManager;
 	public static Compressor compressor;
 	private static int ticks;
 
