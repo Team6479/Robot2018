@@ -83,7 +83,12 @@ public class MoveElevator extends Command {
 	 */
 	@Override
 	protected boolean isFinished() {
-		return isInRange(Robot.elevator.getEncoder().get(), height.value);
+		if(needToMoveUp) {
+			return Robot.elevator.getEncoder().get() >= height.value;
+		}
+		else {
+			return Robot.elevator.getEncoder().get() <= height.value;
+		}
 	}
 
     private boolean isInRange(int d1, int d2) {

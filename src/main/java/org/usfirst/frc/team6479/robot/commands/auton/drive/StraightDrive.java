@@ -70,12 +70,11 @@ public class StraightDrive extends Command {
 		    speed = 0.2 + (0.35 * ((distance - distanceGoal) / totalDistance));
 	    }
 	    else {
-	    	//Collision detection: Checks if an object is 30 in. in front of it
-	    	/*if (Robot.drivetrain.getUltrasonic().get() <= 30) {
-	    		speed = 0;
-		    }*/
-		    //else
-		    	{
+	    		//Collision detection: Checks if an object is 30 in. in front of it
+	    		if (Robot.drivetrain.getUltrasonic().get() <= 30) {
+	    			speed = 0;
+		    }
+		    else {
 			    distance = Robot.drivetrain.getEncoder().getDistance();
 			    System.out.println(distance);
 			    System.out.println(distanceGoal);
