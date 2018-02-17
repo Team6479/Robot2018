@@ -32,7 +32,7 @@ public class Drivetrain extends Subsystem implements SafeSubsystem {
 	private DrivetrainEncoder encoder;
 
     private ADXRS450_Gyro gyro;
-    
+
     //private DigitalInput button;
 
     private DoubleUltrasonic ultrasonic;
@@ -50,8 +50,8 @@ public class Drivetrain extends Subsystem implements SafeSubsystem {
 
 
 		//init encoder
-		encoder = new DrivetrainEncoder(RobotMap.leftEncoderAPort, RobotMap.leftEncoderBPort,false,
-			RobotMap.rightEncoderAPort, RobotMap.rightEncoderBPort, true, Encoder.EncodingType.k4X);
+		encoder = new DrivetrainEncoder(RobotMap.leftEncoderAPort, RobotMap.leftEncoderBPort,true,
+			RobotMap.rightEncoderAPort, RobotMap.rightEncoderBPort, false, Encoder.EncodingType.k4X);
 		// set the time until when the robot is considered stopped, set in seconds
 		encoder.setMaxPeriod(0.05);
         // set distance per pulse to be 1 inch
@@ -59,10 +59,10 @@ public class Drivetrain extends Subsystem implements SafeSubsystem {
         encoder.setDistancePerPulse(distancePerPulse);
 
         //TODO: adjust as needed
-        encoder.setSamplesToAverage(10);
+        //encoder.setSamplesToAverage(20);
 
         gyro = new ADXRS450_Gyro();
-        
+
 
         ultrasonic = new DoubleUltrasonic(RobotMap.leftInputPing, RobotMap.leftOutputEcho, RobotMap.rightInputPing, RobotMap.rightOutputEcho);
 	}
@@ -72,10 +72,10 @@ public class Drivetrain extends Subsystem implements SafeSubsystem {
 		setDefaultCommand(new RacingDrive());
 	}
 	public void racingDrive(double throttle, double turn) {
-		drive.arcadeDrive(throttle, turn, false, true);
+		drive.arcadeDrive(throttle, turn, false, false);
 	}
 	public void tankDrive(double leftSpeed, double rightSpeed) {
-	    drive.tankDrive(leftSpeed, rightSpeed, false, true);
+	    drive.tankDrive(leftSpeed, rightSpeed, false, false);
     }
 	public SpeedController getLeftSideMotors() {
 		return leftSide;

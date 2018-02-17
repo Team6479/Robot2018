@@ -20,7 +20,7 @@ public class FlushTurn extends Command {
     //Initial Distance
 	private double initDistance;
     //tolerance in inches of how flush it should get
-    private static final double TOLERANCE = 1;
+    private static final double TOLERANCE = 2;
 
 
     private double distance() {
@@ -38,7 +38,7 @@ public class FlushTurn extends Command {
         distance = distance();
 	    initDistance = distance;
 
-        speed = 0.4;
+        speed = 0.25;
     }
 
     /**
@@ -58,7 +58,8 @@ public class FlushTurn extends Command {
 	    0.45 = speed. (Increase for speed increase/ decrease for speed decrease)
 	    The parentheses stuff is an equation that goes from 1 to 0 as the angle approaches the goal
 	    */
-	    speed = 0.2 + (0.45 * (distance / initDistance));
+	    //speed = 0.2 + (0.45 * (distance / initDistance));
+
 
         if (distance <= 0) {
             Robot.drivetrain.tankDrive(-speed, speed);

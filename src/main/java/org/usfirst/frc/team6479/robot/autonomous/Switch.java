@@ -7,9 +7,11 @@ import org.usfirst.frc.team6479.robot.commands.auton.camera.ToggleCamera;
 import org.usfirst.frc.team6479.robot.commands.auton.camera.ToggleLight;
 import org.usfirst.frc.team6479.robot.commands.auton.drive.CameraDrive;
 import org.usfirst.frc.team6479.robot.commands.auton.drive.CameraTurn;
+import org.usfirst.frc.team6479.robot.commands.auton.drive.DeadReckonDrive;
 import org.usfirst.frc.team6479.robot.commands.auton.drive.FlushTurn;
 import org.usfirst.frc.team6479.robot.commands.auton.drive.GyroDrive;
 import org.usfirst.frc.team6479.robot.commands.auton.drive.StraightDrive;
+import org.usfirst.frc.team6479.robot.commands.auton.elevator.GrabberRelease;
 import org.usfirst.frc.team6479.robot.commands.auton.elevator.MoveElevator;
 
 import communication.JetsonPacket;
@@ -40,30 +42,36 @@ public class Switch extends BaseAutonomous {
 		 */
 		if (isLeft) {
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dLeft));
-			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 54));
+			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 36));
+			addParallel(new MoveElevator(MoveElevator.PreSetHeight.Switch));
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dRight));
 		}
 		else {
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dRight));
-			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 54));
+			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 36));
+			addParallel(new MoveElevator(MoveElevator.PreSetHeight.Switch));
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dLeft));
 		}
 
 		//Drive forward 3 ft.
-		addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 36));
+		addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 24));
 
 		//Turn towards vision target and drive toward it
-		addSequential(new MoveElevator(MoveElevator.PreSetHeight.Switch));
 		addSequential(new LightOn());
 		addSequential(new ToggleCamera(JetsonPacket.ModePacket.Mode.GOAL));
 		addSequential(new CameraTurn());
-		addSequential(new CameraDrive());
+		//addSequential(new CameraDrive());
 
 		//Disable Vision
 		addSequential(new LightOff());
 		addSequential(new ToggleCamera(JetsonPacket.ModePacket.Mode.NONE));
 
 		//TODO: Add cube delivery to switch
+
+		//addSequential(new StraightDrive(StraightDrive.Mode.sonarDrive, 1));
+		addSequential(new DeadReckonDrive(1,0.6, DeadReckonDrive.Direction.dForward));
+		addParallel(new GrabberRelease());
+		addSequential(new DeadReckonDrive(1,0.6, DeadReckonDrive.Direction.dForward));
 
 		reverse();
 	}
@@ -83,7 +91,7 @@ public class Switch extends BaseAutonomous {
 		addSequential(new CameraTurn());
 		addSequential(new CameraDrive());
 		addSequential(new FlushTurn());
-		
+
 		reverse();
 	}
 
@@ -92,8 +100,8 @@ public class Switch extends BaseAutonomous {
 	protected void right() {
 		System.out.println("Switch Right Autonomous");
 
-		//Go forward 3 ft.
-		addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 72));
+		//Go forward 5 ft.
+		addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 60));
 
 		//Turn towards vision target and drive toward it
 		addSequential(new MoveElevator(MoveElevator.PreSetHeight.Switch));

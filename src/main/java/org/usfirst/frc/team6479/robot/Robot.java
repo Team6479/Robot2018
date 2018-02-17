@@ -70,12 +70,13 @@ public class Robot extends IterativeRobot {
         //Initialize SmartDashboard tracking
         //IMPORTANT: THIS NEEDS TO BE LAST!
         //Drivetrain
-        SmartDashboard.putData("Drivetrain", Robot.drivetrain.getDrive());
+        //SmartDashboard.putData("Drivetrain", Robot.drivetrain.getDrive());
 
         //Encoders
         SmartDashboard.putData("Drivetrain Encoder", Robot.drivetrain.getEncoder());
         SmartDashboard.putData("Left Encoder", Robot.drivetrain.getEncoder().getLeft());
         SmartDashboard.putData("Right Encoder", Robot.drivetrain.getEncoder().getRight());
+        SmartDashboard.putData("Elevator Encoder", Robot.elevator.getEncoder());
 	}
 	@Override
 	public void robotPeriodic() {
@@ -90,7 +91,9 @@ public class Robot extends IterativeRobot {
 	    ButtonTracker.updateAll();
 
         //Sonar
-        SmartDashboard.putNumber("Range", Robot.drivetrain.getUltrasonic().get());
+        SmartDashboard.putNumber("Left Range", Robot.drivetrain.getUltrasonic().getLeft());
+		SmartDashboard.putNumber("Right Range", Robot.drivetrain.getUltrasonic().getRight());
+		SmartDashboard.putNumber("Ultrasonic", Robot.drivetrain.getUltrasonic().get());
 	}
 	@Override
 	public void autonomousInit() {

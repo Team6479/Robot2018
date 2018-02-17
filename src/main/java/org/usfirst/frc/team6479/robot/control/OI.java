@@ -1,9 +1,16 @@
 package org.usfirst.frc.team6479.robot.control;
 
-import org.usfirst.frc.team6479.robot.commands.auton.camera.ToggleLight;
+import org.usfirst.frc.team6479.robot.Robot;
+import org.usfirst.frc.team6479.robot.commands.auton.camera.LightOff;
+import org.usfirst.frc.team6479.robot.commands.auton.camera.LightOn;
 import org.usfirst.frc.team6479.robot.commands.auton.drive.CameraDrive;
 import org.usfirst.frc.team6479.robot.commands.auton.drive.FlushTurn;
+import org.usfirst.frc.team6479.robot.commands.auton.drive.GyroDrive;
 import org.usfirst.frc.team6479.robot.commands.auton.drive.StraightDrive;
+import org.usfirst.frc.team6479.robot.commands.auton.elevator.GrabberGrab;
+import org.usfirst.frc.team6479.robot.commands.auton.elevator.GrabberRelease;
+import org.usfirst.frc.team6479.robot.commands.auton.elevator.PistonPush;
+import org.usfirst.frc.team6479.robot.commands.auton.elevator.PistonRetract;
 import org.usfirst.frc.team6479.robot.commands.teleop.ToggleGrabber;
 import org.usfirst.frc.team6479.robot.commands.teleop.TogglePusher;
 import org.usfirst.frc.team6479.robot.commands.teleop.ToggleShifter;
@@ -58,9 +65,9 @@ public class OI {
         SmartDashboard.putData("Camera Drive", new CameraDrive());
         SmartDashboard.putData("Camera Turn", new CameraDrive());
         SmartDashboard.putData("Encoder Drive", new StraightDrive(StraightDrive.Mode.encoderDrive, 30));
-        SmartDashboard.putData("Sonar Drive", new StraightDrive(StraightDrive.Mode.encoderDrive, 30));
-        SmartDashboard.putData("Toggle Light", new ToggleLight());
-        SmartDashboard.putData("Flush Drive", new FlushTurn());
+        SmartDashboard.putData("Sonar Drive", new StraightDrive(StraightDrive.Mode.sonarDrive, 50));
+        SmartDashboard.putData("Flush Turn", new FlushTurn());
+		SmartDashboard.putData("GYRO: 90 degree", new GyroDrive(90, GyroDrive.Direction.dLeft));
 	}
 
 	//get the things controlled

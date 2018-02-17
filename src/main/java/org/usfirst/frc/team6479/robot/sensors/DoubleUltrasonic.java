@@ -7,7 +7,7 @@ public class DoubleUltrasonic {
 
 	private Ultrasonic left;
 	private Ultrasonic right;
-	
+
 	//ping is input
 	//echo is output
 	public DoubleUltrasonic(int pingLeft, int echoLeft, int pingRight, int echoRight) {
@@ -17,7 +17,7 @@ public class DoubleUltrasonic {
 		left.setAutomaticMode(true);
 	}
 	public double get() {
-		return (getLeft() + getRight()) / 2;
+		return ((getLeft() + getRight()) / 2);
 	}
 	public double getLeft() {
 		return left.getRangeInches();

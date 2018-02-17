@@ -9,18 +9,18 @@ import edu.wpi.first.wpilibj.command.Command;
 public class MoveElevator extends Command {
 
 	public enum PreSetHeight {
-		Switch(20),
+		Switch(1300),
 		Scale(40),
 		Home(0),
 		Vision(10);
-		
+
 		PreSetHeight(int value) {
 			this.value = value;
 		}
 		int value;
-		
-	}	
-	
+
+	}
+
     private double speed;
     private boolean needToMoveUp;
     private PreSetHeight height;
@@ -41,9 +41,9 @@ public class MoveElevator extends Command {
 	protected void initialize() {
 		Robot.elevator.unlock();
 		Robot.elevator.switchToWinch();
-		
-	    speed = 0.4;
-	    
+
+	    speed = 0.55;
+
 	    //if the current height is higher than the setpoint, needToMoveUp is false
 	    needToMoveUp = Robot.elevator.getEncoder().get() < height.value;
 	}
@@ -85,7 +85,7 @@ public class MoveElevator extends Command {
 	protected boolean isFinished() {
 		return isInRange(Robot.elevator.getEncoder().get(), height.value);
 	}
-	
+
     private boolean isInRange(int d1, int d2) {
         return Math.abs(d1 - d2) <= 5;
     }

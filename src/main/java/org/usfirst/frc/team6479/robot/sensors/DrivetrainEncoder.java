@@ -8,14 +8,16 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableBuilder;
 public class DrivetrainEncoder extends SendableBase {
 
 
-	private Encoder left;
-	private Encoder right;
-	public DrivetrainEncoder(Encoder left, Encoder right) {
+	private AdjustedEncoder left;
+	private AdjustedEncoder right;
+	public DrivetrainEncoder(AdjustedEncoder left, AdjustedEncoder right) {
 		this.left = left;
 		this.right = right;
+		right.setSamplesToAverage(20);
+		left.setSamplesToAverage(50);
 	}
 	public DrivetrainEncoder(int leftA, int leftB, boolean reverseLeft, int rightA, int rightB, boolean reverseRight, Encoder.EncodingType encoding) {
-		this(new Encoder(leftA, leftB, reverseLeft, encoding), new Encoder(rightA, rightB, reverseRight, encoding));
+		this(new AdjustedEncoder(leftA, leftB, reverseLeft, encoding), new AdjustedEncoder(rightA, rightB, reverseRight, encoding));
 	}
 
 	public Encoder getLeft() {
@@ -24,7 +26,7 @@ public class DrivetrainEncoder extends SendableBase {
 	public Encoder getRight() {
 		return right;
 	}
-	
+
 
 	//accesor methods take avergaes
 	public double getDistance() {

@@ -3,6 +3,7 @@ package org.usfirst.frc.team6479.robot.commands.auton.drive;
 import org.usfirst.frc.team6479.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class StraightDrive extends Command {
 	public enum Mode {
@@ -35,8 +36,11 @@ public class StraightDrive extends Command {
 	 */
 	@Override
 	protected void initialize() {
+		System.out.println("Befpore");
 	    Robot.drivetrain.getGyro().reset();
+	    Robot.drivetrain.getEncoder().reset();
 	    speed = 0.2;
+	    System.out.println("After");
 
 	    //Distance that needs to be traveled
 	    totalDistance = Robot.drivetrain.getUltrasonic().get() - distanceGoal;
@@ -49,12 +53,13 @@ public class StraightDrive extends Command {
 	 */
 	@Override
 	protected void execute() {
+		System.out.println("SPICY");
         //kP = constant to prevent jerky angle correction
 		double kP = 0.03;
 	    double angle = Robot.drivetrain.getGyro().getAngle();
 
 	    if (mode == Mode.sonarDrive) {
-		    distance = Robot.drivetrain.getUltrasonic().get();
+		    distance = Robot.drivetrain.getUltrasonic().get() - 10;
 
 		    //Equation that decreases speed as the the robot approached the angle goal with precision
 	        /*
@@ -62,15 +67,18 @@ public class StraightDrive extends Command {
 	        0.45 = speed. (Increase for speed increase/ decrease for speed decrease)
 	        The parentheses stuff is an equation that goes from 1 to 0 as the angle approaches the goal
 	        */
-		    speed = 0.2 + (0.45 * ((distance - distanceGoal) / totalDistance));
+		    speed = 0.2 + (0.35 * ((distance - distanceGoal) / totalDistance));
 	    }
 	    else {
 	    	//Collision detection: Checks if an object is 30 in. in front of it
-	    	if (Robot.drivetrain.getUltrasonic().get() <= 30) {
+	    	/*if (Robot.drivetrain.getUltrasonic().get() <= 30) {
 	    		speed = 0;
-		    }
-		    else {
+		    }*/
+		    //else
+		    	{
 			    distance = Robot.drivetrain.getEncoder().getDistance();
+			    System.out.println(distance);
+			    System.out.println(distanceGoal);
 
 			    //Equation that decreases speed as the the robot approached the angle goal with precision
 	            /*
@@ -79,6 +87,7 @@ public class StraightDrive extends Command {
 	            The parentheses stuff is an equation that goes from 1 to 0 as the angle approaches the goal
 	            */
 			    speed = 0.2 + (0.45 * ((distanceGoal - distance) / distanceGoal));
+			    System.out.println(speed);
 		    }
 	    }
 
@@ -105,7 +114,12 @@ public class StraightDrive extends Command {
 	 */
 	@Override
 	protected boolean isFinished() {
-		return distance <= distanceGoal;
+		if (mode == Mode.sonarDrive) {
+			return distance <= distanceGoal;
+		}
+		else {
+			return distance >= distanceGoal;
+		}
 	}
 
 
