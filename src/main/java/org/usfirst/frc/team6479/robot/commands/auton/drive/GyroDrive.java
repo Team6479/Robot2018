@@ -88,7 +88,7 @@ public class GyroDrive extends Command {
 	    0.25 = speed. (Increase for speed increase/ decrease for speed decrease)
 	    The parentheses stuff is an equation that goes from 1 to 0 as the angle approaches the goal
 	     */
-        speed = 0.25 + ( 0.3 * ((angleGoal - gyroAngle)/angleGoal));
+        speed = 0.25 + ( 0.4 * ((angleGoal - gyroAngle)/angleGoal));
 
         if (dir == Direction.dLeft) {
             Robot.drivetrain.tankDrive(-speed, speed);

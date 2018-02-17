@@ -37,7 +37,13 @@ public class Drivetrain extends Subsystem implements SafeSubsystem {
 
     private DoubleUltrasonic ultrasonic;
 
+    private boolean limiter;
+    private boolean sniper;
+
 	public Drivetrain() {
+		limiter = false;
+		sniper = true;
+
 		leftBack = new Spark(RobotMap.leftBackPort);
 		rightBack = new Spark(RobotMap.rightBackPort);
 		leftFront = new Spark(RobotMap.leftFrontPort);
@@ -72,12 +78,29 @@ public class Drivetrain extends Subsystem implements SafeSubsystem {
 		setDefaultCommand(new RacingDrive());
 	}
 	public void racingDrive(double throttle, double turn) {
-		drive.arcadeDrive(throttle, turn, false, false);
+		drive.arcadeDrive(throttle, turn, false, limiter);
 	}
 	public void tankDrive(double leftSpeed, double rightSpeed) {
-	    drive.tankDrive(leftSpeed, rightSpeed, false, false);
+	    drive.tankDrive(leftSpeed, rightSpeed, false, limiter);
     }
-	public SpeedController getLeftSideMotors() {
+
+    public void setLimiter(boolean limit) {
+		limiter = limit;
+    }
+
+    public void setSniper(boolean sniper) {
+		this.sniper = sniper;
+		if(sniper) {
+			drive.setMaxSpeed(0.3);
+		}
+		else {
+			drive.setMaxSpeed(1);
+		}
+    }
+    public boolean isSniping() {
+		return sniper;
+    }
+    public SpeedController getLeftSideMotors() {
 		return leftSide;
 	}
 	public SpeedController getRightSideMotors() {

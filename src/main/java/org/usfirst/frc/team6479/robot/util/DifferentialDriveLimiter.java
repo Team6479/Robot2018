@@ -19,8 +19,15 @@ public class DifferentialDriveLimiter extends DifferentialDrive {
 	private double lastLeftSpeed;
 	private double lastRightSpeed;
 
+	private double maxSpeed;
+
 	public DifferentialDriveLimiter(SpeedController leftMotor, SpeedController rightMotor) {
 		super(leftMotor, rightMotor);
+		maxSpeed = 1;
+	}
+
+	public void setMaxSpeed(double speed) {
+		maxSpeed = speed;
 	}
 
 	public void arcadeDrive(double throttle, double turn, boolean squaredInputs, boolean limit) {
@@ -28,21 +35,21 @@ public class DifferentialDriveLimiter extends DifferentialDrive {
 			int tick = Robot.getCurrentTick();
 
 			if (throttle > lastThrottle) {
-				lastThrottle = Math.min(throttle, lastThrottle + (Robot.getCurrentTick() - lastTick));
+				lastThrottle = Math.min(throttle, lastThrottle + (Robot.getCurrentTick() - lastTick) * maxSpeed);
 			}
 			else {
-				lastThrottle = Math.max(throttle, lastThrottle - (Robot.getCurrentTick() - lastTick));
+				lastThrottle = Math.max(throttle, lastThrottle - (Robot.getCurrentTick() - lastTick) * maxSpeed);
 			}
 
 			if (turn > lastTurn) {
-				lastTurn = Math.min(turn, lastTurn + (Robot.getCurrentTick() - lastTurn));
+				lastTurn = Math.min(turn, lastTurn + (Robot.getCurrentTick() - lastTurn) * maxSpeed);
 			}
 			else {
-				lastTurn = Math.max(turn, lastTurn - (Robot.getCurrentTick() - lastTick));
+				lastTurn = Math.max(turn, lastTurn - (Robot.getCurrentTick() - lastTick) * maxSpeed);
 			}
 
 			lastTick = tick;
-
+			//System.out.println(lastTurn);
 			super.arcadeDrive(lastThrottle, lastTurn, squaredInputs);
 		}
 		else {
@@ -55,16 +62,16 @@ public class DifferentialDriveLimiter extends DifferentialDrive {
 			int tick = Robot.getCurrentTick();
 			//calc left speed
 			if (leftSpeed > lastLeftSpeed) {
-				lastLeftSpeed = Math.min(leftSpeed, lastLeftSpeed + (Robot.getCurrentTick() - lastTick));
+				lastLeftSpeed = Math.min(leftSpeed, lastLeftSpeed + (Robot.getCurrentTick() - lastTick) * maxSpeed);
 			} else {
-				lastLeftSpeed = Math.max(leftSpeed, lastLeftSpeed - (Robot.getCurrentTick() - lastTick));
+				lastLeftSpeed = Math.max(leftSpeed, lastLeftSpeed - (Robot.getCurrentTick() - lastTick) * maxSpeed);
 			}
 
 			//calc right speed
 			if (leftSpeed > lastLeftSpeed) {
-				lastRightSpeed = Math.min(rightSpeed, lastRightSpeed + (Robot.getCurrentTick() - lastTick));
+				lastRightSpeed = Math.min(rightSpeed, lastRightSpeed + (Robot.getCurrentTick() - lastTick) * maxSpeed);
 			} else {
-				lastRightSpeed = Math.max(rightSpeed, lastRightSpeed - (Robot.getCurrentTick() - lastTick));
+				lastRightSpeed = Math.max(rightSpeed, lastRightSpeed - (Robot.getCurrentTick() - lastTick) * maxSpeed);
 			}
 			lastTick = tick;
 

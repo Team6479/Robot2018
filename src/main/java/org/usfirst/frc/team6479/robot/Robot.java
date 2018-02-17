@@ -105,11 +105,19 @@ public class Robot extends IterativeRobot {
 	}
 	@Override
 	public void teleopInit() {
+		drivetrain.setLimiter(true);
 
 	}
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+
+		if(oi.getDriverController().getAButton()) {
+			drivetrain.setSniper(false);
+		}
+		else {
+			drivetrain.setSniper(true);
+		}
 
 		//kill switch code
 		if(oi.getDriverController().getStartButton()) {

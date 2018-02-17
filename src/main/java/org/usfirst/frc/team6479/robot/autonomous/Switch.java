@@ -57,7 +57,7 @@ public class Switch extends BaseAutonomous {
 		addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 24));
 
 		//Turn towards vision target and drive toward it
-		addSequential(new LightOn());
+		/*addSequential(new LightOn());
 		addSequential(new ToggleCamera(JetsonPacket.ModePacket.Mode.GOAL));
 		addSequential(new CameraTurn());
 		//addSequential(new CameraDrive());
@@ -65,7 +65,7 @@ public class Switch extends BaseAutonomous {
 		//Disable Vision
 		addSequential(new LightOff());
 		addSequential(new ToggleCamera(JetsonPacket.ModePacket.Mode.NONE));
-
+		*/
 		//TODO: Add cube delivery to switch
 
 		//addSequential(new StraightDrive(StraightDrive.Mode.sonarDrive, 1));
