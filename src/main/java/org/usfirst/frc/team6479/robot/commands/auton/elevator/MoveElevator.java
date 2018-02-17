@@ -1,6 +1,7 @@
 package org.usfirst.frc.team6479.robot.commands.auton.elevator;
 
 import org.usfirst.frc.team6479.robot.Robot;
+import org.usfirst.frc.team6479.robot.commands.auton.drive.StraightDrive.Mode;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -8,16 +9,27 @@ import edu.wpi.first.wpilibj.command.Command;
 public class MoveElevator extends Command {
 
 	public enum PreSetHeight {
-		Switch,
-		Scale,
-		Home,
-		Vision;
-	}
+		Switch(20),
+		Scale(40),
+		Home(0),
+		Vision(10);
+		
+		PreSetHeight(int value) {
+			this.value = value;
+		}
+		int value;
+		
+	}	
+	
+    private double speed;
+    private boolean needToMoveUp;
+    private PreSetHeight height;
 
     public MoveElevator(PreSetHeight height) {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
         requires(Robot.elevator);
+        this.height = height;
 	}
 
 
@@ -29,6 +41,11 @@ public class MoveElevator extends Command {
 	protected void initialize() {
 		Robot.elevator.unlock();
 		Robot.elevator.switchToWinch();
+		
+	    speed = 0.4;
+	    
+	    //if the current height is higher than the setpoint, needToMoveUp is false
+	    needToMoveUp = Robot.elevator.getEncoder().get() < height.value;
 	}
 
 
@@ -38,7 +55,12 @@ public class MoveElevator extends Command {
 	 */
 	@Override
 	protected void execute() {
-
+		if(needToMoveUp) {
+			Robot.elevator.move(speed);
+		}
+		else {
+			Robot.elevator.move(-speed);
+		}
 	}
 
 
@@ -61,9 +83,12 @@ public class MoveElevator extends Command {
 	 */
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return isInRange(Robot.elevator.getEncoder().get(), height.value);
 	}
-
+	
+    private boolean isInRange(int d1, int d2) {
+        return Math.abs(d1 - d2) <= 5;
+    }
 
 	/**
 	 * Called once when the command ended peacefully; that is it is called once
