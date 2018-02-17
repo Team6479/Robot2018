@@ -39,7 +39,7 @@ public class GyroDrive extends Command {
      */
     @Override
     protected void initialize() {
-        System.out.println("Starting!!!!");
+        //System.out.println("Starting!!!!");
         Robot.drivetrain.getGyro().reset();
 
         tmpAngleGoal = angleGoal / ANGLE_DELTA;
@@ -78,7 +78,7 @@ public class GyroDrive extends Command {
         gyroAngle = Math.abs(Robot.drivetrain.getGyro().getAngle());
 
         System.out.println("Gyro At: " + gyroAngle);
-        System.out.println("TMP Angle: " + tmpAngleGoal);
+        //System.out.println("TMP Angle: " + tmpAngleGoal);
 
         angleCOT = this.getAngleCOT(prevGyroAngle, gyroAngle);
 
@@ -130,11 +130,11 @@ public class GyroDrive extends Command {
      */
     @Override
     protected void end() {
-        System.out.println("Stopping!!!");
+        //System.out.println("Stopping!!!");
         Robot.drivetrain.stop();
-        System.out.println("Final Gyro Read: " + gyroAngle);
-        SmartDashboard.putNumber("Final Gyro Val", gyroAngle);
-        System.out.println("Accuracy Rating: " + (Math.abs(angleGoal - gyroAngle)));
-        SmartDashboard.putNumber("Gyro Accuracy", (Math.abs(angleGoal - gyroAngle)));
+        //System.out.println("Final Gyro Read: " + gyroAngle);
+        //SmartDashboard.putNumber("Final Gyro Val", gyroAngle);
+        //System.out.println("Accuracy Rating: " + (Math.abs(angleGoal - gyroAngle)));
+        //SmartDashboard.putNumber("Gyro Accuracy", (Math.abs(angleGoal - gyroAngle)));
     }
 }

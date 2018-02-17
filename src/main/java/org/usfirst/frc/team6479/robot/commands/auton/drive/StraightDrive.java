@@ -36,11 +36,11 @@ public class StraightDrive extends Command {
 	 */
 	@Override
 	protected void initialize() {
-		System.out.println("Befpore");
+		//System.out.println("Befpore");
 	    Robot.drivetrain.getGyro().reset();
 	    Robot.drivetrain.getEncoder().reset();
 	    speed = 0.2;
-	    System.out.println("After");
+	    //System.out.println("After");
 
 	    //Distance that needs to be traveled
 	    totalDistance = Robot.drivetrain.getUltrasonic().get() - distanceGoal;
@@ -87,7 +87,7 @@ public class StraightDrive extends Command {
 	            The parentheses stuff is an equation that goes from 1 to 0 as the angle approaches the goal
 	            */
 			    speed = 0.2 + (0.45 * ((distanceGoal - distance) / distanceGoal));
-			    System.out.println(speed);
+			    //System.out.println(speed);
 		    }
 	    }
 

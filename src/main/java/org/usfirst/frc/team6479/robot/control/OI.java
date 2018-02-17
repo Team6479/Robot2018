@@ -62,12 +62,12 @@ public class OI {
 	    assistantBButton.toggleWhenPressed(new ToggleShifter());
 
 	    //Testing Commands
-        SmartDashboard.putData("Camera Drive", new CameraDrive());
+        /*SmartDashboard.putData("Camera Drive", new CameraDrive());
         SmartDashboard.putData("Camera Turn", new CameraDrive());
         SmartDashboard.putData("Encoder Drive", new StraightDrive(StraightDrive.Mode.encoderDrive, 30));
         SmartDashboard.putData("Sonar Drive", new StraightDrive(StraightDrive.Mode.sonarDrive, 50));
         SmartDashboard.putData("Flush Turn", new FlushTurn());
-		SmartDashboard.putData("GYRO: 90 degree", new GyroDrive(90, GyroDrive.Direction.dLeft));
+		SmartDashboard.putData("GYRO: 90 degree", new GyroDrive(90, GyroDrive.Direction.dLeft));*/
 	}
 
 	//get the things controlled
