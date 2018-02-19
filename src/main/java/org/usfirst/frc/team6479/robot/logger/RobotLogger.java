@@ -2,6 +2,7 @@ package org.usfirst.frc.team6479.robot.logger;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -21,7 +22,7 @@ public class RobotLogger {
 		logFile = new File("media/sda1/" + formattedDate);
 		try 
 		{
-			writer = new PrintWriter(logFile);
+			writer = new PrintWriter(new FileOutputStream(logFile), true);
 		}
 		catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -37,5 +38,6 @@ public class RobotLogger {
 		long seconds = time % 60 / 60;
 		
 		String toBeWritten = String.format("%2d:%2.2d %s", minutes, seconds, information);
+		writer.println(toBeWritten);
 	}
 }
