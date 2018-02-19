@@ -21,13 +21,9 @@ public class ToggleStopper extends InstantCommand {
         boolean isLocked = Robot.elevator.isLocked();
         if(isLocked) {
             Robot.elevator.unlock();
-            Robot.oi.getAssistantController().setRumble(RumbleType.kLeftRumble, 0);
-            Robot.oi.getAssistantController().setRumble(RumbleType.kRightRumble, 0);
         }
         else {
             Robot.elevator.lock();
-            Robot.oi.getAssistantController().setRumble(RumbleType.kLeftRumble, 0.2);
-            Robot.oi.getAssistantController().setRumble(RumbleType.kRightRumble, 0.2);
         }
     }
 

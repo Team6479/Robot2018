@@ -38,11 +38,11 @@ public class Drivetrain extends Subsystem implements SafeSubsystem {
     private DoubleUltrasonic ultrasonic;
 
     private boolean limiter;
-    private boolean sniper;
+    private boolean hyper;
 
 	public Drivetrain() {
 		limiter = false;
-		sniper = true;
+		hyper = false;
 
 		leftBack = new Spark(RobotMap.leftBackPort);
 		rightBack = new Spark(RobotMap.rightBackPort);
@@ -64,8 +64,6 @@ public class Drivetrain extends Subsystem implements SafeSubsystem {
         double distancePerPulse = (6 * Math.PI) / 360;
         encoder.setDistancePerPulse(distancePerPulse);
 
-        //TODO: adjust as needed
-        //encoder.setSamplesToAverage(20);
 
         gyro = new ADXRS450_Gyro();
 
@@ -88,17 +86,17 @@ public class Drivetrain extends Subsystem implements SafeSubsystem {
 		limiter = limit;
     }
 
-    public void setSniper(boolean sniper) {
-		this.sniper = sniper;
-		if(sniper) {
-			drive.setMaxSpeed(0.3);
-		}
-		else {
+    public void setHyper(boolean hyper) {
+		this.hyper = hyper;
+		if(hyper) {
 			drive.setMaxSpeed(1);
 		}
+		else {
+			drive.setMaxSpeed(0.65);
+		}
     }
-    public boolean isSniping() {
-		return sniper;
+    public boolean isHyping() {
+		return hyper;
     }
     public SpeedController getLeftSideMotors() {
 		return leftSide;
@@ -113,12 +111,6 @@ public class Drivetrain extends Subsystem implements SafeSubsystem {
     public DifferentialDriveLimiter getDrive() {
         return drive;
     }
-
-    /*
-    public RangeFinder getSonar() {
-        return sonar;
-    }
-    */
 
     public DrivetrainEncoder getEncoder() {
         return encoder;

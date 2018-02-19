@@ -45,10 +45,7 @@ public class Robot extends IterativeRobot {
 		pusher = new Pusher();
 		camera = new Camera();
 
-		elevator.switchToWinch();
-		elevator.unlock();
-		pusher.retract();
-		grabber.release();
+		setRobotDefault();
 
 		subsystemManager = new HashMap<String, SafeSubsystem>();
 		subsystemManager.put("Drivetrain", drivetrain);
@@ -72,16 +69,47 @@ public class Robot extends IterativeRobot {
         //Drivetrain
         SmartDashboard.putData("Drivetrain", Robot.drivetrain.getDrive());
 	}
+
+	public void setRobotDefault() {
+		drivetrain.setLimiter(false);
+		drivetrain.setHyper(false);
+		elevator.switchToWinch();
+		elevator.unlock();
+		pusher.retract();
+		grabber.release();
+	}
+	public void setAutonomousDefault() {
+		drivetrain.setLimiter(false);
+		drivetrain.setHyper(true);
+		elevator.switchToWinch();
+		elevator.unlock();
+		pusher.retract();
+		grabber.release();
+	}
+	public void setTeleopDefault() {
+		drivetrain.setLimiter(true);
+		drivetrain.setHyper(false);
+		elevator.switchToWinch();
+		elevator.unlock();
+		pusher.retract();
+		grabber.release();
+	}
+
 	@Override
 	public void robotPeriodic() {
 		ticks++;
 
 	    ButtonTracker.updateAll();
-	    
-	    
+
+	    SmartDashboard.putData("encoder left", Robot.drivetrain.getEncoder().getLeft());
+	    SmartDashboard.putData("encoder right", Robot.drivetrain.getEncoder().getRight());
+	    SmartDashboard.putData("elevator encoder", Robot.elevator.getEncoder());
+	    SmartDashboard.putNumber("Sonar left", Robot.drivetrain.getUltrasonic().getLeft());
+		SmartDashboard.putNumber("Sonar Right", Robot.drivetrain.getUltrasonic().getRight());
 	}
 	@Override
 	public void autonomousInit() {
+		setAutonomousDefault();
 		autoManager.startAuto();
 	}
 	@Override
@@ -90,18 +118,21 @@ public class Robot extends IterativeRobot {
 	}
 	@Override
 	public void teleopInit() {
-		drivetrain.setLimiter(true);
+		//deque all commands
+		Scheduler.getInstance().removeAll();
 
+		setTeleopDefault();
 	}
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 
+		System.out.println("HYPER BOI: " + drivetrain.isHyping());
 		if(oi.getDriverController().getAButton()) {
-			drivetrain.setSniper(false);
+			drivetrain.setHyper(true);
 		}
 		else {
-			drivetrain.setSniper(true);
+			drivetrain.setHyper(false);
 		}
 
 		//kill switch code
