@@ -27,7 +27,7 @@ repositories {
 dependencies {
     compile group: 'team6479.robotrepo', name: 'robotlib', version: '1.2.0'
     compile wpilib()
-    //compile ctre()
+    compile ctre()
     //compile navx()
     compile openrio.powerup.matchData()
     compile group: 'com.google.protobuf', name: 'protobuf-java', version: '3.5.1'

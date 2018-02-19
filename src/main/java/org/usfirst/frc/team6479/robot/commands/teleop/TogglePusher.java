@@ -19,11 +19,26 @@ public class TogglePusher extends InstantCommand {
     @Override
     protected void execute() {
         boolean isExtended = Robot.pusher.isExtend();
-        if(isExtended) {
-            Robot.pusher.retract();
-        }
-        else {
-            Robot.pusher.extend();
-        }
+	    boolean wasJustPressedAssistant = Robot.oi.getAssistantRightBumper().wasJustPressed();
+	    boolean isDriverOverride = Robot.oi.getDriverController().getYButton();
+	    boolean wasJustPressedDriver = Robot.oi.getDriverRightBumper().wasJustPressed();
+	    if(wasJustPressedAssistant || (wasJustPressedDriver && isDriverOverride)) {
+		    if(isExtended) {
+			    Robot.pusher.retract();
+		    }
+		    else {
+			    Robot.pusher.extend();
+		    }
+	    }
     }
+
+	@Override
+	protected boolean isFinished() {
+		return false;
+	}
+	//Called once after isFinished returns true
+	@Override
+	protected void end() {
+		Robot.pusher.retract();
+	}
 }

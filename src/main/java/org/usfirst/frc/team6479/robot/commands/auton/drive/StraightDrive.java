@@ -19,6 +19,8 @@ public class StraightDrive extends Command {
     private double distanceGoal;
     private double distance;
     private double totalDistance;
+    private double prevDistanceAverage;
+    private double prevDistanceNum;
     private Mode mode;
 
     public StraightDrive(Mode mode, double distance) {
@@ -67,7 +69,7 @@ public class StraightDrive extends Command {
 	        0.45 = speed. (Increase for speed increase/ decrease for speed decrease)
 	        The parentheses stuff is an equation that goes from 1 to 0 as the angle approaches the goal
 	        */
-		    speed = 0.2 + (0.35 * ((distance - distanceGoal) / totalDistance));
+		    speed = 0.35 + (0.4 * ((distance - distanceGoal) / totalDistance));
 	    }
 	    else {
 	    		//Collision detection: Checks if an object is 30 in. in front of it
@@ -77,6 +79,11 @@ public class StraightDrive extends Command {
 		    //else
 		    	{
 			    distance = Robot.drivetrain.getEncoder().getDistance();
+
+			    //Safety for if encoders do not return a value
+			    prevDistanceNum++;
+			    prevDistanceAverage = (prevDistanceAverage + distance) /  prevDistanceNum;
+
 			    System.out.println(distance);
 			    System.out.println(distanceGoal);
 
@@ -114,10 +121,16 @@ public class StraightDrive extends Command {
 	 */
 	@Override
 	protected boolean isFinished() {
+
 		if (mode == Mode.sonarDrive) {
 			return distance <= distanceGoal;
 		}
 		else {
+			if (prevDistanceNum >= 5) {
+				if (prevDistanceAverage <= 0) {
+					return true;
+				}
+			}
 			return distance >= distanceGoal;
 		}
 	}

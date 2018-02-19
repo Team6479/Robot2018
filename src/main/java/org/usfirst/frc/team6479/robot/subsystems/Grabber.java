@@ -1,5 +1,6 @@
 package org.usfirst.frc.team6479.robot.subsystems;
 
+import org.usfirst.frc.team6479.robot.commands.teleop.ToggleGrabber;
 import org.usfirst.frc.team6479.robot.config.RobotMap;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -13,12 +14,10 @@ public class Grabber extends Subsystem implements SafeSubsystem {
 
 	public Grabber() {
 		dubSol = new DoubleSolenoid(RobotMap.grabberOnPort, RobotMap.grabberOffPort);
-		//default state is off
-		dubSol.set(Value.kOff);
 	}
     @Override
     protected void initDefaultCommand() {
-
+		setDefaultCommand(new ToggleGrabber());
     }
 	public void grab() {
 		dubSol.set(Value.kForward);

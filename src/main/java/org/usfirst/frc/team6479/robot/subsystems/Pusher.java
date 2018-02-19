@@ -1,5 +1,6 @@
 package org.usfirst.frc.team6479.robot.subsystems;
 
+import org.usfirst.frc.team6479.robot.commands.teleop.TogglePusher;
 import org.usfirst.frc.team6479.robot.config.RobotMap;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -14,7 +15,7 @@ public class Pusher extends Subsystem implements SafeSubsystem {
 
     @Override
     protected void initDefaultCommand() {
-
+		setDefaultCommand(new TogglePusher());
     }
 
     //Extends Piston
