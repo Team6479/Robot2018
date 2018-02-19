@@ -7,6 +7,7 @@ import java.util.Map.Entry;
 import org.usfirst.frc.team6479.robot.autonomous.manager.AutonomousManager;
 import org.usfirst.frc.team6479.robot.config.RobotMap;
 import org.usfirst.frc.team6479.robot.control.OI;
+import org.usfirst.frc.team6479.robot.logger.RobotLogger;
 import org.usfirst.frc.team6479.robot.subsystems.Camera;
 import org.usfirst.frc.team6479.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team6479.robot.subsystems.Elevator;
@@ -106,6 +107,11 @@ public class Robot extends IterativeRobot {
 	    SmartDashboard.putData("elevator encoder", Robot.elevator.getEncoder());
 	    SmartDashboard.putNumber("Sonar left", Robot.drivetrain.getUltrasonic().getLeft());
 		SmartDashboard.putNumber("Sonar Right", Robot.drivetrain.getUltrasonic().getRight());
+
+		RobotLogger.logger.log("Velocity: Left: " + drivetrain.getEncoder().getLeft().getRate()
+			+ " Velocity: Right: " + drivetrain.getEncoder().getRight().getRate()
+			+ " Distance: Left: " + drivetrain.getEncoder().getLeft().getDistancePerPulse()
+			+ " Distance: Right: " + drivetrain.getEncoder().getLeft().getDistancePerPulse());
 	}
 	@Override
 	public void autonomousInit() {
@@ -127,7 +133,6 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 
-		System.out.println("HYPER BOI: " + drivetrain.isHyping());
 		if(oi.getDriverController().getAButton()) {
 			drivetrain.setHyper(true);
 		}

@@ -14,13 +14,13 @@ public class RobotLogger {
 	private PrintWriter writer;
 	private RobotLogger() {
 		startTime = new Date();
-		
-		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy:HH-mm-ss");
+
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy_HH-mm-ss");
 		String formattedDate = formatter.format(startTime);
-		
-		
+
+
 		logFile = new File("media/sda1/" + formattedDate);
-		try 
+		try
 		{
 			writer = new PrintWriter(new FileOutputStream(logFile), true);
 		}
@@ -29,15 +29,15 @@ public class RobotLogger {
 		}
 	}
 	public static RobotLogger logger = new RobotLogger();
-	
+
 	public void log(String information) {
 		Date currentTime = new Date();
 		long time = currentTime.getTime() - startTime.getTime();
-		
+
 		long minutes = time / 60;
 		long seconds = time % 60 / 60;
-		
-		String toBeWritten = String.format("%2d:%2.2d %s", minutes, seconds, information);
+
+		String toBeWritten = String.format("%2d:%2d %s", minutes, seconds, information);
 		writer.println(toBeWritten);
 	}
 }

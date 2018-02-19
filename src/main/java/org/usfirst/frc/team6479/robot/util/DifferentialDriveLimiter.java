@@ -28,7 +28,6 @@ public class DifferentialDriveLimiter extends DifferentialDrive {
 
 	public void setMaxSpeed(double speed) {
 		maxSpeed = speed;
-		System.out.println("SPEEDY BOI: " + maxSpeed);
 	}
 
 	public void arcadeDrive(double throttle, double turn, boolean squaredInputs, boolean limit) {
