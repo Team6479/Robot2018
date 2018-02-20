@@ -28,18 +28,18 @@ Our code is mapped to two controllers. One drives the robot and the other contro
 ### Driver Controller
 
 #### Buttons
-| Name         | Port | Value      | Function | Location |
-|:------------ |:---- |:---------- |:-------- |:-------- |
-| A            | 1    | true/false |          |          |
-| B            | 2    | true/false |          |          |
-| X            | 3    | true/false |          |          |
-| Y            | 4    | true/false |          |          |
-| Left Bumper  | 5    | true/false |          |          |
-| Right Bumper | 6    | true/false |          |          |
-| Back         | 7    | true/false |          |          |
-| Start        | 8    | true/false |          |          |
-| Left Stick   | 9    | true/false |          |          |
-| Right Stick  | 10   | true/false |          |          |
+| Name         | Port | Value      | Function                    | Location                                         |
+|:------------ |:---- |:---------- |:--------------------------- |:------------------------------------------------ |
+| A            | 1    | true/false | Toggle Hyper Mode           | [Robot.java][13]                                 |
+| B            | 2    | true/false |                             |                                                  |
+| X            | 3    | true/false |                             |                                                  |
+| Y            | 4    | true/false | Pusher and Grabber Override | [TogglePusher.java][7] & [ToggleGrabber.java][8] |
+| Left Bumper  | 5    | true/false | Toggle Pusher               | [TogglePusher.java][7]                           |
+| Right Bumper | 6    | true/false | Toggle Grabber              | [ToggleGrabber.java][8]                          |
+| Back         | 7    | true/false |                             |                                                  |
+| Start        | 8    | true/false | Kill Switch                 | [Robot.java][13]                                 |
+| Left Stick   | 9    | true/false |                             |                                                  |
+| Right Stick  | 10   | true/false |                             |                                                  |
 
 #### Axes
 | Name          | Port | Value   | Function      | Location                   |
@@ -122,3 +122,4 @@ All of our autonomous routines are handled by [AutonomousManager.java][9]. This 
 [10]: ./src/main/java/org/usfirst/frc/team6479/robot/commands/teleop/ElevatorControl.java
 [11]: ./src/main/java/org/usfirst/frc/team6479/robot/commands/teleop/ToggleShifter.java
 [12]: ./src/main/java/org/usfirst/frc/team6479/robot/commands/teleop/ToggleStopper.java
+[13]: ./src/main/java/org/usfirst/frc/team6479/robot/Robot.java
