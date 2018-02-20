@@ -11,7 +11,7 @@ input = open(sys.argv[1], "r")
 
 fullText = input.read()
 
-format = "(\\d+):(\\d+) Velocity: Left: (\\d) Velocity: Right: (\\d) Distance: Left: (\\d) Distance: Right: (\\d)"
+format = "(\\d+):(\\d+) Velocity Left: (\\d) Velocity Right: (\\d) Distance Left: (\\d) Distance Right: (\\d)"
 
 maxLeftV = 0
 maxRightV = 0

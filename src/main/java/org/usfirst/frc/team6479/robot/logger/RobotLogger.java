@@ -32,12 +32,14 @@ public class RobotLogger {
 
 	public void log(String information) {
 		Date currentTime = new Date();
-		long time = currentTime.getTime() - startTime.getTime();
+		long milli = currentTime.getTime() - startTime.getTime();
 
+		long time = milli * 1000;
+		
 		long minutes = time / 60;
 		long seconds = time % 60 / 60;
 
-		String toBeWritten = String.format("%2d:%2d %s", minutes, seconds, information);
+		String toBeWritten = String.format("%02d:%02d %s", minutes, seconds, information);
 		writer.println(toBeWritten);
 	}
 }

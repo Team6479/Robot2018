@@ -108,10 +108,12 @@ public class Robot extends IterativeRobot {
 	    SmartDashboard.putNumber("Sonar left", Robot.drivetrain.getUltrasonic().getLeft());
 		SmartDashboard.putNumber("Sonar Right", Robot.drivetrain.getUltrasonic().getRight());
 
-		RobotLogger.logger.log("Velocity: Left: " + drivetrain.getEncoder().getLeft().getRate()
-			+ " Velocity: Right: " + drivetrain.getEncoder().getRight().getRate()
-			+ " Distance: Left: " + drivetrain.getEncoder().getLeft().getDistancePerPulse()
-			+ " Distance: Right: " + drivetrain.getEncoder().getLeft().getDistancePerPulse());
+		String logString = String.format("Velocity Left: %03.4f Velocity Right: %03.4f Distance Left: %03.4f Distance Right: %03.4f", 
+				drivetrain.getEncoder().getLeft().getRate(), 
+				drivetrain.getEncoder().getRight().getRate(), 
+				drivetrain.getEncoder().getLeft().getDistancePerPulse(),
+				drivetrain.getEncoder().getLeft().getDistancePerPulse());
+		RobotLogger.logger.log(logString);
 	}
 	@Override
 	public void autonomousInit() {
