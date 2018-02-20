@@ -96,17 +96,9 @@ All of our autonomous routines are handled by [AutonomousManager.java][9]. This 
 
 
 ## TODO List
-- [ ] Improve encoder accuracy
 - [ ] Implement autonomous commands into the autonomous manager
-- [x] Add fancy formula to FlushDrive
-- [x] Add fancy formula to CameraDrive
-- [ ] Test all code in safe environment in small tests before testing in large environment
-- [x] Reduce acceleration to reduce tipping
-- [ ] Look into "Sniper Mode" for increased accuracy but reduced speed.
-- [ ] Fancy formula for MoveElevator
-- [ ] Fancy fornumala ButtonDrive
 - [ ] Add rumble when locked
-- [ ] Figure out how to plug more digitla inputs in
+- [ ] Add velocity component to commands for increased accuracy
 
 
 
