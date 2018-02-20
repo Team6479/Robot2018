@@ -7,7 +7,7 @@ import java.util.Map.Entry;
 import org.usfirst.frc.team6479.robot.autonomous.manager.AutonomousManager;
 import org.usfirst.frc.team6479.robot.config.RobotMap;
 import org.usfirst.frc.team6479.robot.control.OI;
-import org.usfirst.frc.team6479.robot.logger.RobotLogger;
+//import org.usfirst.frc.team6479.robot.logger.RobotLogger;
 import org.usfirst.frc.team6479.robot.subsystems.Camera;
 import org.usfirst.frc.team6479.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team6479.robot.subsystems.Elevator;
@@ -41,6 +41,9 @@ public class Robot extends IterativeRobot {
 
 		//init subsystems
 		drivetrain = new Drivetrain();
+		System.out.println("Calibarting Gyro");
+		drivetrain.getGyro().calibrate();
+		System.out.println("Calibrated");
 		elevator = new Elevator();
 		grabber = new Grabber();
 		pusher = new Pusher();
@@ -107,13 +110,6 @@ public class Robot extends IterativeRobot {
 	    SmartDashboard.putData("elevator encoder", Robot.elevator.getEncoder());
 	    SmartDashboard.putNumber("Sonar left", Robot.drivetrain.getUltrasonic().getLeft());
 		SmartDashboard.putNumber("Sonar Right", Robot.drivetrain.getUltrasonic().getRight());
-
-		String logString = String.format("Velocity Left: %03.4f Velocity Right: %03.4f Distance Left: %03.4f Distance Right: %03.4f", 
-				drivetrain.getEncoder().getLeft().getRate(), 
-				drivetrain.getEncoder().getRight().getRate(), 
-				drivetrain.getEncoder().getLeft().getDistancePerPulse(),
-				drivetrain.getEncoder().getLeft().getDistancePerPulse());
-		RobotLogger.logger.log(logString);
 	}
 	@Override
 	public void autonomousInit() {
@@ -133,6 +129,13 @@ public class Robot extends IterativeRobot {
 	}
 	@Override
 	public void teleopPeriodic() {
+		/*String logString = String.format("Velocity Left: %03.4f Velocity Right: %03.4f Distance Left: %03.4f Distance Right: %03.4f", 
+				drivetrain.getEncoder().getLeft().getRate(), 
+				drivetrain.getEncoder().getRight().getRate(), 
+				drivetrain.getEncoder().getLeft().getDistancePerPulse(),
+				drivetrain.getEncoder().getLeft().getDistancePerPulse());
+		RobotLogger.logger.log(logString);*/
+		
 		Scheduler.getInstance().run();
 
 		if(oi.getDriverController().getAButton()) {

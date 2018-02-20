@@ -43,14 +43,14 @@ public class Switch extends BaseAutonomous {
 		if (isLeft) {
 			System.out.println("Left");
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dLeft));
-			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 36));
+			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 24));
 			addParallel(new MoveElevator(MoveElevator.PreSetHeight.Switch));
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dRight));
 		}
 		else {
 			System.out.println("Right");
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dRight));
-			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 36));
+			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 24));
 			addParallel(new MoveElevator(MoveElevator.PreSetHeight.Switch));
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dLeft));
 		}
@@ -70,10 +70,10 @@ public class Switch extends BaseAutonomous {
 
 		//TODO: Add cube delivery to switch
 
-		//addSequential(new StraightDrive(StraightDrive.Mode.sonarDrive, 1));
-		addSequential(new DeadReckonDrive(1,0.6, DeadReckonDrive.Direction.dForward));
+		addSequential(new StraightDrive(StraightDrive.Mode.sonarDrive, 1));
+		//addSequential(new DeadReckonDrive(1,0.6, DeadReckonDrive.Direction.dForward));
 		addParallel(new GrabberRelease());
-		addSequential(new DeadReckonDrive(1,0.6, DeadReckonDrive.Direction.dForward));
+		addSequential(new DeadReckonDrive(0.6, 0.6, DeadReckonDrive.Direction.dForward));
 
 		reverse();
 	}

@@ -1,4 +1,4 @@
-package org.usfirst.frc.team6479.robot.logger;
+/*package org.usfirst.frc.team6479.robot.logger;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -31,15 +31,7 @@ public class RobotLogger {
 	public static RobotLogger logger = new RobotLogger();
 
 	public void log(String information) {
-		Date currentTime = new Date();
-		long milli = currentTime.getTime() - startTime.getTime();
-
-		long time = milli * 1000;
-		
-		long minutes = time / 60;
-		long seconds = time % 60 / 60;
-
-		String toBeWritten = String.format("%02d:%02d %s", minutes, seconds, information);
+		String toBeWritten = String.format("%s", information);
 		writer.println(toBeWritten);
 	}
-}
+}*/
