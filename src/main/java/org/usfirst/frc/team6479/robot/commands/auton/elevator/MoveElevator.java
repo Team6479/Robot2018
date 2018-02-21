@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class MoveElevator extends Command {
 
 	public enum PreSetHeight {
-		Switch(1300),
+		Switch(1400),
 		Scale(40),
 		Home(0),
 		Vision(10);
@@ -42,7 +42,7 @@ public class MoveElevator extends Command {
 		Robot.elevator.unlock();
 		Robot.elevator.switchToWinch();
 
-	    speed = 0.55;
+	    speed = 0.6;
 
 	    //if the current height is higher than the setpoint, needToMoveUp is false
 	    needToMoveUp = Robot.elevator.getEncoder().get() < height.value;

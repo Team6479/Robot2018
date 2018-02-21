@@ -18,6 +18,6 @@ public class LightOff extends InstantCommand {
      */
     @Override
     protected void execute() {
-           Robot.camera.lightOff();;
+           Robot.camera.lightOff();
     }
 }

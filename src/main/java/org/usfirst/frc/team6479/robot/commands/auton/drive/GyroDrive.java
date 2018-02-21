@@ -77,7 +77,7 @@ public class GyroDrive extends Command {
         prevGyroAngle = gyroAngle;
         gyroAngle = Math.abs(Robot.drivetrain.getGyro().getAngle());
 
-        System.out.println("Gyro At: " + gyroAngle);
+        //System.out.println("Gyro At: " + gyroAngle);
         //System.out.println("TMP Angle: " + tmpAngleGoal);
 
         angleCOT = this.getAngleCOT(prevGyroAngle, gyroAngle);

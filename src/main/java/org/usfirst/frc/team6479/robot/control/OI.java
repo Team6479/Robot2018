@@ -1,9 +1,14 @@
 package org.usfirst.frc.team6479.robot.control;
 
+import org.usfirst.frc.team6479.robot.Robot;
+import org.usfirst.frc.team6479.robot.commands.auton.camera.ToggleLight;
+import org.usfirst.frc.team6479.robot.commands.auton.drive.StraightDrive;
 import org.usfirst.frc.team6479.robot.commands.teleop.ToggleShifter;
 import org.usfirst.frc.team6479.robot.commands.teleop.ToggleStopper;
 import org.usfirst.frc.team6479.robot.config.RobotMap;
 import org.usfirst.frc.team6479.robot.util.XboxControllerDeadzone;
+
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import robot.xbox.ButtonTracker;
 import robot.xbox.XboxMap;
@@ -43,6 +48,8 @@ public class OI {
         SmartDashboard.putData("Sonar Drive", new StraightDrive(StraightDrive.Mode.sonarDrive, 50));
         SmartDashboard.putData("Flush Turn", new FlushTurn());
 		SmartDashboard.putData("GYRO: 90 degree", new GyroDrive(90, GyroDrive.Direction.dLeft));*/
+		SmartDashboard.putData("LIT BOI", new ToggleLight());
+		SmartDashboard.putData("3 feet", new StraightDrive(StraightDrive.Mode.encoderDrive, 36));
 	}
 
 	//get the things controlled

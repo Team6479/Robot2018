@@ -110,6 +110,9 @@ public class Robot extends IterativeRobot {
 	    SmartDashboard.putData("elevator encoder", Robot.elevator.getEncoder());
 	    SmartDashboard.putNumber("Sonar left", Robot.drivetrain.getUltrasonic().getLeft());
 		SmartDashboard.putNumber("Sonar Right", Robot.drivetrain.getUltrasonic().getRight());
+
+		SmartDashboard.putBoolean("Grabber:", grabber.isGrabbing());
+		SmartDashboard.putBoolean("Patriarch:", pusher.isExtend());
 	}
 	@Override
 	public void autonomousInit() {
@@ -129,13 +132,13 @@ public class Robot extends IterativeRobot {
 	}
 	@Override
 	public void teleopPeriodic() {
-		/*String logString = String.format("Velocity Left: %03.4f Velocity Right: %03.4f Distance Left: %03.4f Distance Right: %03.4f", 
-				drivetrain.getEncoder().getLeft().getRate(), 
-				drivetrain.getEncoder().getRight().getRate(), 
+		/*String logString = String.format("Velocity Left: %03.4f Velocity Right: %03.4f Distance Left: %03.4f Distance Right: %03.4f",
+				drivetrain.getEncoder().getLeft().getRate(),
+				drivetrain.getEncoder().getRight().getRate(),
 				drivetrain.getEncoder().getLeft().getDistancePerPulse(),
 				drivetrain.getEncoder().getLeft().getDistancePerPulse());
 		RobotLogger.logger.log(logString);*/
-		
+
 		Scheduler.getInstance().run();
 
 		if(oi.getDriverController().getAButton()) {

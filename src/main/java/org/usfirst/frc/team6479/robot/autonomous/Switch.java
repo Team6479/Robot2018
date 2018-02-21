@@ -24,13 +24,14 @@ public class Switch extends BaseAutonomous {
 	//nothing should be done
 	public Switch(StartPosition pos, boolean shouldUseSensors) {
 		super(pos, shouldUseSensors);
-		isLeft = super.scale == MatchData.OwnedSide.LEFT;
 	}
 
 	//what happens when robot is positioned on the center
 	@Override
 	protected void center() {
 		System.out.println("Switch Center Autonomous");
+
+		isLeft = super.nearSwitch == MatchData.OwnedSide.LEFT;
 
 		//Go forward 3 ft.
 		addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 36));
@@ -43,20 +44,20 @@ public class Switch extends BaseAutonomous {
 		if (isLeft) {
 			System.out.println("Left");
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dLeft));
-			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 24));
+			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 45));
 			addParallel(new MoveElevator(MoveElevator.PreSetHeight.Switch));
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dRight));
 		}
 		else {
 			System.out.println("Right");
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dRight));
-			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 24));
+			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 36));
 			addParallel(new MoveElevator(MoveElevator.PreSetHeight.Switch));
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dLeft));
 		}
 
 		//Drive forward 3 ft.
-		addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 24));
+		addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 36));
 
 		//Turn towards vision target and drive toward it
 		addSequential(new LightOn());
@@ -68,12 +69,7 @@ public class Switch extends BaseAutonomous {
 		addSequential(new LightOff());
 		addSequential(new ToggleCamera(JetsonPacket.ModePacket.Mode.NONE));
 
-		//TODO: Add cube delivery to switch
-
-		addSequential(new StraightDrive(StraightDrive.Mode.sonarDrive, 1));
-		//addSequential(new DeadReckonDrive(1,0.6, DeadReckonDrive.Direction.dForward));
-		addParallel(new GrabberRelease());
-		addSequential(new DeadReckonDrive(0.6, 0.6, DeadReckonDrive.Direction.dForward));
+		deliverCube();
 
 		reverse();
 	}
@@ -83,18 +79,30 @@ public class Switch extends BaseAutonomous {
 	protected void left() {
 		System.out.println("Switch Left Autonomous");
 
-		//Go forward 3 ft.
-		addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 72));
+		isLeft = super.nearSwitch == MatchData.OwnedSide.LEFT;
 
-		//Turn towards vision target and drive toward it
-		addSequential(new MoveElevator(MoveElevator.PreSetHeight.Switch));
-		addSequential(new LightOn());
-		addSequential(new ToggleCamera(JetsonPacket.ModePacket.Mode.GOAL));
-		addSequential(new CameraTurn());
-		addSequential(new CameraDrive());
-		addSequential(new FlushTurn());
+		if(isLeft) {
+			//Go forward 3 ft.
+			addParallel(new MoveElevator(MoveElevator.PreSetHeight.Switch));
+			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 153));
 
-		reverse();
+			addSequential(new GyroDrive(90, GyroDrive.Direction.dRight));
+
+			deliverCube();
+		}
+		else {
+			//go around back
+			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 216));
+			addSequential(new GyroDrive(90, GyroDrive.Direction.dRight));
+			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 228));
+			addParallel(new MoveElevator(MoveElevator.PreSetHeight.Switch));
+			addSequential(new GyroDrive(90, GyroDrive.Direction.dRight));
+			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 84));
+			addSequential(new GyroDrive(90, GyroDrive.Direction.dRight));
+			addSequential(new FlushTurn());
+
+			deliverCube();
+		}
 	}
 
 	//what happens when robot is positioned on the right
@@ -102,18 +110,30 @@ public class Switch extends BaseAutonomous {
 	protected void right() {
 		System.out.println("Switch Right Autonomous");
 
-		//Go forward 5 ft.
-		addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 60));
+		isLeft = super.nearSwitch == MatchData.OwnedSide.LEFT;
 
-		//Turn towards vision target and drive toward it
-		addSequential(new MoveElevator(MoveElevator.PreSetHeight.Switch));
-		addSequential(new LightOn());
-		addSequential(new ToggleCamera(JetsonPacket.ModePacket.Mode.GOAL));
-		addSequential(new CameraTurn());
-		addSequential(new CameraDrive());
-		addSequential(new FlushTurn());
+		if(isLeft) {
+			//go around back
+			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 216));
+			addSequential(new GyroDrive(90, GyroDrive.Direction.dLeft));
+			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 228));
+			addParallel(new MoveElevator(MoveElevator.PreSetHeight.Switch));
+			addSequential(new GyroDrive(90, GyroDrive.Direction.dLeft));
+			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 68));
+			addSequential(new GyroDrive(90, GyroDrive.Direction.dLeft));
+			addSequential(new FlushTurn());
 
-		reverse();
+			deliverCube();
+		}
+		else {
+			//Go forward 3 ft.
+			addParallel(new MoveElevator(MoveElevator.PreSetHeight.Switch));
+			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 147));
+
+			addSequential(new GyroDrive(90, GyroDrive.Direction.dLeft));
+
+			deliverCube();
+		}
 	}
 
 	//what happens when robot is positioned in the center
@@ -134,6 +154,12 @@ public class Switch extends BaseAutonomous {
 		System.out.println("DEADRECKON Switch Right Autonomous");
 	}
 
+	private void deliverCube() {
+		addSequential(new StraightDrive(StraightDrive.Mode.sonarDrive, 1));
+		addParallel(new GrabberRelease());
+		addSequential(new DeadReckonDrive(0.6, 0.6, DeadReckonDrive.Direction.dForward));
+	}
+
 	private void reverse() {
 		//Back up 3ft.
 		addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, -36));
@@ -145,7 +171,7 @@ public class Switch extends BaseAutonomous {
 			addSequential(new GyroDrive(90 , GyroDrive.Direction.dRight));
 		}
 
-		addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 50));
+		addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 55));
 
 		if (isLeft) {
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dRight));
@@ -155,6 +181,6 @@ public class Switch extends BaseAutonomous {
 		}
 
 		//Drive 3 ft across baseline
-		addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 36));
+		addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 45));
 	}
 }

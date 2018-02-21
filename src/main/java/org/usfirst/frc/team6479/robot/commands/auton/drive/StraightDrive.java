@@ -55,7 +55,7 @@ public class StraightDrive extends Command {
 	 */
 	@Override
 	protected void execute() {
-		System.out.println("SPICY");
+		//System.out.println("SPICY");
         //kP = constant to prevent jerky angle correction
 		double kP = 0.03;
 	    double angle = Robot.drivetrain.getGyro().getAngle();
@@ -84,8 +84,8 @@ public class StraightDrive extends Command {
 			    prevDistanceNum++;
 			    prevDistanceAverage = (prevDistanceAverage + distance) /  prevDistanceNum;
 
-			    System.out.println(distance);
-			    System.out.println(distanceGoal);
+			    //System.out.println(distance);
+			    //System.out.println(distanceGoal);
 
 			    //Equation that decreases speed as the the robot approached the angle goal with precision
 	            /*
@@ -93,7 +93,12 @@ public class StraightDrive extends Command {
 	            0.45 = speed. (Increase for speed increase/ decrease for speed decrease)
 	            The parentheses stuff is an equation that goes from 1 to 0 as the angle approaches the goal
 	            */
-			    speed = 0.2 + (0.45 * ((distanceGoal - distance) / distanceGoal));
+	            if((distanceGoal - distance) < 40) {
+		            speed = 0.2 + (0.45 * ((distanceGoal - distance) / distanceGoal));
+	            }
+	            else {
+	            	speed = 0.65;
+	            }
 			    //System.out.println(speed);
 		    }
 	    }
