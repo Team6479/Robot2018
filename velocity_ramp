@@ -1,0 +1,6 @@
+velocity to ramp to (setpoint)
+change speed
+check current velocity
+if past (setpoint)
+stop
+otherwise sleep for 20 millis and do it again
