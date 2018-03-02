@@ -13,5 +13,5 @@ print OUT "\# Robot Wiring Map\n\n";
 while(<IN>) {
 	print OUT "\#\# $1\n\n" . "| Port | Device |\n" . "|:--- |:--- |\n" if m%//\s*($types)%;
 	print OUT "\n" if m%//\s*END\s*($types)%;
-	print OUT "| $1 | $2 |\n" if ! m%//% and m%int\s+(\w+)\s*=\s*(\d+)%;
+	print OUT "| $1 | $2 |\n" if ! m%^\s*//% and m%int\s+(\w+)\s*=\s*(\d+)%;
 }
