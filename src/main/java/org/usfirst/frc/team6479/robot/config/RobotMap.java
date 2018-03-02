@@ -58,5 +58,5 @@ public class RobotMap {
     //END PCM
 
 	//compressor
-	public static final int compressorPort = 0;
+	//public static final int compressorPort = 0;
 }

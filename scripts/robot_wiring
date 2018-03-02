@@ -1,0 +1,17 @@
+#!/usr/bin/perl
+
+$types = "DS|PWM|DIO|ANALOG|RELAY|PCM";
+
+$in = shift @ARGV or die "First argument is input file";
+$out = shift @ARGV or die "Second argument is output file";
+
+open IN, "<", $in or die "Could not open $in to read";
+open OUT, ">", $out or die "Could not create $out";
+
+print OUT "\# Robot Wiring Map\n\n";
+
+while(<IN>) {
+	print OUT "\#\# $1\n\n" . "| Port | Device |\n" . "|:--- |:--- |\n" if m%//\s*($types)%;
+	print OUT "\n" if m%//\s*END\s*($types)%;
+	print OUT "| $1 | $2 |\n" if ! m%//% and m%int\s+(\w+)\s*=\s*(\d+)%;
+}

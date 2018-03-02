@@ -1,4 +1,22 @@
-# Robot Wiring
+# Robot Wiring Map
+
+## DS
+
+| Port | Device |
+|:--- |:--- |
+| driverController | 0 |
+| assistantController | 1 |
+
+## PWM
+
+| Port | Device |
+|:--- |:--- |
+| leftBackPort | 0 |
+| rightBackPort | 1 |
+| leftFrontPort | 2 |
+| rightFrontPort | 3 |
+| winchTopPort | 4 |
+| winchBottomPort | 5 |
 
 ## DIO
 
@@ -14,6 +32,11 @@
 | leftOutputEcho | 7 |
 | rightInputPing | 8 |
 | rightOutputEcho | 9 |
+
+## ANALOG
+
+| Port | Device |
+|:--- |:--- |
 
 ## RELAY
 
@@ -32,25 +55,3 @@
 | pusherOnPort | 4 |
 | pusherOffPort | 5 |
 
-## PWM
-
-| Port | Device |
-|:--- |:--- |
-| leftBackPort | 0 |
-| rightBackPort | 1 |
-| leftFrontPort | 2 |
-| rightFrontPort | 3 |
-| winchTopPort | 4 |
-| winchBottomPort | 5 |
-
-## DS
-
-| Port | Device |
-|:--- |:--- |
-| driverController | 0 |
-| assistantController | 1 |
-
-## ANALOG
-
-| Port | Device |
-|:--- |:--- |
