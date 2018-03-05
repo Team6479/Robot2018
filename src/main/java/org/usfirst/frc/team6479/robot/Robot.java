@@ -18,6 +18,8 @@ import org.usfirst.frc.team6479.robot.subsystems.SafeSubsystem;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -35,13 +37,16 @@ public class Robot extends IterativeRobot {
 	private static AutonomousManager autoManager;
 	public static Compressor compressor;
 	private static int ticks;
+	private PowerDistributionPanel pdp;
 	
 	
 	private static DataLogger driveLog;
+	//booleans are parsed as t and f
 	public void driveLog() {
 		LinkedHashMap<String, String> data = new LinkedHashMap<String, String>();
-		data.put("LeftSpeed", String.format("%1.2f", drivetrain.getLeftSideMotors().get()));
-		data.put("RightSpeed", String.format("%1.2f", drivetrain.getRightSideMotors().get()));
+		//drivetrain
+		data.put("LeftSpeed", String.format("%01.2f", drivetrain.getLeftSideMotors().get()));
+		data.put("RightSpeed", String.format("%01.2f", drivetrain.getRightSideMotors().get()));
 		data.put("LeftDistance", String.format("%05.2f", drivetrain.getEncoder().getLeft().getDistance()));
 		data.put("RightDistance", String.format("%05.2f", drivetrain.getEncoder().getRight().getDistance()));
 		data.put("LeftVelocity", String.format("%05.2f", drivetrain.getEncoder().getLeft().getRate()));
@@ -49,6 +54,34 @@ public class Robot extends IterativeRobot {
 		data.put("Gyro", String.format("%04.2f", drivetrain.getGyro().getAngle()));
 		data.put("LeftSonar", String.format("%02.2f", drivetrain.getUltrasonic().getLeft()));
 		data.put("RightSonar", String.format("%02.2f", drivetrain.getUltrasonic().getRight()));
+		
+		//elevator
+		data.put("Winch", String.format("%01.2f", elevator.getWinch().get()));
+		data.put("ElevatorHeight", String.format("%05.2f", elevator.getEncoder().getDistance()));
+		data.put("ElevatorVelocity", String.format("%05.2f", elevator.getEncoder().getRate()));
+		data.put("GearboxToWinch", elevator.isOnWinch() ? "T" : "F");
+		data.put("WinchLocked", elevator.isLocked() ? "T" : "F");
+		
+		//grabber
+		data.put("Grabbing", grabber.isGrabbing() ? "T" : "F");
+		
+		//pusher
+		data.put("Pushing", pusher.isExtend() ? "T" : "F");
+		
+		//camera
+		data.put("LightOn", camera.isLightOn() ? "T" : "F");
+		data.put("CameraMode", camera.currentCameraMode().name());
+		data.put("CameraDistance", String.format("%02.2f", camera.getCurrentDistance()));
+		
+		//power
+		data.put("PDPTemperature", String.format("%02.2f", pdp.getTemperature()));
+		data.put("PDPTotalCurrent", String.format("%02.2f", pdp.getTotalCurrent()));
+		data.put("PDPTotalPower", String.format("%02.2f", pdp.getTotalPower()));
+		data.put("PDPInputPower", String.format("%02.2f", pdp.getVoltage()));
+		data.put("BatteryVoltage", String.format("%02.2f", RobotController.getBatteryVoltage()));
+		data.put("BrownedOut", RobotController.isBrownedOut() ? "T" : "F");
+		data.put("RIOInputCurrent", String.format("%02.2f", RobotController.getInputCurrent()));
+		data.put("RIOInputPower", String.format("%02.2f", RobotController.getInputVoltage()));
 	}
 
 	@Override
@@ -89,6 +122,8 @@ public class Robot extends IterativeRobot {
         //Drivetrain
         SmartDashboard.putData("Drivetrain", Robot.drivetrain.getDrive());
         
+        pdp = new PowerDistributionPanel();
+       
 		driveLog = new DataLogger(100);
         driveLog.start();
 	}

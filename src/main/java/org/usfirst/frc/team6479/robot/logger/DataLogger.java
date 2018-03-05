@@ -44,7 +44,7 @@ public class DataLogger {
 			public void run() {
 				//compute how long the logger has been running
 				long robotTime = System.currentTimeMillis() - startTimeMilli;
-				writer.printf("%04ld: %s\n", robotTime, infoToLog);
+				writer.printf("%04ld:%s\n", robotTime, infoToLog);
 			}
 		};
 	}
@@ -73,7 +73,7 @@ public class DataLogger {
 	//what will be logged by the logger;
 	private String infoToLog;
 	public synchronized void setLogInfo(LinkedHashMap<String, String> infoToMap) {
-		StringJoiner joiner = new StringJoiner(", ", "", "");
+		StringJoiner joiner = new StringJoiner(",", "", "");
 		infoToMap.forEach((key, value) -> {
 			String entry = String.format("%s=%s", key, value);
 			joiner.add(entry);
