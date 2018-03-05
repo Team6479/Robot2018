@@ -1,13 +1,14 @@
 package org.usfirst.frc.team6479.robot;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import org.usfirst.frc.team6479.robot.autonomous.manager.AutonomousManager;
 import org.usfirst.frc.team6479.robot.config.RobotMap;
 import org.usfirst.frc.team6479.robot.control.OI;
-//import org.usfirst.frc.team6479.robot.logger.RobotLogger;
+import org.usfirst.frc.team6479.robot.logger.DataLogger;
 import org.usfirst.frc.team6479.robot.subsystems.Camera;
 import org.usfirst.frc.team6479.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team6479.robot.subsystems.Elevator;
@@ -34,6 +35,21 @@ public class Robot extends IterativeRobot {
 	private static AutonomousManager autoManager;
 	public static Compressor compressor;
 	private static int ticks;
+	
+	
+	private static DataLogger driveLog;
+	public void driveLog() {
+		LinkedHashMap<String, String> data = new LinkedHashMap<String, String>();
+		data.put("LeftSpeed", String.format("%1.2f", drivetrain.getLeftSideMotors().get()));
+		data.put("RightSpeed", String.format("%1.2f", drivetrain.getRightSideMotors().get()));
+		data.put("LeftDistance", String.format("%05.2f", drivetrain.getEncoder().getLeft().getDistance()));
+		data.put("RightDistance", String.format("%05.2f", drivetrain.getEncoder().getRight().getDistance()));
+		data.put("LeftVelocity", String.format("%05.2f", drivetrain.getEncoder().getLeft().getRate()));
+		data.put("RightVelocity", String.format("%05.2f", drivetrain.getEncoder().getRight().getRate()));
+		data.put("Gyro", String.format("%04.2f", drivetrain.getGyro().getAngle()));
+		data.put("LeftSonar", String.format("%02.2f", drivetrain.getUltrasonic().getLeft()));
+		data.put("RightSonar", String.format("%02.2f", drivetrain.getUltrasonic().getRight()));
+	}
 
 	@Override
 	public void robotInit() {
@@ -72,6 +88,9 @@ public class Robot extends IterativeRobot {
         //IMPORTANT: THIS NEEDS TO BE LAST!
         //Drivetrain
         SmartDashboard.putData("Drivetrain", Robot.drivetrain.getDrive());
+        
+		driveLog = new DataLogger(100);
+        driveLog.start();
 	}
 
 	public void setRobotDefault() {
@@ -113,6 +132,8 @@ public class Robot extends IterativeRobot {
 
 		SmartDashboard.putBoolean("Grabber:", grabber.isGrabbing());
 		SmartDashboard.putBoolean("Patriarch:", pusher.isExtend());
+		
+		driveLog();
 	}
 	@Override
 	public void autonomousInit() {
@@ -127,17 +148,10 @@ public class Robot extends IterativeRobot {
 	public void teleopInit() {
 		//deque all commands
 		Scheduler.getInstance().removeAll();
-
 		setTeleopDefault();
 	}
 	@Override
 	public void teleopPeriodic() {
-		/*String logString = String.format("Velocity Left: %03.4f Velocity Right: %03.4f Distance Left: %03.4f Distance Right: %03.4f",
-				drivetrain.getEncoder().getLeft().getRate(),
-				drivetrain.getEncoder().getRight().getRate(),
-				drivetrain.getEncoder().getLeft().getDistancePerPulse(),
-				drivetrain.getEncoder().getLeft().getDistancePerPulse());
-		RobotLogger.logger.log(logString);*/
 
 		Scheduler.getInstance().run();
 
