@@ -7,6 +7,9 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
 
+import org.usfirst.frc.team6479.robot.Robot;
+import org.usfirst.frc.team6479.robot.logger.RobotEvent;
+
 import communication.JetsonPacket.CameraPacket;
 import communication.JetsonPacket.ModePacket;
 
@@ -27,7 +30,7 @@ public class JetsonServer {
 
                 // loop forever
                 while (!thread.isInterrupted()) {
-                    System.out.println("Connecting to a new client");
+                		Robot.eventLogger.writeToLog(RobotEvent.START_JETSON_CONNECTION);
                     // get a connection
                     Socket client = server.accept();
                     if (client == null) {
@@ -36,7 +39,7 @@ public class JetsonServer {
                     InputStream in = client.getInputStream();
                     OutputStream out = client.getOutputStream();
 
-                    System.out.println("Connected to client at " + client.getInetAddress());
+                    Robot.eventLogger.writeToLog(RobotEvent.JETSON_CONNECTED);
                     try {
                         // contstantly check for a new distance and send the current mode
                         while (!client.isClosed()) {
@@ -48,12 +51,12 @@ public class JetsonServer {
                     }
                     catch (SocketException e) {
                         //socket closed
+                    		Robot.eventLogger.writeToLog(RobotEvent.JETSON_DISCONNECTED);
                     }
                 }
             }
             catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+            		Robot.eventLogger.writeToLog(RobotEvent.JETSON_FAILED);
             }
 
         });

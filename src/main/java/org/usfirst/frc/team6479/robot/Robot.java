@@ -6,9 +6,10 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.usfirst.frc.team6479.robot.autonomous.manager.AutonomousManager;
-import org.usfirst.frc.team6479.robot.config.RobotMap;
 import org.usfirst.frc.team6479.robot.control.OI;
 import org.usfirst.frc.team6479.robot.logger.DataLogger;
+import org.usfirst.frc.team6479.robot.logger.EventLogger;
+import org.usfirst.frc.team6479.robot.logger.RobotEvent;
 import org.usfirst.frc.team6479.robot.subsystems.Camera;
 import org.usfirst.frc.team6479.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team6479.robot.subsystems.Elevator;
@@ -79,20 +80,26 @@ public class Robot extends IterativeRobot {
 		data.put("PDPTotalPower", String.format("%+02.2f", pdp.getTotalPower()));
 		data.put("PDPInputPower", String.format("%+02.2f", pdp.getVoltage()));
 		data.put("BatteryVoltage", String.format("%+02.2f", RobotController.getBatteryVoltage()));
+		// TODO: possibly change to an event, not data
 		data.put("BrownedOut", RobotController.isBrownedOut() ? "T" : "F");
 		data.put("RIOInputCurrent", String.format("%+02.2f", RobotController.getInputCurrent()));
 		data.put("RIOInputPower", String.format("%+02.2f", RobotController.getInputVoltage()));
 	}
+	
+	public static EventLogger eventLogger;
 
 	@Override
 	public void robotInit() {
 		ticks = 0;
+		
+		eventLogger = new EventLogger();
+		eventLogger.writeToLog(RobotEvent.ROBOT_START);
 
 		//init subsystems
 		drivetrain = new Drivetrain();
-		System.out.println("Calibarting Gyro");
+		eventLogger.writeToLog(RobotEvent.START_GYRO_CALIBRATE);
 		drivetrain.getGyro().calibrate();
-		System.out.println("Calibrated");
+		eventLogger.writeToLog(RobotEvent.GYRO_CALIBRATED);
 		elevator = new Elevator();
 		grabber = new Grabber();
 		pusher = new Pusher();
@@ -123,9 +130,11 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Drivetrain", Robot.drivetrain.getDrive());
 
         pdp = new PowerDistributionPanel();
-
+        
 		driveLog = new DataLogger(100);
         driveLog.start();
+        
+        eventLogger.writeToLog(RobotEvent.ROBOT_INIT);
 	}
 
 	public void setRobotDefault() {
@@ -172,6 +181,7 @@ public class Robot extends IterativeRobot {
 	}
 	@Override
 	public void autonomousInit() {
+		eventLogger.writeToLog(RobotEvent.AUTO_START);
 		setAutonomousDefault();
 		autoManager.startAuto();
 	}
@@ -181,6 +191,7 @@ public class Robot extends IterativeRobot {
 	}
 	@Override
 	public void teleopInit() {
+		eventLogger.writeToLog(RobotEvent.TELE_START);
 		//deque all commands
 		Scheduler.getInstance().removeAll();
 		setTeleopDefault();
@@ -204,6 +215,7 @@ public class Robot extends IterativeRobot {
 	}
 	@Override
 	public void disabledInit() {
+		eventLogger.writeToLog(RobotEvent.ROBOT_DISABLED);
 		stop();
 	}
 	public void stop() {
