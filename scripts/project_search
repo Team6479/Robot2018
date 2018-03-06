@@ -1,0 +1,18 @@
+#!/usr/bin/perl
+# print file name and line number matching regex in first arg
+
+use File::Find;
+
+$line_to_search = shift @ARGV or die "supply regex to match";
+
+sub process_file {
+	$file = $_;
+	next unless $file =~ /\.java/;
+	open FILE, "<", $file or die "Could not open $file";
+	while(<FILE>) {
+		print "$file:$.:".s/^\s*//r if /$line_to_search/;
+	}
+	close FILE;
+}
+
+find(\&process_file, <.>)

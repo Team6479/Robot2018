@@ -49,7 +49,6 @@ public class DifferentialDriveLimiter extends DifferentialDrive {
 			}
 
 			lastTick = tick;
-			//System.out.println(lastTurn);
 			super.arcadeDrive(lastThrottle, lastTurn, squaredInputs);
 		}
 		else {

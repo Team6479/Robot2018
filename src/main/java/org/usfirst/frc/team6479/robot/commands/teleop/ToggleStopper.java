@@ -2,7 +2,6 @@ package org.usfirst.frc.team6479.robot.commands.teleop;
 
 import org.usfirst.frc.team6479.robot.Robot;
 
-import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.command.InstantCommand;
 
 public class ToggleStopper extends InstantCommand {

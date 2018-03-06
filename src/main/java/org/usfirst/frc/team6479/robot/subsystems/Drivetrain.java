@@ -4,17 +4,14 @@ import org.usfirst.frc.team6479.robot.commands.teleop.RacingDrive;
 import org.usfirst.frc.team6479.robot.config.RobotMap;
 import org.usfirst.frc.team6479.robot.sensors.DoubleUltrasonic;
 import org.usfirst.frc.team6479.robot.sensors.DrivetrainEncoder;
-import org.usfirst.frc.team6479.robot.sensors.RangeFinder;
 import org.usfirst.frc.team6479.robot.util.DifferentialDriveLimiter;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 //the drive train of the robot
 public class Drivetrain extends Subsystem implements SafeSubsystem {

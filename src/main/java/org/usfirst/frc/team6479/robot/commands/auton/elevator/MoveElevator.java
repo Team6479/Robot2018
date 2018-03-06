@@ -1,7 +1,6 @@
 package org.usfirst.frc.team6479.robot.commands.auton.elevator;
 
 import org.usfirst.frc.team6479.robot.Robot;
-import org.usfirst.frc.team6479.robot.commands.auton.drive.StraightDrive.Mode;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -91,9 +90,9 @@ public class MoveElevator extends Command {
 		}
 	}
 
-    private boolean isInRange(int d1, int d2) {
+   /* private boolean isInRange(int d1, int d2) {
         return Math.abs(d1 - d2) <= 5;
-    }
+    }*/
 
 	/**
 	 * Called once when the command ended peacefully; that is it is called once

@@ -1,6 +1,5 @@
 package org.usfirst.frc.team6479.robot.control;
 
-import org.usfirst.frc.team6479.robot.Robot;
 import org.usfirst.frc.team6479.robot.commands.auton.camera.ToggleLight;
 import org.usfirst.frc.team6479.robot.commands.auton.drive.StraightDrive;
 import org.usfirst.frc.team6479.robot.commands.teleop.ToggleShifter;
@@ -9,7 +8,6 @@ import org.usfirst.frc.team6479.robot.config.RobotMap;
 import org.usfirst.frc.team6479.robot.util.XboxControllerDeadzone;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 import robot.xbox.ButtonTracker;
 import robot.xbox.XboxMap;
 

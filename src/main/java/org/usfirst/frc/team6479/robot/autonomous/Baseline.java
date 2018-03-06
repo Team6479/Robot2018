@@ -1,5 +1,6 @@
 package org.usfirst.frc.team6479.robot.autonomous;
 
+import org.usfirst.frc.team6479.robot.Robot;
 import org.usfirst.frc.team6479.robot.autonomous.manager.StartPosition;
 import org.usfirst.frc.team6479.robot.commands.auton.drive.GyroDrive;
 import org.usfirst.frc.team6479.robot.commands.auton.drive.StraightDrive;
@@ -18,7 +19,7 @@ public class Baseline extends BaseAutonomous {
 	//what happens when robot is positioned on the center
 	@Override
 	protected void center() {
-		System.out.println("Baseline Center Autonomous");
+		Robot.eventLogger.writeToLog("Baseline Center Autonomous");
 		boolean isLeft = super.scale == MatchData.OwnedSide.LEFT;
 		//Go straight 6 in short of the Power Cube Zone
 		addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 72));
@@ -45,7 +46,7 @@ public class Baseline extends BaseAutonomous {
 	//what happens when robot is positioned on the left
 	@Override
 	protected void left() {
-		System.out.println("Baseline Left Autonomous");
+		Robot.eventLogger.writeToLog("Baseline Left Autonomous");
 		addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 240));
 		addSequential(new WaitCommand(0.25));
 	}
@@ -53,7 +54,7 @@ public class Baseline extends BaseAutonomous {
 	//what happens when robot is positioned on the right
 	@Override
 	protected void right() {
-		System.out.println("Baseline Right Autonomous");
+		Robot.eventLogger.writeToLog("Baseline Right Autonomous");
 		addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 240));
 		addSequential(new WaitCommand(0.25));
 	}
@@ -61,19 +62,19 @@ public class Baseline extends BaseAutonomous {
 	//what happens when robot is positioned in the center
 	@Override
 	protected void deadReckonCenter() {
-		System.out.println("DEADRECKON Baseline Center Autonomous");
+		Robot.eventLogger.writeToLog("DEADRECKON Baseline Center Autonomous");
 	}
 
 	//what happens when robot is positioned on the left
 	@Override
 	protected void deadReckonLeft() {
-		System.out.println("DEADRECKON Baseline Left Autonomous");
+		Robot.eventLogger.writeToLog("DEADRECKON Baseline Left Autonomous");
 	}
 
 	//what happens when robot is positioned on the right
 	@Override
 	protected void deadReckonRight() {
-		System.out.println("DEADRECKON Baseline Right Autonomous");
+		Robot.eventLogger.writeToLog("DEADRECKON Baseline Right Autonomous");
 	}
 
 }

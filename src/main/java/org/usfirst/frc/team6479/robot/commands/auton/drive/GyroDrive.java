@@ -3,7 +3,6 @@ package org.usfirst.frc.team6479.robot.commands.auton.drive;
 import org.usfirst.frc.team6479.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class GyroDrive extends Command {
     public enum Direction {
@@ -13,10 +12,7 @@ public class GyroDrive extends Command {
     private double gyroAngle;
     private double prevGyroAngle;
     private double angleGoal;
-    private double tmpAngleGoal;
     private double speed;
-
-    private static final int ANGLE_DELTA = 8;
 
     //COT = Change over time
     private double angleCOT;
@@ -39,10 +35,7 @@ public class GyroDrive extends Command {
      */
     @Override
     protected void initialize() {
-        //System.out.println("Starting!!!!");
         Robot.drivetrain.getGyro().reset();
-
-        tmpAngleGoal = angleGoal / ANGLE_DELTA;
 
         speed = 0.75;
     }
@@ -76,9 +69,6 @@ public class GyroDrive extends Command {
     protected void execute() {
         prevGyroAngle = gyroAngle;
         gyroAngle = Math.abs(Robot.drivetrain.getGyro().getAngle());
-
-        //System.out.println("Gyro At: " + gyroAngle);
-        //System.out.println("TMP Angle: " + tmpAngleGoal);
 
         angleCOT = this.getAngleCOT(prevGyroAngle, gyroAngle);
 
@@ -130,11 +120,6 @@ public class GyroDrive extends Command {
      */
     @Override
     protected void end() {
-        //System.out.println("Stopping!!!");
         Robot.drivetrain.stop();
-        //System.out.println("Final Gyro Read: " + gyroAngle);
-        //SmartDashboard.putNumber("Final Gyro Val", gyroAngle);
-        //System.out.println("Accuracy Rating: " + (Math.abs(angleGoal - gyroAngle)));
-        //SmartDashboard.putNumber("Gyro Accuracy", (Math.abs(angleGoal - gyroAngle)));
     }
 }

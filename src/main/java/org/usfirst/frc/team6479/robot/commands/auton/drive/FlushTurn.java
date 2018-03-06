@@ -17,8 +17,6 @@ public class FlushTurn extends Command {
     private double distance;
     //speed of the motors
     private double speed;
-    //Initial Distance
-	private double initDistance;
     //tolerance in inches of how flush it should get
     private static final double TOLERANCE = 2;
 
@@ -36,7 +34,6 @@ public class FlushTurn extends Command {
     @Override
     protected void initialize() {
         distance = distance();
-	    initDistance = distance;
 
         speed = 0.25;
     }

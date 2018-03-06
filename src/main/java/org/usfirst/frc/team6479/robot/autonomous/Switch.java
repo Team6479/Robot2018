@@ -1,11 +1,10 @@
 package org.usfirst.frc.team6479.robot.autonomous;
 
+import org.usfirst.frc.team6479.robot.Robot;
 import org.usfirst.frc.team6479.robot.autonomous.manager.StartPosition;
 import org.usfirst.frc.team6479.robot.commands.auton.camera.LightOff;
 import org.usfirst.frc.team6479.robot.commands.auton.camera.LightOn;
 import org.usfirst.frc.team6479.robot.commands.auton.camera.ToggleCamera;
-import org.usfirst.frc.team6479.robot.commands.auton.camera.ToggleLight;
-import org.usfirst.frc.team6479.robot.commands.auton.drive.CameraDrive;
 import org.usfirst.frc.team6479.robot.commands.auton.drive.CameraTurn;
 import org.usfirst.frc.team6479.robot.commands.auton.drive.DeadReckonDrive;
 import org.usfirst.frc.team6479.robot.commands.auton.drive.FlushTurn;
@@ -29,7 +28,7 @@ public class Switch extends BaseAutonomous {
 	//what happens when robot is positioned on the center
 	@Override
 	protected void center() {
-		System.out.println("Switch Center Autonomous");
+		Robot.eventLogger.writeToLog("Switch Center Autonomous");
 
 		isLeft = super.nearSwitch == MatchData.OwnedSide.LEFT;
 
@@ -42,14 +41,12 @@ public class Switch extends BaseAutonomous {
 		- Turn to face switch
 		 */
 		if (isLeft) {
-			System.out.println("Left");
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dLeft));
 			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 45));
 			addParallel(new MoveElevator(MoveElevator.PreSetHeight.Switch));
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dRight));
 		}
 		else {
-			System.out.println("Right");
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dRight));
 			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 36));
 			addParallel(new MoveElevator(MoveElevator.PreSetHeight.Switch));
@@ -77,7 +74,7 @@ public class Switch extends BaseAutonomous {
 	//what happens when robot is positioned on the left
 	@Override
 	protected void left() {
-		System.out.println("Switch Left Autonomous");
+		Robot.eventLogger.writeToLog("Switch Left Autonomous");
 
 		isLeft = super.nearSwitch == MatchData.OwnedSide.LEFT;
 
@@ -108,7 +105,7 @@ public class Switch extends BaseAutonomous {
 	//what happens when robot is positioned on the right
 	@Override
 	protected void right() {
-		System.out.println("Switch Right Autonomous");
+		Robot.eventLogger.writeToLog("Switch Right Autonomous");
 
 		isLeft = super.nearSwitch == MatchData.OwnedSide.LEFT;
 
@@ -139,19 +136,19 @@ public class Switch extends BaseAutonomous {
 	//what happens when robot is positioned in the center
 	@Override
 	protected void deadReckonCenter() {
-		System.out.println("DEADRECKON Switch Center Autonomous");
+		Robot.eventLogger.writeToLog("DEADRECKON Switch Center Autonomous");
 	}
 
 	//what happens when robot is positioned on the left
 	@Override
 	protected void deadReckonLeft() {
-		System.out.println("DEADRECKON Switch Left Autonomous");
+		Robot.eventLogger.writeToLog("DEADRECKON Switch Left Autonomous");
 	}
 
 	//what happens when robot is positioned on the right
 	@Override
 	protected void deadReckonRight() {
-		System.out.println("DEADRECKON Switch Right Autonomous");
+		Robot.eventLogger.writeToLog("DEADRECKON Switch Right Autonomous");
 	}
 
 	private void deliverCube() {

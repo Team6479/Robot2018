@@ -3,7 +3,6 @@ package org.usfirst.frc.team6479.robot.commands.auton.drive;
 import org.usfirst.frc.team6479.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class StraightDrive extends Command {
 	public enum Mode {
@@ -38,11 +37,9 @@ public class StraightDrive extends Command {
 	 */
 	@Override
 	protected void initialize() {
-		//System.out.println("Befpore");
 	    Robot.drivetrain.getGyro().reset();
 	    Robot.drivetrain.getEncoder().reset();
 	    speed = 0.2;
-	    //System.out.println("After");
 
 	    //Distance that needs to be traveled
 	    totalDistance = Robot.drivetrain.getUltrasonic().get() - distanceGoal;
@@ -55,7 +52,6 @@ public class StraightDrive extends Command {
 	 */
 	@Override
 	protected void execute() {
-		//System.out.println("SPICY");
         //kP = constant to prevent jerky angle correction
 		double kP = 0.03;
 	    double angle = Robot.drivetrain.getGyro().getAngle();
@@ -84,9 +80,6 @@ public class StraightDrive extends Command {
 			    prevDistanceNum++;
 			    prevDistanceAverage = (prevDistanceAverage + distance) /  prevDistanceNum;
 
-			    //System.out.println(distance);
-			    //System.out.println(distanceGoal);
-
 			    //Equation that decreases speed as the the robot approached the angle goal with precision
 	            /*
 	            0.2 = min speed
@@ -99,7 +92,6 @@ public class StraightDrive extends Command {
 	            else {
 	            	speed = 0.65;
 	            }
-			    //System.out.println(speed);
 		    }
 	    }
 
