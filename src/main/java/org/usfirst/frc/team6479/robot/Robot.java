@@ -38,50 +38,50 @@ public class Robot extends IterativeRobot {
 	public static Compressor compressor;
 	private static int ticks;
 	private PowerDistributionPanel pdp;
-	
-	
+
+
 	private static DataLogger driveLog;
 	//booleans are parsed as t and f
 	public void driveLog() {
 		LinkedHashMap<String, String> data = new LinkedHashMap<String, String>();
 		//drivetrain
-		data.put("LeftSpeed", String.format("%01.2f", drivetrain.getLeftSideMotors().get()));
-		data.put("RightSpeed", String.format("%01.2f", drivetrain.getRightSideMotors().get()));
-		data.put("LeftDistance", String.format("%05.2f", drivetrain.getEncoder().getLeft().getDistance()));
-		data.put("RightDistance", String.format("%05.2f", drivetrain.getEncoder().getRight().getDistance()));
-		data.put("LeftVelocity", String.format("%05.2f", drivetrain.getEncoder().getLeft().getRate()));
-		data.put("RightVelocity", String.format("%05.2f", drivetrain.getEncoder().getRight().getRate()));
-		data.put("Gyro", String.format("%04.2f", drivetrain.getGyro().getAngle()));
-		data.put("LeftSonar", String.format("%02.2f", drivetrain.getUltrasonic().getLeft()));
-		data.put("RightSonar", String.format("%02.2f", drivetrain.getUltrasonic().getRight()));
-		
+		data.put("LeftSpeed", String.format("%+01.2f", drivetrain.getLeftSideMotors().get()));
+		data.put("RightSpeed", String.format("%+01.2f", drivetrain.getRightSideMotors().get()));
+		data.put("LeftDistance", String.format("%+05.2f", drivetrain.getEncoder().getLeft().getDistance()));
+		data.put("RightDistance", String.format("%+05.2f", drivetrain.getEncoder().getRight().getDistance()));
+		data.put("LeftVelocity", String.format("%+05.2f", drivetrain.getEncoder().getLeft().getRate()));
+		data.put("RightVelocity", String.format("%+05.2f", drivetrain.getEncoder().getRight().getRate()));
+		data.put("Gyro", String.format("%+04.2f", drivetrain.getGyro().getAngle()));
+		data.put("LeftSonar", String.format("%+02.2f", drivetrain.getUltrasonic().getLeft()));
+		data.put("RightSonar", String.format("%+02.2f", drivetrain.getUltrasonic().getRight()));
+
 		//elevator
-		data.put("Winch", String.format("%01.2f", elevator.getWinch().get()));
-		data.put("ElevatorHeight", String.format("%05.2f", elevator.getEncoder().getDistance()));
-		data.put("ElevatorVelocity", String.format("%05.2f", elevator.getEncoder().getRate()));
+		data.put("Winch", String.format("%+01.2f", elevator.getWinch().get()));
+		data.put("ElevatorHeight", String.format("%+05.2f", elevator.getEncoder().getDistance()));
+		data.put("ElevatorVelocity", String.format("%+05.2f", elevator.getEncoder().getRate()));
 		data.put("GearboxToWinch", elevator.isOnWinch() ? "T" : "F");
 		data.put("WinchLocked", elevator.isLocked() ? "T" : "F");
-		
+
 		//grabber
 		data.put("Grabbing", grabber.isGrabbing() ? "T" : "F");
-		
+
 		//pusher
 		data.put("Pushing", pusher.isExtend() ? "T" : "F");
-		
+
 		//camera
 		data.put("LightOn", camera.isLightOn() ? "T" : "F");
 		data.put("CameraMode", camera.currentCameraMode().name());
-		data.put("CameraDistance", String.format("%02.2f", camera.getCurrentDistance()));
-		
+		data.put("CameraDistance", String.format("%+02.2f", camera.getCurrentDistance()));
+
 		//power
-		data.put("PDPTemperature", String.format("%02.2f", pdp.getTemperature()));
-		data.put("PDPTotalCurrent", String.format("%02.2f", pdp.getTotalCurrent()));
-		data.put("PDPTotalPower", String.format("%02.2f", pdp.getTotalPower()));
-		data.put("PDPInputPower", String.format("%02.2f", pdp.getVoltage()));
-		data.put("BatteryVoltage", String.format("%02.2f", RobotController.getBatteryVoltage()));
+		data.put("PDPTemperature", String.format("%+02.2f", pdp.getTemperature()));
+		data.put("PDPTotalCurrent", String.format("%+02.2f", pdp.getTotalCurrent()));
+		data.put("PDPTotalPower", String.format("%+02.2f", pdp.getTotalPower()));
+		data.put("PDPInputPower", String.format("%+02.2f", pdp.getVoltage()));
+		data.put("BatteryVoltage", String.format("%+02.2f", RobotController.getBatteryVoltage()));
 		data.put("BrownedOut", RobotController.isBrownedOut() ? "T" : "F");
-		data.put("RIOInputCurrent", String.format("%02.2f", RobotController.getInputCurrent()));
-		data.put("RIOInputPower", String.format("%02.2f", RobotController.getInputVoltage()));
+		data.put("RIOInputCurrent", String.format("%+02.2f", RobotController.getInputCurrent()));
+		data.put("RIOInputPower", String.format("%+02.2f", RobotController.getInputVoltage()));
 	}
 
 	@Override
@@ -121,9 +121,9 @@ public class Robot extends IterativeRobot {
         //IMPORTANT: THIS NEEDS TO BE LAST!
         //Drivetrain
         SmartDashboard.putData("Drivetrain", Robot.drivetrain.getDrive());
-        
+
         pdp = new PowerDistributionPanel();
-       
+
 		driveLog = new DataLogger(100);
         driveLog.start();
 	}
@@ -167,7 +167,7 @@ public class Robot extends IterativeRobot {
 
 		SmartDashboard.putBoolean("Grabber:", grabber.isGrabbing());
 		SmartDashboard.putBoolean("Patriarch:", pusher.isExtend());
-		
+
 		driveLog();
 	}
 	@Override

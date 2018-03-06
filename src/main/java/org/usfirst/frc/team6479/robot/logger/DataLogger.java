@@ -19,7 +19,7 @@ public class DataLogger {
 	private long intervalInMilli;
 	private Timer logger;
 	private TimerTask logTask;
-	
+
 	public DataLogger(long intervalInMilli) {
 		this.intervalInMilli = intervalInMilli;
 		Date startTime = new Date();
@@ -28,7 +28,7 @@ public class DataLogger {
 
 		//call func to init the logFile
 		initLogFile(formattedDate);
-		
+
 		try
 		{
 			writer = new PrintWriter(new FileOutputStream(logFile), true);
@@ -36,7 +36,7 @@ public class DataLogger {
 		catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		
+
 		startTimeMilli = System.currentTimeMillis();
 		logger = new Timer();
 		logTask = new TimerTask() {
@@ -44,19 +44,19 @@ public class DataLogger {
 			public void run() {
 				//compute how long the logger has been running
 				long robotTime = System.currentTimeMillis() - startTimeMilli;
-				writer.printf("%04ld:%s\n", robotTime, infoToLog);
+				writer.printf("%08ld:%s\n", robotTime, infoToLog);
 			}
 		};
 	}
 
 	//choose location to log based on wether flashdrive is plugged in
 	private void initLogFile(String name) {
-		
+
 		name += ".log";
-		
+
 		File flashdrive = new File("media/sda1/");
 		File local = new File("logs/");
-		
+
 		//if flashdrive is plugged in, log here
 		if(flashdrive.exists()) {
 			logFile = new File(flashdrive.getAbsolutePath() + name);
@@ -69,7 +69,7 @@ public class DataLogger {
 			logFile = new File(local.getAbsolutePath() + name);
 		}
 	}
-	
+
 	//what will be logged by the logger;
 	private String infoToLog;
 	public synchronized void setLogInfo(LinkedHashMap<String, String> infoToMap) {
