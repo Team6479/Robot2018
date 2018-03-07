@@ -66,7 +66,7 @@ public class DifferentialDriveLimiter extends DifferentialDrive {
 		super.arcadeDrive(throttleV, turn, squaredInputs);
 	}
 	//moves robot at set velocity
-	public void tankDrive(double leftVelocity, double rightVelocity, boolean squaredInputs) {
+	public void tankDriveVelocity(double leftVelocity, double rightVelocity, boolean squaredInputs) {
 		//get the current velcoity
 		setLeftVelocity = Robot.drivetrain.getEncoder().getLeft().getRate();
 		setRightVelocity = Robot.drivetrain.getEncoder().getRight().getRate();
