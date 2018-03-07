@@ -20,6 +20,18 @@ public class DifferentialDriveLimiter extends DifferentialDrive {
 	private double lastRightSpeed;
 
 	private double maxSpeed;
+	
+	//velocity
+	private static final double DELTA_V = 0.5;
+	private static final double CLOSE_V = 5;
+	//arcade
+	private double setThrottleVelocity;
+	private double leftSpeedV;
+	private double rightSpeedV;
+	//tank
+	private double setLeftVelocity;
+	private double setRightVelocity;
+	private double throttleV;
 
 	public DifferentialDriveLimiter(SpeedController leftMotor, SpeedController rightMotor) {
 		super(leftMotor, rightMotor);
@@ -28,6 +40,34 @@ public class DifferentialDriveLimiter extends DifferentialDrive {
 
 	public void setMaxSpeed(double speed) {
 		maxSpeed = speed;
+	}
+	
+	//moves robot at set velocity
+	//throttle is velocity
+	//turn is normal -1 to 1
+	public void arcadeDriveVelocity(double throttleVelocity, double turn, boolean squaredInputs) {
+		
+		//get the current velcoity
+		setThrottleVelocity = Robot.drivetrain.getEncoder().getRate();
+		
+		//set velocity is close to current velocity
+		if(Math.abs(throttleVelocity - setThrottleVelocity) <= CLOSE_V) {
+			//do nothing, dont change the throttle
+		}
+		//the robot should go faster
+		else if(throttleVelocity > setThrottleVelocity) {
+			throttleV += DELTA_V;
+		}
+		//the robot should go slower
+		else {
+			throttleV += -DELTA_V;
+		}
+		
+		super.arcadeDrive(throttleV, turn, squaredInputs);
+	}
+	//moves robot at set velocity
+	public void tankDrive(double leftVelocity, double rightVelocity, boolean squaredInputs) {
+		
 	}
 
 	public void arcadeDrive(double throttle, double turn, boolean squaredInputs, boolean limit) {
