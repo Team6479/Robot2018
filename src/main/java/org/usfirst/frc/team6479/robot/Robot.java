@@ -93,6 +93,8 @@ public class Robot extends IterativeRobot {
 		ticks = 0;
 		
 		eventLogger = new EventLogger();
+		//log init to screen
+		eventLogger.shouldConsoleLog(true);
 		eventLogger.writeToLog(RobotEvent.ROBOT_START);
 
 		//init subsystems
@@ -135,6 +137,9 @@ public class Robot extends IterativeRobot {
         driveLog.start();
         
         eventLogger.writeToLog(RobotEvent.ROBOT_INIT);
+        //stop logging to screen
+        eventLogger.shouldConsoleLog(false);
+        SmartDashboard.putBoolean("Log to screen", false);
 	}
 
 	public void setRobotDefault() {
@@ -181,6 +186,7 @@ public class Robot extends IterativeRobot {
 	}
 	@Override
 	public void autonomousInit() {
+		eventLogger.shouldConsoleLog(SmartDashboard.getBoolean("Log to screen", false));
 		eventLogger.writeToLog(RobotEvent.AUTO_START);
 		setAutonomousDefault();
 		autoManager.startAuto();
@@ -191,6 +197,7 @@ public class Robot extends IterativeRobot {
 	}
 	@Override
 	public void teleopInit() {
+		eventLogger.shouldConsoleLog(SmartDashboard.getBoolean("Log to screen", false));
 		eventLogger.writeToLog(RobotEvent.TELE_START);
 		//deque all commands
 		Scheduler.getInstance().removeAll();
