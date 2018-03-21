@@ -20,12 +20,19 @@ public class VelocityDrive extends TimedCommand {
     @Override
     protected void execute() {
         
-        Robot.drivetrain.getDrive().tankDriveVelocity(velocity, velocity, false);
+    	
+		double kP = 0.03;
+	    double angle = Robot.drivetrain.getGyro().getAngle();
+	    
+    		Robot.drivetrain.getDrive().arcadeDriveVelocity(velocity, -angle*kP, false);
+        //Robot.drivetrain.getDrive().tankDriveVelocity(velocity, velocity, false);
     }
     
     //when timed out, set to zero
     @Override
     protected void end() {
         Robot.drivetrain.stop();
+        double distance = Robot.drivetrain.getEncoder().getDistance();
+        System.out.println("Distance is: " + distance);
     }
 }

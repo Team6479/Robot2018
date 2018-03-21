@@ -22,7 +22,7 @@ public class DifferentialDriveLimiter extends DifferentialDrive {
 	private double maxSpeed;
 	
 	//velocity
-	private static final double DELTA_V = 0.5;
+	private static final double DELTA_V = 0.02;
 	private static final double CLOSE_V = 5;
 	//arcade
 	private double setThrottleVelocity;
@@ -137,7 +137,7 @@ public class DifferentialDriveLimiter extends DifferentialDrive {
 			}
 
 			//calc right speed
-			if (leftSpeed > lastLeftSpeed) {
+			if (rightSpeed > lastRightSpeed) {
 				lastRightSpeed = Math.min(rightSpeed, lastRightSpeed + (Robot.getCurrentTick() - lastTick)) * maxSpeed;
 			} else {
 				lastRightSpeed = Math.max(rightSpeed, lastRightSpeed - (Robot.getCurrentTick() - lastTick)) * maxSpeed;

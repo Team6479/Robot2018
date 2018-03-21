@@ -49,8 +49,7 @@ public class OI {
 		SmartDashboard.putData("GYRO: 90 degree", new GyroDrive(90, GyroDrive.Direction.dLeft));*/
 		SmartDashboard.putData("LIT BOI", new ToggleLight());
 		SmartDashboard.putData("3 feet", new StraightDrive(StraightDrive.Mode.encoderDrive, 36));
-		SmartDashboard.putData("5 seconds at 50 inches/sec", new VelocityDrive(5, 50));
-		SmartDashboard.putData("5 seconds at 100 inches/sec", new VelocityDrive(5, 50));
+		SmartDashboard.putData("5 seconds at 50 inches/sec", new VelocityDrive(3, 50));
 	}
 
 	//get the things controlled
