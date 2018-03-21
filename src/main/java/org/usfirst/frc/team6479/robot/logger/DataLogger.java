@@ -18,7 +18,6 @@ public class DataLogger {
 	private long startTimeMilli;
 	private long intervalInMilli;
 	private Timer logger;
-	private TimerTask logTask;
 
 	public DataLogger(long intervalInMilli) {
 		this.intervalInMilli = intervalInMilli;
@@ -38,15 +37,6 @@ public class DataLogger {
 		}
 
 		startTimeMilli = System.currentTimeMillis();
-		logger = new Timer();
-		logTask = new TimerTask() {
-			@Override
-			public void run() {
-				//compute how long the logger has been running
-				long robotTime = System.currentTimeMillis() - startTimeMilli;
-				writer.printf("%08ld:%s\n", robotTime, infoToLog);
-			}
-		};
 	}
 
 	//choose location to log based on wether flashdrive is plugged in
@@ -54,19 +44,17 @@ public class DataLogger {
 
 		name += ".log";
 
-		File flashdrive = new File("media/sda1/");
-		File local = new File("logs/");
+		File flashdrive = new File("/media/sda1/");
+		File local = new File("/home/lvuser/logs");
 
 		//if flashdrive is plugged in, log here
 		if(flashdrive.exists()) {
-			logFile = new File(flashdrive.getAbsolutePath() + name);
+			logFile = new File(flashdrive, name);
 		}
 		//otherwise, log locally
 		else {
-			if(!local.exists()) {
-				local.mkdirs();
-			}
-			logFile = new File(local.getAbsolutePath() + name);
+			logFile = new File(local, name);
+			local.mkdir();
 		}
 	}
 
@@ -81,10 +69,23 @@ public class DataLogger {
 		infoToLog = joiner.toString();
 	}
 	public void start() {
-		logger.scheduleAtFixedRate(logTask, 0, intervalInMilli);
+		logger = new Timer();
+		logger.schedule(new LogTask(), 0, intervalInMilli);
 	}
 	public void stop() {
-		logger.cancel();
+		if(logger != null) {
+			logger.cancel();
+			logger.purge();
+		}
 		writer.flush();
+	}
+	
+	class LogTask extends TimerTask {
+		@Override
+		public void run() {
+			//compute how long the logger has been running
+			long robotTime = System.currentTimeMillis() - startTimeMilli;
+			writer.printf("%08d:%s\n", robotTime, infoToLog);
+		}
 	}
 }

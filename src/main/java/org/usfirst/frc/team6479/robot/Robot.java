@@ -38,7 +38,7 @@ public class Robot extends IterativeRobot {
 	private static AutonomousManager autoManager;
 	public static Compressor compressor;
 	private static int ticks;
-	private PowerDistributionPanel pdp;
+	//private PowerDistributionPanel pdp;
 
 
 	private static DataLogger driveLog;
@@ -75,15 +75,17 @@ public class Robot extends IterativeRobot {
 		data.put("CameraDistance", String.format("%+02.2f", camera.getCurrentDistance()));
 
 		//power
-		data.put("PDPTemperature", String.format("%+02.2f", pdp.getTemperature()));
+		/*data.put("PDPTemperature", String.format("%+02.2f", pdp.getTemperature()));
 		data.put("PDPTotalCurrent", String.format("%+02.2f", pdp.getTotalCurrent()));
 		data.put("PDPTotalPower", String.format("%+02.2f", pdp.getTotalPower()));
-		data.put("PDPInputPower", String.format("%+02.2f", pdp.getVoltage()));
+		data.put("PDPInputPower", String.format("%+02.2f", pdp.getVoltage()));*/
 		data.put("BatteryVoltage", String.format("%+02.2f", RobotController.getBatteryVoltage()));
 		// TODO: possibly change to an event, not data
 		data.put("BrownedOut", RobotController.isBrownedOut() ? "T" : "F");
 		data.put("RIOInputCurrent", String.format("%+02.2f", RobotController.getInputCurrent()));
 		data.put("RIOInputPower", String.format("%+02.2f", RobotController.getInputVoltage()));
+		
+		driveLog.setLogInfo(data);
 	}
 	
 	public static EventLogger eventLogger;
@@ -131,10 +133,9 @@ public class Robot extends IterativeRobot {
         //Drivetrain
         SmartDashboard.putData("Drivetrain", Robot.drivetrain.getDrive());
 
-        pdp = new PowerDistributionPanel();
+        //pdp = new PowerDistributionPanel();
         
 		driveLog = new DataLogger(100);
-        driveLog.start();
         
         eventLogger.writeToLog(RobotEvent.ROBOT_INIT);
         //stop logging to screen
@@ -188,6 +189,7 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		eventLogger.shouldConsoleLog(SmartDashboard.getBoolean("Log to screen", false));
 		eventLogger.writeToLog(RobotEvent.AUTO_START);
+		driveLog.start();
 		setAutonomousDefault();
 		autoManager.startAuto();
 	}
@@ -199,6 +201,7 @@ public class Robot extends IterativeRobot {
 	public void teleopInit() {
 		eventLogger.shouldConsoleLog(SmartDashboard.getBoolean("Log to screen", false));
 		eventLogger.writeToLog(RobotEvent.TELE_START);
+		driveLog.start();
 		//deque all commands
 		Scheduler.getInstance().removeAll();
 		setTeleopDefault();
@@ -223,6 +226,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void disabledInit() {
 		eventLogger.writeToLog(RobotEvent.ROBOT_DISABLED);
+		driveLog.stop();
 		stop();
 	}
 	public void stop() {

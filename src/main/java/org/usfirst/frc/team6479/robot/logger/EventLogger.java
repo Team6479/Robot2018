@@ -3,7 +3,10 @@ package org.usfirst.frc.team6479.robot.logger;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.StringJoiner;
@@ -47,19 +50,17 @@ public class EventLogger {
 
 		name += ".evt";
 
-		File flashdrive = new File("media/sda1/");
-		File local = new File("logs/");
+		File flashdrive = new File("/media/sda1/");
+		File local = new File("/home/lvuser/logs");
 
 		//if flashdrive is plugged in, log here
 		if(flashdrive.exists()) {
-			logFile = new File(flashdrive.getAbsolutePath() + name);
+			logFile = new File(flashdrive, name);
 		}
 		//otherwise, log locally
 		else {
-			if(!local.exists()) {
-				local.mkdirs();
-			}
-			logFile = new File(local.getAbsolutePath() + name);
+			logFile = new File(local, name);
+			local.mkdir();
 		}
 	}
 	
@@ -80,7 +81,7 @@ public class EventLogger {
 	private void writeToLog(String str) {
 		//compute how long the logger has been running
 		long robotTime = System.currentTimeMillis() - startTimeMilli;
-		String log = String.format("%08ld:%s\n", robotTime, str);
+		String log = String.format("%08d:%s\n", robotTime, str);
 		
 		//if it should log to the console
 		if(shouldConsoleLog) {
