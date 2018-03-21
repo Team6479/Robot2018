@@ -22,8 +22,8 @@ public class DifferentialDriveLimiter extends DifferentialDrive {
 	private double maxSpeed;
 	
 	//velocity
-	private static final double DELTA_V = 0.02;
-	private static final double CLOSE_V = 5;
+	private static final double DELTA_V = 0.01;
+	private static final double CLOSE_V = 2;
 	//arcade
 	private double setThrottleVelocity;
 	private double leftSpeedV;
