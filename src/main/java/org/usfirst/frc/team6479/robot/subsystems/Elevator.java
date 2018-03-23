@@ -38,16 +38,23 @@ public class Elevator extends Subsystem implements SafeSubsystem {
 		setDefaultCommand(new ElevatorControl());
 	}
 	public void move(double speed) {
-		//if locked and on winch mode, do not move
-		if(isLocked() && isOnWinch()) {
+		//if it is locked, do not move
+		if(isLocked()) {
 			winch.set(0);
+			return;
 		}
-		else if(isOnClimber()) {
-			winch.set(Math.abs(speed));
-		}
-		else {
+		//if it is on the winch, move at the joystick command
+		if(isOnWinch()) {
 			winch.set(speed);
+			return;
 		}
+		//if it is on the winch, move at the abs value of the joystick command
+		if(isOnClimber()) {
+			winch.set(Math.abs(speed));
+			return;
+		}
+		
+		winch.set(0);
 	}
 	public void switchToWinch() {
 		gearboxSol.set(true);
