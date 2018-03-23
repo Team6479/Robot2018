@@ -16,19 +16,19 @@ import org.usfirst.frc.team6479.robot.commands.auton.elevator.MoveElevator;
 import communication.JetsonPacket;
 import openrio.powerup.MatchData;
 
-public class Switch extends BaseAutonomous {
+public class DoubleSwitch extends BaseAutonomous {
 
 	private boolean isLeft;
 
 	//nothing should be done
-	public Switch(StartPosition pos, boolean shouldUseSensors) {
+	public DoubleSwitch(StartPosition pos, boolean shouldUseSensors) {
 		super(pos, shouldUseSensors);
 	}
 
 	//what happens when robot is positioned on the center
 	@Override
 	protected void center() {
-		Robot.eventLogger.writeToLog("Switch Center Autonomous");
+		Robot.eventLogger.writeToLog("Double Switch Center Autonomous");
 
 		isLeft = super.nearSwitch == MatchData.OwnedSide.LEFT;
 
@@ -46,6 +46,7 @@ public class Switch extends BaseAutonomous {
 			addParallel(new MoveElevator(MoveElevator.PreSetHeight.Switch));
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dRight));
 		}
+		//Right
 		else {
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dRight));
 			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 36));
@@ -75,7 +76,7 @@ public class Switch extends BaseAutonomous {
 	//what happens when robot is positioned on the left
 	@Override
 	protected void left() {
-		Robot.eventLogger.writeToLog("Switch Left Autonomous");
+		Robot.eventLogger.writeToLog("Double Switch Left Autonomous");
 
 		isLeft = super.nearSwitch == MatchData.OwnedSide.LEFT;
 
@@ -106,7 +107,7 @@ public class Switch extends BaseAutonomous {
 	//what happens when robot is positioned on the right
 	@Override
 	protected void right() {
-		Robot.eventLogger.writeToLog("Switch Right Autonomous");
+		Robot.eventLogger.writeToLog("Double Switch Right Autonomous");
 
 		isLeft = super.nearSwitch == MatchData.OwnedSide.LEFT;
 
@@ -131,25 +132,34 @@ public class Switch extends BaseAutonomous {
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dLeft));
 
 			deliverCube();
+			
+			//Second Cube
+			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, -12));
+			addSequential(new GyroDrive(90, GyroDrive.Direction.dRight));
+			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 70));
+			addSequential(new GyroDrive(90, GyroDrive.Direction.dLeft));
+			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 40));
+			addSequential(new GyroDrive(90, GyroDrive.Direction.dLeft));
+		//	addSequential(new StraightDrive(StraightDrive.Mode.sonarDrive, ));
 		}
 	}
 
 	//what happens when robot is positioned in the center
 	@Override
 	protected void deadReckonCenter() {
-		Robot.eventLogger.writeToLog("DEADRECKON Switch Center Autonomous");
+		Robot.eventLogger.writeToLog("DEADRECKON Double Switch Center Autonomous");
 	}
 
 	//what happens when robot is positioned on the left
 	@Override
 	protected void deadReckonLeft() {
-		Robot.eventLogger.writeToLog("DEADRECKON Switch Left Autonomous");
+		Robot.eventLogger.writeToLog("DEADRECKON Double Switch Left Autonomous");
 	}
 
 	//what happens when robot is positioned on the right
 	@Override
 	protected void deadReckonRight() {
-		Robot.eventLogger.writeToLog("DEADRECKON Switch Right Autonomous");
+		Robot.eventLogger.writeToLog("DEADRECKON Double Switch Right Autonomous");
 	}
 
 	private void deliverCube() {
@@ -181,4 +191,6 @@ public class Switch extends BaseAutonomous {
 		//Drive 3 ft across baseline
 		addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 45));
 	}
+	
+	
 }

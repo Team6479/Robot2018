@@ -22,7 +22,7 @@ public class Baseline extends BaseAutonomous {
 		Robot.eventLogger.writeToLog("Baseline Center Autonomous");
 		boolean isLeft = super.scale == MatchData.OwnedSide.LEFT;
 		//Go straight 6 in short of the Power Cube Zone
-		addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 72));
+		addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 48));
 		//Turn 90 degrees toward alliances scale
 		if (isLeft) {
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dLeft));
@@ -30,13 +30,15 @@ public class Baseline extends BaseAutonomous {
 		else {
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dRight));
 		}
-		//Go straight 36 in past the switch border
-		addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 112.75));
 		//Straighten out to drive forward toward switch
 		if (isLeft) {
+			//Go straight 36 in past the switch border
+			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 127.75));
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dRight));
 		}
 		else {
+			//Go straight 36 in past the switch border
+			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 96.75));
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dLeft));
 		}
 		//Cross baseline and approach scale while staying out of null territory

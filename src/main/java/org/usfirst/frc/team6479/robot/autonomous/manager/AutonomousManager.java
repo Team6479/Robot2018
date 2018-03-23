@@ -2,6 +2,7 @@ package org.usfirst.frc.team6479.robot.autonomous.manager;
 
 import org.usfirst.frc.team6479.robot.autonomous.BaseAutonomous;
 import org.usfirst.frc.team6479.robot.autonomous.Baseline;
+import org.usfirst.frc.team6479.robot.autonomous.DoubleSwitch;
 import org.usfirst.frc.team6479.robot.autonomous.Scale;
 import org.usfirst.frc.team6479.robot.autonomous.Switch;
 
@@ -29,6 +30,7 @@ public class AutonomousManager {
         //set the goal for autonomous
         goalChooser = new SendableChooser<AutoGoal>();
         goalChooser.addDefault(AutoGoal.a_switch.getKey(), AutoGoal.a_switch);
+        goalChooser.addObject(AutoGoal.a_d_switch.getKey(), AutoGoal.a_d_switch);
         goalChooser.addObject(AutoGoal.a_scale.getKey(), AutoGoal.a_scale);
         goalChooser.addObject(AutoGoal.a_baseline.getKey(), AutoGoal.a_baseline);
         SmartDashboard.putData(AutoGoal.name, goalChooser);
@@ -53,6 +55,8 @@ public class AutonomousManager {
 				return new Scale(pos, shoudldUseSensors);
 			case a_switch:
 				return new Switch(pos, shoudldUseSensors);
+			case a_d_switch:
+				return new DoubleSwitch(pos, shoudldUseSensors);
 			default:
 				return null;
     		}

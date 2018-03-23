@@ -42,6 +42,9 @@ public class Elevator extends Subsystem implements SafeSubsystem {
 		if(isLocked() && isOnWinch()) {
 			winch.set(0);
 		}
+		else if(isOnClimber()) {
+			winch.set(Math.abs(speed));
+		}
 		else {
 			winch.set(speed);
 		}

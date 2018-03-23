@@ -8,6 +8,7 @@ public class StraightDrive extends Command {
 	public enum Mode {
 		encoderDrive, sonarDrive
 	}
+	
     private double speed;
 
 	/*
@@ -65,7 +66,8 @@ public class StraightDrive extends Command {
 	        0.45 = speed. (Increase for speed increase/ decrease for speed decrease)
 	        The parentheses stuff is an equation that goes from 1 to 0 as the angle approaches the goal
 	        */
-		    speed = 0.35 + (0.4 * ((distance - distanceGoal) / totalDistance));
+		 //   speed = 0.4 + (0.45 * ((distance - distanceGoal) / totalDistance));
+		    speed = 0.4 + (0.45 * ((distance - distanceGoal) / totalDistance));
 	    }
 	    else {
 	    		//Collision detection: Checks if an object is 30 in. in front of it
@@ -73,7 +75,6 @@ public class StraightDrive extends Command {
 	    			speed = 0;
 		        }*/
 		    //else
-		    	{
 			    distance = Robot.drivetrain.getEncoder().getDistance();
 
 			    //Safety for if encoders do not return a value
@@ -87,12 +88,11 @@ public class StraightDrive extends Command {
 	            The parentheses stuff is an equation that goes from 1 to 0 as the angle approaches the goal
 	            */
 	            if((distanceGoal - distance) < 40) {
-		            speed = 0.2 + (0.45 * ((distanceGoal - distance) / distanceGoal));
+		            speed = 0.3 + (0.4 * ((distanceGoal - distance) / distanceGoal));
 	            }
 	            else {
-	            	speed = 0.65;
+	            		speed = 0.6;
 	            }
-		    }
 	    }
 
         Robot.drivetrain.racingDrive(speed, -angle*kP);

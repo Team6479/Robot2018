@@ -182,6 +182,8 @@ public class Robot extends IterativeRobot {
 
 		SmartDashboard.putBoolean("Grabber:", grabber.isGrabbing());
 		SmartDashboard.putBoolean("Patriarch:", pusher.isExtend());
+		SmartDashboard.putBoolean("Locked:", elevator.isLocked());
+		SmartDashboard.putBoolean("Winch:", elevator.isOnWinch());
 
 		driveLog();
 	}

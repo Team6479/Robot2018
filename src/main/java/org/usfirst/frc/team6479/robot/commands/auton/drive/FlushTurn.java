@@ -35,7 +35,7 @@ public class FlushTurn extends Command {
     protected void initialize() {
         distance = distance();
 
-        speed = 0.25;
+        speed = 0.45;
     }
 
     /**

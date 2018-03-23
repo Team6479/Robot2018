@@ -23,6 +23,7 @@ public class MoveElevator extends Command {
     private double speed;
     private boolean needToMoveUp;
     private PreSetHeight height;
+    private double encoderValue;
 
     public MoveElevator(PreSetHeight height) {
 		// Use requires() here to declare subsystem dependencies
@@ -41,8 +42,8 @@ public class MoveElevator extends Command {
 		Robot.elevator.unlock();
 		Robot.elevator.switchToWinch();
 
-	    speed = 0.6;
-
+	    speed = 0.7;
+	    encoderValue = PreSetHeight.Switch.value;
 	    //if the current height is higher than the setpoint, needToMoveUp is false
 	    needToMoveUp = Robot.elevator.getEncoder().get() < height.value;
 	}
@@ -54,6 +55,7 @@ public class MoveElevator extends Command {
 	 */
 	@Override
 	protected void execute() {
+		speed = 0.5 + 0.2*((encoderValue-PreSetHeight.Switch.value)/encoderValue);
 		if(needToMoveUp) {
 			Robot.elevator.move(speed);
 		}

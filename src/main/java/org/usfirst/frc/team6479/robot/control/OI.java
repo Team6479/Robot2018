@@ -1,7 +1,10 @@
 package org.usfirst.frc.team6479.robot.control;
 
+import org.usfirst.frc.team6479.robot.commands.Reset;
 import org.usfirst.frc.team6479.robot.commands.VelocityDrive;
 import org.usfirst.frc.team6479.robot.commands.auton.camera.ToggleLight;
+import org.usfirst.frc.team6479.robot.commands.auton.drive.FlushTurn;
+import org.usfirst.frc.team6479.robot.commands.auton.drive.GyroDrive;
 import org.usfirst.frc.team6479.robot.commands.auton.drive.StraightDrive;
 import org.usfirst.frc.team6479.robot.commands.teleop.ToggleShifter;
 import org.usfirst.frc.team6479.robot.commands.teleop.ToggleStopper;
@@ -49,7 +52,11 @@ public class OI {
 		SmartDashboard.putData("GYRO: 90 degree", new GyroDrive(90, GyroDrive.Direction.dLeft));*/
 		SmartDashboard.putData("LIT BOI", new ToggleLight());
 		SmartDashboard.putData("3 feet", new StraightDrive(StraightDrive.Mode.encoderDrive, 36));
-		SmartDashboard.putData("5 seconds at 50 inches/sec", new VelocityDrive(3, 50));
+		SmartDashboard.putData("3 seconds at 50 inches/sec", new VelocityDrive(3, 50));
+		SmartDashboard.putData("To 3 feet", new StraightDrive(StraightDrive.Mode.sonarDrive, 36));
+		SmartDashboard.putData("90 degrees", new GyroDrive(90, GyroDrive.Direction.dLeft));
+		SmartDashboard.putData("Flush", new FlushTurn());
+		SmartDashboard.putData("RESET", new Reset());
 	}
 
 	//get the things controlled
