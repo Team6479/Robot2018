@@ -1,20 +1,9 @@
-buildscript {
-    repositories {
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
-    }
-    dependencies {
-        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.4'
-    }
-}
-
 plugins {
     id "java"
     id "eclipse"
     id "idea"
-    id "jaci.openrio.gradle.GradleRIO" version "2018.01.22"
-    id "com.google.protobuf" version "0.8.4"
+    id "jaci.openrio.gradle.GradleRIO" version "2018.03.06"
+    id "com.google.protobuf" version "0.8.5"
 }
 
 repositories {
@@ -22,7 +11,7 @@ repositories {
     maven {
          url  "https://dl.bintray.com/team6479/RobotRepo"
     }
- }
+}
 
 dependencies {
     compile group: 'team6479.robotrepo', name: 'robotlib', version: '1.2.0'
@@ -71,5 +60,5 @@ telemetry {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '4.5'
+    gradleVersion = '4.6'
 }

@@ -34,8 +34,8 @@ Our code is mapped to two controllers. One drives the robot and the other contro
 | B            | 2    | true/false | Toggle Wheely Bar           | [ToggleWheely.java][14]                          |
 | X            | 3    | true/false |                             |                                                  |
 | Y            | 4    | true/false | Pusher and Grabber Override | [TogglePusher.java][7] & [ToggleGrabber.java][8] |
-| Left Bumper  | 5    | true/false | Toggle Pusher               | [TogglePusher.java][7]                           |
-| Right Bumper | 6    | true/false | Toggle Grabber              | [ToggleGrabber.java][8]                          |
+| Left Bumper  | 5    | true/false | Toggle Grabber              | [ToggleGrabber.java][8]                          |
+| Right Bumper | 6    | true/false | Toggle Pusher               | [TogglePusher.java][7]                           |
 | Back         | 7    | true/false |                             |                                                  |
 | Start        | 8    | true/false | Kill Switch                 | [Robot.java][13]                                 |
 | Left Stick   | 9    | true/false |                             |                                                  |
@@ -61,8 +61,8 @@ Our code is mapped to two controllers. One drives the robot and the other contro
 | B            | 2    | true/false | Toggle Between Winch and Climber | [ToggleShifter.java][11] |
 | X            | 3    | true/false | Toggle Winch Lock                | [ToggleStopper.java][12] |
 | Y            | 4    | true/false |                                  |                          |
-| Left Bumper  | 5    | true/false | Toggle Pusher                    | [TogglePusher.java][7]   |
-| Right Bumper | 6    | true/false | Toggle Grabber                   | [ToggleGrabber.java][8]  |
+| Left Bumper  | 5    | true/false | Toggle Grabber                   | [ToggleGrabber.java][8]  |
+| Right Bumper | 6    | true/false | Toggle Pusher                    | [TogglePusher.java][7]   |
 | Back         | 7    | true/false |                                  |                          |
 | Start        | 8    | true/false |                                  |                          |
 | Left Stick   | 9    | true/false |                                  |                          |
