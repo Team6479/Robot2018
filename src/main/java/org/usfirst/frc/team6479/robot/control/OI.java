@@ -8,6 +8,7 @@ import org.usfirst.frc.team6479.robot.commands.auton.drive.GyroDrive;
 import org.usfirst.frc.team6479.robot.commands.auton.drive.StraightDrive;
 import org.usfirst.frc.team6479.robot.commands.teleop.ToggleShifter;
 import org.usfirst.frc.team6479.robot.commands.teleop.ToggleStopper;
+import org.usfirst.frc.team6479.robot.commands.teleop.ToggleWheely;
 import org.usfirst.frc.team6479.robot.config.RobotMap;
 import org.usfirst.frc.team6479.robot.util.XboxControllerDeadzone;
 
@@ -20,6 +21,7 @@ public class OI {
 	private XboxControllerDeadzone assistantController;
 	private ButtonTracker driverRightBumper;
 	private ButtonTracker driverLeftBumper;
+	private ButtonTracker driverBButton;
 	private ButtonTracker assistantRightBumper;
 	private ButtonTracker assistantLeftBumper;
 	private ButtonTracker assistantXButton;
@@ -33,6 +35,8 @@ public class OI {
 		//Driver Button Trackers
 		driverRightBumper = new ButtonTracker(driverController, XboxMap.RightBumper);
 	    driverLeftBumper = new ButtonTracker(driverController, XboxMap.LeftBumper);
+	    driverBButton = new ButtonTracker(driverController, XboxMap.BButton);
+	    driverBButton.toggleWhenPressed(new ToggleWheely());
 
 
 	    //Assistant Button Trackers
@@ -68,6 +72,9 @@ public class OI {
 	}
 	public ButtonTracker getDriverRightBumper() {
 		return driverRightBumper;
+	}
+	public ButtonTracker getDriverBButton() {
+		return driverBButton;
 	}
 	public XboxControllerDeadzone getAssistantController() {
 		return assistantController;

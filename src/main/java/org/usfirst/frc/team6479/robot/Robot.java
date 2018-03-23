@@ -16,6 +16,7 @@ import org.usfirst.frc.team6479.robot.subsystems.Elevator;
 import org.usfirst.frc.team6479.robot.subsystems.Grabber;
 import org.usfirst.frc.team6479.robot.subsystems.Pusher;
 import org.usfirst.frc.team6479.robot.subsystems.SafeSubsystem;
+import org.usfirst.frc.team6479.robot.subsystems.WheelyBar;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -33,6 +34,7 @@ public class Robot extends IterativeRobot {
 	public static Elevator elevator;
 	public static Grabber grabber;
 	public static Pusher pusher;
+	public static WheelyBar wheely;
 	public static Camera camera;
 	private static Map<String, SafeSubsystem> subsystemManager;
 	private static AutonomousManager autoManager;
@@ -68,6 +70,9 @@ public class Robot extends IterativeRobot {
 
 		//pusher
 		data.put("Pushing", pusher.isExtend() ? "T" : "F");
+		
+		//wheely bar
+		data.put("WheelyBarDown", wheely.isDown() ? "T" : "F");
 
 		//camera
 		data.put("LightOn", camera.isLightOn() ? "T" : "F");
@@ -107,6 +112,7 @@ public class Robot extends IterativeRobot {
 		elevator = new Elevator();
 		grabber = new Grabber();
 		pusher = new Pusher();
+		wheely = new WheelyBar();
 		camera = new Camera();
 
 		setRobotDefault();
@@ -116,6 +122,7 @@ public class Robot extends IterativeRobot {
 		subsystemManager.put("Elevator", elevator);
 		subsystemManager.put("Grabber", grabber);
 		subsystemManager.put("Pusher", pusher);
+		subsystemManager.put("Wheely", wheely);
 		subsystemManager.put("Camera", camera);
 
 
@@ -150,6 +157,7 @@ public class Robot extends IterativeRobot {
 		elevator.unlock();
 		pusher.retract();
 		grabber.release();
+		wheely.up();
 	}
 	public void setAutonomousDefault() {
 		drivetrain.setLimiter(false);
@@ -158,6 +166,7 @@ public class Robot extends IterativeRobot {
 		elevator.unlock();
 		pusher.retract();
 		grabber.release();
+		wheely.up();
 	}
 	public void setTeleopDefault() {
 		drivetrain.setLimiter(true);
@@ -166,6 +175,7 @@ public class Robot extends IterativeRobot {
 		elevator.unlock();
 		pusher.retract();
 		grabber.release();
+		wheely.up();
 	}
 
 	@Override

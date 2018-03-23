@@ -31,7 +31,7 @@ Our code is mapped to two controllers. One drives the robot and the other contro
 | Name         | Port | Value      | Function                    | Location                                         |
 |:------------ |:---- |:---------- |:--------------------------- |:------------------------------------------------ |
 | A            | 1    | true/false | Toggle Hyper Mode           | [Robot.java][13]                                 |
-| B            | 2    | true/false |                             |                                                  |
+| B            | 2    | true/false | Toggle Wheely Bar           | [ToggleWheely.java][14]                          |
 | X            | 3    | true/false |                             |                                                  |
 | Y            | 4    | true/false | Pusher and Grabber Override | [TogglePusher.java][7] & [ToggleGrabber.java][8] |
 | Left Bumper  | 5    | true/false | Toggle Pusher               | [TogglePusher.java][7]                           |
@@ -82,23 +82,24 @@ Our code is mapped to two controllers. One drives the robot and the other contro
 ## Autonomous Modes
 All of our autonomous routines are handled by [AutonomousManager.java][9]. This is an overview of what the autonomous routine are and what they do. There is also a switch in the driver station to use either sensors or dead reckoning for the autonomous. The default is to use sensors, the only reason for this is as a backup if sensors fail.
 
-| Name            | Function                                                                         |
-|:--------------- |:-------------------------------------------------------------------------------- |
-| Left Baseline   | Move the robot past the baseline when the robot starts on the left               |
-| Right Baseline  | Move the robot past the baseline when the robot starts on the right              |
-| Center Baseline | Move the robot past the baseline when the robot starts in the center             |
-| Left Switch     | Move the robot to the switch and drop a cube when the robot starts on the left   |
-| Right Switch    | Move the robot to the switch and drop a cube when the robot starts on the right  |
-| Center Switch   | Move the robot to the switch and drop a cube when the robot starts in the center |
-| Left Scale      | Move the robot to the scale and drop a cube when the robot starts on the left    |
-| Right Scale     | Move the robot to the scale and drop a cube when the robot starts on the right   |
-| Center Scale    | Move the robot to the scale and drop a cube when the robot starts in the center  |
+| Name                   | Function                                                                                                                |
+|:---------------------- |:----------------------------------------------------------------------------------------------------------------------- |
+| Left Baseline          | Move the robot past the baseline when the robot starts on the left                                                      |
+| Right Baseline         | Move the robot past the baseline when the robot starts on the right                                                     |
+| Center Baseline        | Move the robot past the baseline when the robot starts in the center                                                    |
+| Left Switch            | Move the robot to the switch and drop a cube when the robot starts on the left                                          |
+| Right Switch           | Move the robot to the switch and drop a cube when the robot starts on the right                                         |
+| Center Switch          | Move the robot to the switch and drop a cube when the robot starts in the center                                        |
+| Left Double Switch     | Move the robot to the switch and drop a cube then place another cube in the switch when the robot starts on the left    |
+| Right Double Switch    | Move the robot to the switch and drop a cube then place another cube in the switch when the robot starts on the right   |
+| Center Double Switch   | Move the robot to the switch and drop a cube then place another cube in the switch when the robot starts in the center  |
+| Left Scale             | Move the robot to the scale and drop a cube when the robot starts on the left                                           |
+| Right Scale            | Move the robot to the scale and drop a cube when the robot starts on the right                                          |
+| Center Scale           | Move the robot to the scale and drop a cube when the robot starts in the center                                         |
 
 
 ## TODO List
-- [ ] Implement autonomous commands into the autonomous manager
-- [ ] Add rumble when locked
-- [ ] Add velocity component to commands for increased accuracy
+
 
 
 
@@ -115,3 +116,4 @@ All of our autonomous routines are handled by [AutonomousManager.java][9]. This 
 [11]: ./src/main/java/org/usfirst/frc/team6479/robot/commands/teleop/ToggleShifter.java
 [12]: ./src/main/java/org/usfirst/frc/team6479/robot/commands/teleop/ToggleStopper.java
 [13]: ./src/main/java/org/usfirst/frc/team6479/robot/Robot.java
+[14]: ./src/main/java/org/usfirst/frc/team6479/robot/commands/teleop/ToggleWheely.java

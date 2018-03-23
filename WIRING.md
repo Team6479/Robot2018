@@ -54,4 +54,6 @@
 | grabberOffPort | 3 |
 | pusherOnPort | 4 |
 | pusherOffPort | 5 |
+| wheelyOnPort | 6 |
+| wheelyOffPort | 7 |
 

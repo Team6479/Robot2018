@@ -55,6 +55,9 @@ public class RobotMap {
     //Pusher Piston
     public static final int pusherOnPort = 4;
     public static final int pusherOffPort = 5;
+    //wheely bar piston
+    public static final int wheelyOnPort = 6;
+    public static final int wheelyOffPort = 7;
     //END PCM
 
 	//compressor
