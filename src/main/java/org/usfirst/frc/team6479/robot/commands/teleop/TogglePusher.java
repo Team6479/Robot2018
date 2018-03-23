@@ -2,9 +2,9 @@ package org.usfirst.frc.team6479.robot.commands.teleop;
 
 import org.usfirst.frc.team6479.robot.Robot;
 
-import edu.wpi.first.wpilibj.command.InstantCommand;
+import edu.wpi.first.wpilibj.command.Command;
 
-public class TogglePusher extends InstantCommand {
+public class TogglePusher extends Command {
 
     public TogglePusher() {
         // Use requires() here to declare subsystem dependencies

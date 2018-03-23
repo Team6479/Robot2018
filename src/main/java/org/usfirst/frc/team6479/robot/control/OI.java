@@ -36,7 +36,6 @@ public class OI {
 		driverRightBumper = new ButtonTracker(driverController, XboxMap.RightBumper);
 	    driverLeftBumper = new ButtonTracker(driverController, XboxMap.LeftBumper);
 	    driverBButton = new ButtonTracker(driverController, XboxMap.BButton);
-	    driverBButton.toggleWhenPressed(new ToggleWheely());
 
 
 	    //Assistant Button Trackers
