@@ -22,80 +22,9 @@ Our team uses a Nvidia Jetson TX1 to process camera input and send that data to 
 | [Shuffleboard][4]                  | WPI       |
 
 
-## Controller Mappings
-Our code is mapped to two controllers. One drives the robot and the other controls the elevator and pistons.
+## ![Controller Mappings](https://github.com/Team6479/Robot2018/wiki/Controller-Mappings)
 
-### Driver Controller
-
-#### Buttons
-| Name         | Port | Value      | Function                    | Location                                         |
-|:------------ |:---- |:---------- |:--------------------------- |:------------------------------------------------ |
-| A            | 1    | true/false | Toggle Hyper Mode           | [Robot.java][13]                                 |
-| B            | 2    | true/false | Toggle Wheely Bar           | [ToggleWheely.java][14]                          |
-| X            | 3    | true/false |                             |                                                  |
-| Y            | 4    | true/false | Pusher and Grabber Override | [TogglePusher.java][7] & [ToggleGrabber.java][8] |
-| Left Bumper  | 5    | true/false | Toggle Grabber              | [ToggleGrabber.java][8]                          |
-| Right Bumper | 6    | true/false | Toggle Pusher               | [TogglePusher.java][7]                           |
-| Back         | 7    | true/false |                             |                                                  |
-| Start        | 8    | true/false | Kill Switch                 | [Robot.java][13]                                 |
-| Left Stick   | 9    | true/false |                             |                                                  |
-| Right Stick  | 10   | true/false |                             |                                                  |
-
-#### Axes
-| Name          | Port | Value   | Function      | Location                   |
-|:------------- |:---- |:------- |:------------- |:-------------------------- |
-| X Left Stick  | 0    | -1 to 1 | Drive Turn    | [RacingDrive.java][6]      |
-| Y Left Stick  | 1    | -1 to 1 |               |                            |
-| Left Trigger  | 2    | 0 to 1  | Drive Reverse | [RacingDrive.java][6]      |
-| Right Trigger | 3    | 0 to 1  | Drive Forward | [RacingDrive.java][6]      |
-| X Right Stick | 4    | -1 to 1 |               |                            |
-| Y Right Stick | 5    | -1 to 1 |               |                            |
-
-
-### Elevator Controller
-
-#### Buttons
-| Name         | Port | Value      | Function                         | Location                 |
-|:------------ |:---- |:---------- |:-------------------------------- |:------------------------ |
-| A            | 1    | true/false |                                  |                          |
-| B            | 2    | true/false | Toggle Between Winch and Climber | [ToggleShifter.java][11] |
-| X            | 3    | true/false | Toggle Winch Lock                | [ToggleStopper.java][12] |
-| Y            | 4    | true/false |                                  |                          |
-| Left Bumper  | 5    | true/false | Toggle Grabber                   | [ToggleGrabber.java][8]  |
-| Right Bumper | 6    | true/false | Toggle Pusher                    | [TogglePusher.java][7]   |
-| Back         | 7    | true/false |                                  |                          |
-| Start        | 8    | true/false |                                  |                          |
-| Left Stick   | 9    | true/false |                                  |                          |
-| Right Stick  | 10   | true/false |                                  |                          |
-
-#### Axes
-| Name          | Port | Value   | Function      | Location                   |
-|:------------- |:---- |:------- |:------------- |:-------------------------- |
-| X Left Stick  | 0    | -1 to 1 |               |                            |
-| Y Left Stick  | 1    | -1 to 1 |               |                            |
-| Left Trigger  | 2    | 0 to 1  |               |                            |
-| Right Trigger | 3    | 0 to 1  |               |                            |
-| X Right Stick | 4    | -1 to 1 |               |                            |
-| Y Right Stick | 5    | -1 to 1 | Move Elevator | [ElevatorControl.java][10] |
-
-
-## Autonomous Modes
-All of our autonomous routines are handled by [AutonomousManager.java][9]. This is an overview of what the autonomous routine are and what they do. There is also a switch in the driver station to use either sensors or dead reckoning for the autonomous. The default is to use sensors, the only reason for this is as a backup if sensors fail.
-
-| Name                   | Function                                                                                                                |
-|:---------------------- |:----------------------------------------------------------------------------------------------------------------------- |
-| Left Baseline          | Move the robot past the baseline when the robot starts on the left                                                      |
-| Right Baseline         | Move the robot past the baseline when the robot starts on the right                                                     |
-| Center Baseline        | Move the robot past the baseline when the robot starts in the center                                                    |
-| Left Switch            | Move the robot to the switch and drop a cube when the robot starts on the left                                          |
-| Right Switch           | Move the robot to the switch and drop a cube when the robot starts on the right                                         |
-| Center Switch          | Move the robot to the switch and drop a cube when the robot starts in the center                                        |
-| Left Double Switch     | Move the robot to the switch and drop a cube then place another cube in the switch when the robot starts on the left    |
-| Right Double Switch    | Move the robot to the switch and drop a cube then place another cube in the switch when the robot starts on the right   |
-| Center Double Switch   | Move the robot to the switch and drop a cube then place another cube in the switch when the robot starts in the center  |
-| Left Scale             | Move the robot to the scale and drop a cube when the robot starts on the left                                           |
-| Right Scale            | Move the robot to the scale and drop a cube when the robot starts on the right                                          |
-| Center Scale           | Move the robot to the scale and drop a cube when the robot starts in the center                                         |
+## ![Autonomous Modes](https://github.com/Team6479/Robot2018/wiki/Autonomous-Modes)
 
 
 ## TODO List
