@@ -1,11 +1,13 @@
 package org.usfirst.frc.team6479.robot.control;
 
 import org.usfirst.frc.team6479.robot.commands.Reset;
+import org.usfirst.frc.team6479.robot.commands.RestartJetsonCode;
 import org.usfirst.frc.team6479.robot.commands.VelocityDrive;
 import org.usfirst.frc.team6479.robot.commands.auton.camera.ToggleLight;
 import org.usfirst.frc.team6479.robot.commands.auton.drive.FlushTurn;
 import org.usfirst.frc.team6479.robot.commands.auton.drive.GyroDrive;
 import org.usfirst.frc.team6479.robot.commands.auton.drive.StraightDrive;
+import org.usfirst.frc.team6479.robot.commands.auton.elevator.MoveElevator;
 import org.usfirst.frc.team6479.robot.commands.teleop.ToggleShifter;
 import org.usfirst.frc.team6479.robot.commands.teleop.ToggleStopper;
 import org.usfirst.frc.team6479.robot.commands.teleop.ToggleWheely;
@@ -60,6 +62,8 @@ public class OI {
 		SmartDashboard.putData("90 degrees", new GyroDrive(90, GyroDrive.Direction.dLeft));
 		SmartDashboard.putData("Flush", new FlushTurn());
 		SmartDashboard.putData("RESET", new Reset());
+		SmartDashboard.putData("Restart Jetson", new RestartJetsonCode());
+		SmartDashboard.putData("Move Elevator", new MoveElevator(MoveElevator.PreSetHeight.Switch));
 	}
 
 	//get the things controlled

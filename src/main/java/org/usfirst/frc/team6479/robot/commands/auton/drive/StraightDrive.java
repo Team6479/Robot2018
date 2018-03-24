@@ -8,7 +8,7 @@ public class StraightDrive extends Command {
 	public enum Mode {
 		encoderDrive, sonarDrive
 	}
-	
+
     private double speed;
 
 	/*
@@ -22,13 +22,19 @@ public class StraightDrive extends Command {
     private double prevDistanceAverage;
     private double prevDistanceNum;
     private Mode mode;
+    private boolean precision;
 
-    public StraightDrive(Mode mode, double distance) {
+    public StraightDrive(Mode mode, double distance, boolean precision) {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
         requires(Robot.drivetrain);
         this.mode = mode;
         this.distanceGoal = distance;
+        this.precision = precision;
+	}
+
+	public StraightDrive(Mode mode, double distance) {
+    	this(mode, distance, false);
 	}
 
 
@@ -69,6 +75,7 @@ public class StraightDrive extends Command {
 		 //   speed = 0.4 + (0.45 * ((distance - distanceGoal) / totalDistance));
 		    speed = 0.4 + (0.45 * ((distance - distanceGoal) / totalDistance));
 	    }
+	    //Encoder Drive Below
 	    else {
 	    		//Collision detection: Checks if an object is 30 in. in front of it
 	    		/*if (Robot.drivetrain.getUltrasonic().get() <= 30) {
@@ -93,6 +100,10 @@ public class StraightDrive extends Command {
 	            else {
 	            		speed = 0.6;
 	            }
+
+				if (precision) {
+					speed = 0.3 + (0.1 * ((distanceGoal - distance) / distanceGoal));
+				}
 	    }
 
         Robot.drivetrain.racingDrive(speed, -angle*kP);

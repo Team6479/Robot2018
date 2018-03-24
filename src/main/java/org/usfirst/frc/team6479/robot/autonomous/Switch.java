@@ -42,7 +42,7 @@ public class Switch extends BaseAutonomous {
 		 */
 		if (isLeft) {
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dLeft));
-			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 45));
+			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 69));
 			addParallel(new MoveElevator(MoveElevator.PreSetHeight.Switch));
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dRight));
 		}
@@ -67,7 +67,7 @@ public class Switch extends BaseAutonomous {
 		//addSequential(new ToggleCamera(JetsonPacket.ModePacket.Mode.NONE));
 
 		deliverCube();
-		
+
 		addSequential(new MoveElevator(MoveElevator.PreSetHeight.Home));
 		reverse();
 	}
@@ -92,10 +92,10 @@ public class Switch extends BaseAutonomous {
 			//go around back
 			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 216));
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dRight));
-			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 228));
+			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 220));
 			addParallel(new MoveElevator(MoveElevator.PreSetHeight.Switch));
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dRight));
-			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 84));
+			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 72));
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dRight));
 			addSequential(new FlushTurn());
 

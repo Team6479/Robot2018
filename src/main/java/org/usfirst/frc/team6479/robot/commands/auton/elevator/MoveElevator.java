@@ -9,7 +9,7 @@ public class MoveElevator extends Command {
 
 	public enum PreSetHeight {
 		Switch(1400),
-		Scale(40),
+		Scale(3200),
 		Home(0),
 		Vision(10);
 
@@ -55,7 +55,7 @@ public class MoveElevator extends Command {
 	 */
 	@Override
 	protected void execute() {
-		speed = 0.5 + 0.2*((encoderValue-PreSetHeight.Switch.value)/encoderValue);
+		speed = 0.85 + 0.15 * ((encoderValue - Robot.elevator.getEncoder().get()) / encoderValue);
 		if(needToMoveUp) {
 			Robot.elevator.move(speed);
 		}

@@ -70,7 +70,7 @@ public class Robot extends IterativeRobot {
 
 		//pusher
 		data.put("Pushing", pusher.isExtend() ? "T" : "F");
-		
+
 		//wheely bar
 		data.put("WheelyBarDown", wheely.isDown() ? "T" : "F");
 
@@ -89,16 +89,16 @@ public class Robot extends IterativeRobot {
 		data.put("BrownedOut", RobotController.isBrownedOut() ? "T" : "F");
 		data.put("RIOInputCurrent", String.format("%+02.2f", RobotController.getInputCurrent()));
 		data.put("RIOInputPower", String.format("%+02.2f", RobotController.getInputVoltage()));
-		
+
 		driveLog.setLogInfo(data);
 	}
-	
+
 	public static EventLogger eventLogger;
 
 	@Override
 	public void robotInit() {
 		ticks = 0;
-		
+
 		eventLogger = new EventLogger();
 		//log init to screen
 		eventLogger.shouldConsoleLog(true);
@@ -141,13 +141,11 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Drivetrain", Robot.drivetrain.getDrive());
 
         //pdp = new PowerDistributionPanel();
-        
+
 		driveLog = new DataLogger(100);
-        
+
         eventLogger.writeToLog(RobotEvent.ROBOT_INIT);
-        //stop logging to screen
-        eventLogger.shouldConsoleLog(false);
-        SmartDashboard.putBoolean("Log to screen", false);
+        SmartDashboard.putBoolean("Log to screen", true);
 	}
 
 	public void setRobotDefault() {
@@ -191,7 +189,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Sonar Right", Robot.drivetrain.getUltrasonic().getRight());
 
 		SmartDashboard.putBoolean("Grabber:", grabber.isGrabbing());
-		SmartDashboard.putBoolean("Patriarch:", pusher.isExtend());
+		SmartDashboard.putBoolean("Pusher:", pusher.isExtend());
 		SmartDashboard.putBoolean("Locked:", elevator.isLocked());
 		SmartDashboard.putBoolean("Winch:", elevator.isOnWinch());
 

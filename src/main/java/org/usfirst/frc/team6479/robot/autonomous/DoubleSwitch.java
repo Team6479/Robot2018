@@ -33,7 +33,7 @@ public class DoubleSwitch extends BaseAutonomous {
 		isLeft = super.nearSwitch == MatchData.OwnedSide.LEFT;
 
 		//Go forward 3 ft.
-		addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 36));
+		addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 18));
 
 		/*
 		- Turn toward owned switch
@@ -41,21 +41,21 @@ public class DoubleSwitch extends BaseAutonomous {
 		- Turn to face switch
 		 */
 		if (isLeft) {
-			addSequential(new GyroDrive(90, GyroDrive.Direction.dLeft));
-			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 45));
+			addSequential(new GyroDrive(45, GyroDrive.Direction.dLeft));
+			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 97));
 			addParallel(new MoveElevator(MoveElevator.PreSetHeight.Switch));
-			addSequential(new GyroDrive(90, GyroDrive.Direction.dRight));
+			addSequential(new GyroDrive(45, GyroDrive.Direction.dRight));
 		}
 		//Right
 		else {
-			addSequential(new GyroDrive(90, GyroDrive.Direction.dRight));
-			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 36));
+			addSequential(new GyroDrive(45, GyroDrive.Direction.dRight));
+			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 66));
 			addParallel(new MoveElevator(MoveElevator.PreSetHeight.Switch));
-			addSequential(new GyroDrive(90, GyroDrive.Direction.dLeft));
+			addSequential(new GyroDrive(45, GyroDrive.Direction.dLeft));
 		}
 
 		//Drive forward 3 ft.
-		addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 36));
+		//addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 36));
 
 		//Turn towards vision target and drive toward it
 		/*addSequential(new LightOn());
@@ -67,8 +67,10 @@ public class DoubleSwitch extends BaseAutonomous {
 		//addSequential(new LightOff());
 		//addSequential(new ToggleCamera(JetsonPacket.ModePacket.Mode.NONE));
 
+		addSequential(new FlushTurn());
+
 		deliverCube();
-		
+
 		addSequential(new MoveElevator(MoveElevator.PreSetHeight.Home));
 		reverse();
 	}
@@ -132,7 +134,7 @@ public class DoubleSwitch extends BaseAutonomous {
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dLeft));
 
 			deliverCube();
-			
+
 			//Second Cube
 			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, -12));
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dRight));
@@ -191,6 +193,6 @@ public class DoubleSwitch extends BaseAutonomous {
 		//Drive 3 ft across baseline
 		addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 45));
 	}
-	
-	
+
+
 }

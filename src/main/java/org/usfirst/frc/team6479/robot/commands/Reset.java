@@ -12,10 +12,12 @@ public class Reset extends InstantCommand {
 	}
 
     protected void execute() {
+		Robot.eventLogger.writeToLog("Reseting Sensors");
         Robot.drivetrain.getEncoder().reset();
         Robot.elevator.getEncoder().reset();
         Robot.drivetrain.getGyro().reset();
         Robot.drivetrain.getGyro().calibrate();
         Robot.drivetrain.getGyro().reset();
+		Robot.eventLogger.writeToLog("Sensors are reset");
  }
 }

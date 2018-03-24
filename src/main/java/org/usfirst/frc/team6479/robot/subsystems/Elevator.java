@@ -31,6 +31,7 @@ public class Elevator extends Subsystem implements SafeSubsystem {
 		winchSol = new Solenoid(RobotMap.winchSolPort);
 		gearboxSol = new Solenoid(RobotMap.gearboxSolPort);
 		encoder = new Encoder(RobotMap.pulleyEncoderAPort, RobotMap.pulleyEncoderBPort);
+		unlock();
 	}
 
 	@Override
@@ -53,7 +54,7 @@ public class Elevator extends Subsystem implements SafeSubsystem {
 			winch.set(Math.abs(speed));
 			return;
 		}
-		
+
 		winch.set(0);
 	}
 	public void switchToWinch() {
@@ -97,8 +98,7 @@ public class Elevator extends Subsystem implements SafeSubsystem {
 	@Override
 	public void stop() {
 		winch.set(0);
-		//apply break so elevator doesn't crash down
-		winchSol.set(true);
+		unlock();
 	}
 
 }
