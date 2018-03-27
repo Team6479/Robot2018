@@ -2,10 +2,6 @@ package org.usfirst.frc.team6479.robot.autonomous;
 
 import org.usfirst.frc.team6479.robot.Robot;
 import org.usfirst.frc.team6479.robot.autonomous.manager.StartPosition;
-import org.usfirst.frc.team6479.robot.commands.auton.camera.LightOff;
-import org.usfirst.frc.team6479.robot.commands.auton.camera.LightOn;
-import org.usfirst.frc.team6479.robot.commands.auton.camera.ToggleCamera;
-import org.usfirst.frc.team6479.robot.commands.auton.drive.CameraTurn;
 import org.usfirst.frc.team6479.robot.commands.auton.drive.DeadReckonDrive;
 import org.usfirst.frc.team6479.robot.commands.auton.drive.FlushTurn;
 import org.usfirst.frc.team6479.robot.commands.auton.drive.GyroDrive;
@@ -13,7 +9,6 @@ import org.usfirst.frc.team6479.robot.commands.auton.drive.StraightDrive;
 import org.usfirst.frc.team6479.robot.commands.auton.elevator.GrabberRelease;
 import org.usfirst.frc.team6479.robot.commands.auton.elevator.MoveElevator;
 
-import communication.JetsonPacket;
 import openrio.powerup.MatchData;
 
 public class Switch extends BaseAutonomous {
@@ -55,16 +50,6 @@ public class Switch extends BaseAutonomous {
 
 		//Drive forward 3 ft.
 		addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 36));
-
-		//Turn towards vision target and drive toward it
-		/*addSequential(new LightOn());
-		addSequential(new ToggleCamera(JetsonPacket.ModePacket.Mode.GOAL));
-		addSequential(new CameraTurn());
-		//addSequential(new CameraDrive());*/
-
-		//Disable Vision
-		//addSequential(new LightOff());
-		//addSequential(new ToggleCamera(JetsonPacket.ModePacket.Mode.NONE));
 
 		deliverCube();
 

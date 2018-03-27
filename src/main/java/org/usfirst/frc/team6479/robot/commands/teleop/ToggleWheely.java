@@ -21,11 +21,11 @@ public class ToggleWheely extends Command {
 	    boolean wasJustPressedDriver = Robot.oi.getDriverBButton().wasJustPressed();
 
 	    if (wasJustPressedDriver) {
-	    	if(isUp) {
-				Robot.wheely.down();
+	    		if (isUp) {
+	    			Robot.wheely.down();
 			}
 			else {
-	    		Robot.wheely.up();
+	    			Robot.wheely.up();
 			}
 		}
     }
