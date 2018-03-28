@@ -18,15 +18,17 @@ public class ToggleGrabber extends Command {
 	@Override
 	protected void execute() {
 		boolean isGrabbing = Robot.grabber.isGrabbing();
-		boolean wasJustPressedAssistant = Robot.oi.getAssistantLeftBumper().wasJustPressed();
+		boolean pressedAssistant = Robot.oi.getAssistantLeftBumper().isPressed();
 		boolean isDriverOverride = Robot.oi.getDriverController().getYButton();
-		boolean wasJustPressedDriver = Robot.oi.getDriverLeftBumper().wasJustPressed();
-		if (wasJustPressedAssistant || (wasJustPressedDriver && isDriverOverride)) {
-			if (isGrabbing) {
-				Robot.grabber.release();
-			}
-			else {
+		boolean pressedDriver = Robot.oi.getDriverLeftBumper().isPressed();
+		if (pressedAssistant || (pressedDriver && isDriverOverride)) {
+			if(!isGrabbing) {
 				Robot.grabber.grab();
+			}
+		}
+		else {
+			if(isGrabbing) {
+				Robot.grabber.release();
 			}
 		}
     }

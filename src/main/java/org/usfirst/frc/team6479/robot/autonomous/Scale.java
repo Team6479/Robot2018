@@ -5,8 +5,10 @@ import org.usfirst.frc.team6479.robot.Robot;
 import org.usfirst.frc.team6479.robot.autonomous.manager.StartPosition;
 import org.usfirst.frc.team6479.robot.commands.auton.drive.GyroDrive;
 import org.usfirst.frc.team6479.robot.commands.auton.drive.StraightDrive;
+import org.usfirst.frc.team6479.robot.commands.auton.elevator.GrabberGrab;
 import org.usfirst.frc.team6479.robot.commands.auton.elevator.GrabberRelease;
 import org.usfirst.frc.team6479.robot.commands.auton.elevator.MoveElevator;
+import org.usfirst.frc.team6479.robot.commands.auton.wheelybar.WheelyBarDown;
 
 import openrio.powerup.MatchData;
 
@@ -36,8 +38,6 @@ public class Scale extends BaseAutonomous {
 		//Drive forward 20 ft.
 		//addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 240));
 
-		System.out.println(super.scale);
-		System.out.println(isLeft);
 		if (isLeft) {
 			//Drive forward 25 ft and 2in.
 			addParallel(new MoveElevator(MoveElevator.PreSetHeight.Switch));
@@ -47,8 +47,12 @@ public class Scale extends BaseAutonomous {
 			raiseTurn.addSequential(new GyroDrive(34, GyroDrive.Direction.dRight));
 			addSequential(raiseTurn);
 
+			addSequential(new WheelyBarDown());
 			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 34, true));
 			addSequential(new GrabberRelease());
+			addParallel(new StraightDrive(StraightDrive.Mode.encoderDrive, -34, true));
+			addSequential(new GrabberGrab());
+			addSequential(new MoveElevator(MoveElevator.PreSetHeight.Home));
 		}
 		else {
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dRight));
