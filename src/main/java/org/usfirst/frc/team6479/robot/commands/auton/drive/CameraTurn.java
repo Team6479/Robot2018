@@ -1,6 +1,7 @@
 package org.usfirst.frc.team6479.robot.commands.auton.drive;
 
 import org.usfirst.frc.team6479.robot.Robot;
+import org.usfirst.frc.team6479.robot.connection.JetsonServer;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -44,6 +45,11 @@ public class CameraTurn extends Command {
     protected void execute() {
 
         distanceToTarget = Robot.camera.getCurrentDistance();
+        
+        if ((Math.abs(distanceToTarget) - JetsonServer.CUBE_NOT_FOUND) <= 2) {
+        		distanceToTarget = 0;
+        		return;
+        }
 
         SmartDashboard.putNumber("CAMERA DISTANCE", distanceToTarget);
 

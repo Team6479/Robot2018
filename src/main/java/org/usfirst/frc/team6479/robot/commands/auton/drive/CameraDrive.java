@@ -46,6 +46,7 @@ public class CameraDrive extends Command {
     		//how much to adjust the robot in turning
     		double angle;
     		pixelDistance = Robot.camera.getCurrentDistance();
+            
     		//if pixel distance is in tolerance, set to zero
     		if(inTolerance()) {
     			angle = 0;

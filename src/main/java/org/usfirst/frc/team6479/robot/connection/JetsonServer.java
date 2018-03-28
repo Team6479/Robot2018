@@ -16,6 +16,8 @@ import communication.JetsonPacket.ModePacket;
 //Class to control all connections to the jetson
 public class JetsonServer {
 
+	public static final double CUBE_NOT_FOUND = 9999;
+	
     private ServerSocket server;
     private Thread thread;
 
