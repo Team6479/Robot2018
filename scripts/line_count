@@ -1,0 +1,4 @@
+#!/bin/bash
+
+files=`find src -name *.java`
+wc -l $files
