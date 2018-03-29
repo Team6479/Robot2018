@@ -44,27 +44,32 @@ public class Scale extends BaseAutonomous {
 			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 240));
 			CommandGroup raiseTurn = new CommandGroup();
 			raiseTurn.addParallel(new MoveElevator(MoveElevator.PreSetHeight.Scale));
+			raiseTurn.addParallel(new WheelyBarDown());
 			raiseTurn.addSequential(new GyroDrive(34, GyroDrive.Direction.dRight));
 			addSequential(raiseTurn);
 
-			addSequential(new WheelyBarDown());
 			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 34, true));
 			addSequential(new GrabberRelease());
-			addParallel(new StraightDrive(StraightDrive.Mode.encoderDrive, -34, true));
+			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, StraightDrive.Direction.backward, 34, true));
 			addSequential(new GrabberGrab());
 			addSequential(new MoveElevator(MoveElevator.PreSetHeight.Home));
 		}
 		else {
+			addParallel(new MoveElevator(MoveElevator.PreSetHeight.Switch));
+			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 216));
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dRight));
-			//Go straight 23 ft.
-			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive,276));
-			addSequential(new GyroDrive(90, GyroDrive.Direction.dLeft));
-			//Drive forward 7 ft.
-			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 84));
-			addSequential(new GyroDrive(90, GyroDrive.Direction.dLeft));
+			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 220));
+			CommandGroup raiseTurn = new CommandGroup();
+			raiseTurn.addParallel(new MoveElevator(MoveElevator.PreSetHeight.Scale));
+			raiseTurn.addParallel(new WheelyBarDown());
+			raiseTurn.addSequential(new GyroDrive(115, GyroDrive.Direction.dLeft));
+			addSequential(raiseTurn);
+			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 62, true));
+			addSequential(new GrabberRelease());
+			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, StraightDrive.Direction.backward, 34, true));
+			addSequential(new GrabberGrab());
+			addSequential(new MoveElevator(MoveElevator.PreSetHeight.Home));
 		}
-
-		//addSequential(new MoveElevator(MoveElevator.PreSetHeight.Scale));
 	}
 
 	//what happens when robot is positioned on the right
@@ -73,6 +78,39 @@ public class Scale extends BaseAutonomous {
 		isLeft = super.scale == MatchData.OwnedSide.LEFT;
 
 		Robot.eventLogger.writeToLog("Scale Right Autonomous");
+
+		if (isLeft) {
+			addParallel(new MoveElevator(MoveElevator.PreSetHeight.Switch));
+			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 216));
+			addSequential(new GyroDrive(90, GyroDrive.Direction.dLeft));
+			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 220));
+			CommandGroup raiseTurn = new CommandGroup();
+			raiseTurn.addParallel(new MoveElevator(MoveElevator.PreSetHeight.Scale));
+			raiseTurn.addParallel(new WheelyBarDown());
+			raiseTurn.addSequential(new GyroDrive(115, GyroDrive.Direction.dRight));
+			addSequential(raiseTurn);
+			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 62, true));
+			addSequential(new GrabberRelease());
+			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, StraightDrive.Direction.backward, 34, true));
+			addSequential(new GrabberGrab());
+			addSequential(new MoveElevator(MoveElevator.PreSetHeight.Home));
+		}
+		else {
+			//Drive forward 25 ft and 2in.
+			addParallel(new MoveElevator(MoveElevator.PreSetHeight.Switch));
+			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 240));
+			CommandGroup raiseTurn = new CommandGroup();
+			raiseTurn.addParallel(new MoveElevator(MoveElevator.PreSetHeight.Scale));
+			raiseTurn.addParallel(new WheelyBarDown());
+			raiseTurn.addSequential(new GyroDrive(34, GyroDrive.Direction.dLeft));
+			addSequential(raiseTurn);
+
+			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 34, true));
+			addSequential(new GrabberRelease());
+			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, StraightDrive.Direction.backward, 34, true));
+			addSequential(new GrabberGrab());
+			addSequential(new MoveElevator(MoveElevator.PreSetHeight.Home));
+		}
 	}
 
 	//what happens when robot is positioned in the center

@@ -145,7 +145,7 @@ public class Switch extends BaseAutonomous {
 
 	private void reverse() {
 		//Back up 3ft.
-		addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, -36));
+		addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, StraightDrive.Direction.backward, 36));
 
 		if (isLeft) {
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dLeft));

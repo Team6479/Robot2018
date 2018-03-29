@@ -3,6 +3,7 @@ package org.usfirst.frc.team6479.robot.control;
 import org.usfirst.frc.team6479.robot.commands.Reset;
 import org.usfirst.frc.team6479.robot.commands.RestartJetsonCode;
 import org.usfirst.frc.team6479.robot.commands.VelocityDrive;
+import org.usfirst.frc.team6479.robot.commands.auton.GrabCube;
 import org.usfirst.frc.team6479.robot.commands.auton.camera.ToggleLight;
 import org.usfirst.frc.team6479.robot.commands.auton.drive.FlushTurn;
 import org.usfirst.frc.team6479.robot.commands.auton.drive.GyroDrive;
@@ -63,6 +64,7 @@ public class OI {
 		SmartDashboard.putData("RESET", new Reset());
 		SmartDashboard.putData("Restart Jetson", new RestartJetsonCode());
 		SmartDashboard.putData("Move Elevator", new MoveElevator(MoveElevator.PreSetHeight.Switch));
+		SmartDashboard.putData("Grab Cube Auto", new GrabCube());
 	}
 
 	//get the things controlled

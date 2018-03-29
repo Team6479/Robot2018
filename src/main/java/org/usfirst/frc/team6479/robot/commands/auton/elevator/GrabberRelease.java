@@ -18,5 +18,6 @@ public class GrabberRelease extends InstantCommand {
     @Override
     protected void execute() {
     		Robot.grabber.release();
+    		System.out.println("RELEASE: " + Robot.grabber.isGrabbing());
     }
 }

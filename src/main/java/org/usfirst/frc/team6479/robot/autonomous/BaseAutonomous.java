@@ -60,9 +60,8 @@ public abstract class BaseAutonomous extends CommandGroup {
 	}
 
 	private void base() {
-		addSequential(new PistonPush());
 		addSequential(new GrabberGrab());
-		addSequential(new PistonRetract());
+		//addSequential(new PistonRetract());
 	}
 
 	//auto routine for different modes

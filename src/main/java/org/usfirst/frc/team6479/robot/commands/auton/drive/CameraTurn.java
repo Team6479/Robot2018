@@ -45,8 +45,9 @@ public class CameraTurn extends Command {
     protected void execute() {
 
         distanceToTarget = Robot.camera.getCurrentDistance();
-        
-        if ((Math.abs(distanceToTarget) - JetsonServer.CUBE_NOT_FOUND) <= 2) {
+
+
+        if (Math.abs(Math.abs(distanceToTarget) - JetsonServer.CUBE_NOT_FOUND) <= 2) {
         		distanceToTarget = 0;
         		return;
         }
@@ -61,16 +62,21 @@ public class CameraTurn extends Command {
 	     */
         speed = 0.4 + (0.25 * (Math.abs(distanceToTarget / initialDistance)));
 
+        System.out.println(speed);
         if (distanceToTarget <= 0) {
             Robot.drivetrain.tankDrive(speed, -speed);
         }
         else if (distanceToTarget >= 0) {
             Robot.drivetrain.tankDrive(-speed, speed);
         }
+        else {
+        	Robot.drivetrain.tankDrive(0, 0);
+		}
     }
 
     private boolean inRange() {
-
+    	System.out.println(distanceToTarget);
+		System.out.println((Math.abs(distanceToTarget) <= PIXEL_TOLERANCE));
         return (Math.abs(distanceToTarget) <= PIXEL_TOLERANCE);
     }
 
@@ -84,5 +90,6 @@ public class CameraTurn extends Command {
     @Override
     protected void end() {
         Robot.drivetrain.stop();
+        System.out.println("Camera Turn Finished");
     }
 }

@@ -5,6 +5,10 @@ import org.usfirst.frc.team6479.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class StraightDrive extends Command {
+	public enum Direction {
+		forward, backward
+	}
+
 	public enum Mode {
 		encoderDrive, sonarDrive
 	}
@@ -22,19 +26,27 @@ public class StraightDrive extends Command {
     private double prevDistanceAverage;
     private double prevDistanceNum;
     private Mode mode;
+    private Direction direction;
     private boolean precision;
 
-    public StraightDrive(Mode mode, double distance, boolean precision) {
+    public StraightDrive(Mode mode, Direction direction , double distance, boolean precision) {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
         requires(Robot.drivetrain);
         this.mode = mode;
-        this.distanceGoal = distance;
+        this.direction = direction;
+        this.distanceGoal = Math.abs(distance);
         this.precision = precision;
 	}
 
+	public StraightDrive(Mode mode, Direction direction, double distance) {
+    	this(mode, direction, distance,false);
+	}
+	public StraightDrive(Mode mode, double distance, boolean precision) {
+		this(mode, Direction.forward, distance,precision);
+	}
 	public StraightDrive(Mode mode, double distance) {
-    	this(mode, distance, false);
+		this(mode, Direction.forward, distance,false);
 	}
 
 
@@ -82,7 +94,7 @@ public class StraightDrive extends Command {
 	    			speed = 0;
 		        }*/
 		    //else
-			    distance = Robot.drivetrain.getEncoder().getDistance();
+			    distance = Math.abs(Robot.drivetrain.getEncoder().getDistance());
 
 			    //Safety for if encoders do not return a value
 			    prevDistanceNum++;
@@ -105,6 +117,10 @@ public class StraightDrive extends Command {
 					speed = 0.3 + (0.1 * ((distanceGoal - distance) / distanceGoal));
 				}
 	    }
+
+	    if(direction == Direction.backward) {
+	    	speed = -speed;
+		}
 
         Robot.drivetrain.racingDrive(speed, -angle*kP);
 	}

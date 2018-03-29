@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.usfirst.frc.team6479.robot.autonomous.manager.AutonomousManager;
+import org.usfirst.frc.team6479.robot.commands.auton.GrabCube;
 import org.usfirst.frc.team6479.robot.control.OI;
 import org.usfirst.frc.team6479.robot.logger.DataLogger;
 import org.usfirst.frc.team6479.robot.logger.EventLogger;
@@ -190,6 +191,10 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putBoolean("Pusher:", pusher.isExtend());
 		SmartDashboard.putBoolean("Locked:", elevator.isLocked());
 		SmartDashboard.putBoolean("Winch:", elevator.isOnWinch());
+
+		//System.out.println(Robot.camera.getCurrentDistance());
+
+		SmartDashboard.putBoolean("Pressure:", compressor.getPressureSwitchValue());
 
 		driveLog();
 	}
