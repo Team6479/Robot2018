@@ -1,5 +1,6 @@
 package org.usfirst.frc.team6479.robot.autonomous;
 
+import edu.wpi.first.wpilibj.command.CommandGroup;
 import org.usfirst.frc.team6479.robot.Robot;
 import org.usfirst.frc.team6479.robot.autonomous.manager.StartPosition;
 import org.usfirst.frc.team6479.robot.commands.auton.drive.DeadReckonDrive;
@@ -10,6 +11,7 @@ import org.usfirst.frc.team6479.robot.commands.auton.elevator.GrabberRelease;
 import org.usfirst.frc.team6479.robot.commands.auton.elevator.MoveElevator;
 
 import openrio.powerup.MatchData;
+import org.usfirst.frc.team6479.robot.commands.auton.wheelybar.WheelyBarDown;
 
 public class Switch extends BaseAutonomous {
 
@@ -77,7 +79,10 @@ public class Switch extends BaseAutonomous {
 			//go around back
 			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 216));
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dRight));
-			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 220));
+			CommandGroup raise = new CommandGroup();
+			raise.addParallel(new MoveElevator(MoveElevator.PreSetHeight.PrepSwitch));
+			raise.addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 220));
+			addSequential(raise);
 			addParallel(new MoveElevator(MoveElevator.PreSetHeight.Switch));
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dRight));
 			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 72));
@@ -99,7 +104,10 @@ public class Switch extends BaseAutonomous {
 			//go around back
 			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 216));
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dLeft));
-			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 228));
+			CommandGroup raise = new CommandGroup();
+			raise.addParallel(new MoveElevator(MoveElevator.PreSetHeight.PrepSwitch));
+			raise.addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 228));
+			addSequential(raise);
 			addParallel(new MoveElevator(MoveElevator.PreSetHeight.Switch));
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dLeft));
 			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 68));
@@ -138,9 +146,10 @@ public class Switch extends BaseAutonomous {
 	}
 
 	private void deliverCube() {
-		addSequential(new StraightDrive(StraightDrive.Mode.sonarDrive, 1));
+		addParallel(new WheelyBarDown());
+		addSequential(new StraightDrive(StraightDrive.Mode.sonarDrive, 3));
 		addParallel(new GrabberRelease());
-		addSequential(new DeadReckonDrive(0.6, 0.6, DeadReckonDrive.Direction.dForward));
+		addSequential(new DeadReckonDrive(0.6, 0.65, DeadReckonDrive.Direction.dForward));
 	}
 
 	private void reverse() {

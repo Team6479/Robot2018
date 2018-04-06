@@ -44,18 +44,18 @@ public class DataLogger {
 
 		name += ".log";
 
-		File flashdrive = new File("/media/sda1/");
+		//File flashdrive = new File("/media/sda1/");
 		File local = new File("/home/lvuser/logs");
 
 		//if flashdrive is plugged in, log here
-		if(flashdrive.exists()) {
-			logFile = new File(flashdrive, name);
-		}
+		//if(flashdrive.exists()) {
+			//logFile = new File(flashdrive, name);
+		//}
 		//otherwise, log locally
-		else {
+		//else {
 			logFile = new File(local, name);
 			local.mkdir();
-		}
+		//}
 	}
 
 	//what will be logged by the logger;
@@ -79,7 +79,7 @@ public class DataLogger {
 		}
 		writer.flush();
 	}
-	
+
 	class LogTask extends TimerTask {
 		@Override
 		public void run() {

@@ -39,7 +39,7 @@ public class Elevator extends Subsystem implements SafeSubsystem {
 		setDefaultCommand(new ElevatorControl());
 	}
 	public void move(double speed) {
-		
+
 		if(isLocked() && isOnWinch()) {
 			winch.set(0.5 * speed);
 		}
@@ -50,7 +50,7 @@ public class Elevator extends Subsystem implements SafeSubsystem {
 			winch.set(speed);
 		}
 		else if(isUnLocked() && isOnClimber()) {
-			winch.set(Math.abs(speed));
+			winch.set(speed);
 		}
 		else {
 			winch.set(0);

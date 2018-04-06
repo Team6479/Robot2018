@@ -8,7 +8,8 @@ import edu.wpi.first.wpilibj.command.Command;
 public class MoveElevator extends Command {
 
 	public enum PreSetHeight {
-		Switch(1400),
+		PrepSwitch(400),
+		Switch(1700),
 		Scale(3200),
 		Home(0),
 		Vision(10);

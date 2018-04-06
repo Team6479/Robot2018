@@ -161,7 +161,7 @@ public class Robot extends IterativeRobot {
 		drivetrain.setHyper(true);
 		elevator.switchToWinch();
 		elevator.unlock();
-		pusher.retract();
+		pusher.extend();
 		grabber.release();
 		wheely.up();
 	}
