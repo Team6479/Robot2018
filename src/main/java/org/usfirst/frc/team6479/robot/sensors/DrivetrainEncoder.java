@@ -14,7 +14,7 @@ public class DrivetrainEncoder extends SendableBase {
 		this.left = left;
 		this.right = right;
 		right.setSamplesToAverage(20);
-		left.setSamplesToAverage(50);
+		left.setSamplesToAverage(25);
 	}
 	public DrivetrainEncoder(int leftA, int leftB, boolean reverseLeft, int rightA, int rightB, boolean reverseRight, Encoder.EncodingType encoding) {
 		this(new AdjustedEncoder(leftA, leftB, reverseLeft, encoding), new AdjustedEncoder(rightA, rightB, reverseRight, encoding));

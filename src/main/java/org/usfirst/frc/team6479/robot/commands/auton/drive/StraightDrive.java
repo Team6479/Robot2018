@@ -94,7 +94,8 @@ public class StraightDrive extends Command {
 	    			speed = 0;
 		        }*/
 		    //else
-			    distance = Math.abs(Robot.drivetrain.getEncoder().getDistance());
+				//distance = Math.abs(Robot.drivetrain.getEncoder().getDistance());
+			    distance = Math.abs(Robot.drivetrain.getEncoder().getRight().getDistance());
 
 			    //Safety for if encoders do not return a value
 			    prevDistanceNum++;

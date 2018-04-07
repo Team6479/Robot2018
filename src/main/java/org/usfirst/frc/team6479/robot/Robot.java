@@ -186,6 +186,7 @@ public class Robot extends IterativeRobot {
 	    SmartDashboard.putData("elevator encoder", Robot.elevator.getEncoder());
 	    SmartDashboard.putNumber("Sonar left", Robot.drivetrain.getUltrasonic().getLeft());
 		SmartDashboard.putNumber("Sonar Right", Robot.drivetrain.getUltrasonic().getRight());
+		SmartDashboard.putNumber("Gyro", Robot.drivetrain.getGyro().getAngle());
 
 		SmartDashboard.putBoolean("Grabber:", grabber.isGrabbing());
 		SmartDashboard.putBoolean("Pusher:", pusher.isExtend());

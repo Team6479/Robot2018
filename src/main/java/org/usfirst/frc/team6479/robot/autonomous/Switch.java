@@ -69,7 +69,7 @@ public class Switch extends BaseAutonomous {
 		if(isLeft) {
 			//Go forward 3 ft.
 			addParallel(new MoveElevator(MoveElevator.PreSetHeight.Switch));
-			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 153));
+			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 143));
 
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dRight));
 
@@ -137,17 +137,37 @@ public class Switch extends BaseAutonomous {
 	@Override
 	protected void deadReckonLeft() {
 		Robot.eventLogger.writeToLog("DEADRECKON Switch Left Autonomous");
+		addSequential(new StraightDrive(StraightDrive.Mode.sonarDrive, 10));
+		if(isLeft) {
+			addSequential(new FlushTurn());
+			addSequential(new MoveElevator(MoveElevator.PreSetHeight.Switch));
+			addSequential(new WheelyBarDown());
+			deliverCube();
+		}
+		else {
+			addSequential(new StraightDrive(StraightDrive.Mode.sonarDrive, 3));
+		}
 	}
 
 	//what happens when robot is positioned on the right
 	@Override
 	protected void deadReckonRight() {
 		Robot.eventLogger.writeToLog("DEADRECKON Switch Right Autonomous");
+		addSequential(new StraightDrive(StraightDrive.Mode.sonarDrive, 10));
+		if(isLeft) {
+			addSequential(new StraightDrive(StraightDrive.Mode.sonarDrive, 3));
+		}
+		else {
+			addSequential(new FlushTurn());
+			addSequential(new MoveElevator(MoveElevator.PreSetHeight.Switch));
+			addSequential(new WheelyBarDown());
+			deliverCube();
+		}
 	}
 
 	private void deliverCube() {
 		addParallel(new WheelyBarDown());
-		addSequential(new StraightDrive(StraightDrive.Mode.sonarDrive, 3));
+		addSequential(new StraightDrive(StraightDrive.Mode.sonarDrive, 6));
 		addParallel(new GrabberRelease());
 		addSequential(new DeadReckonDrive(0.6, 0.65, DeadReckonDrive.Direction.dForward));
 	}

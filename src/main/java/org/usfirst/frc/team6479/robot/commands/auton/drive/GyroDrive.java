@@ -72,14 +72,18 @@ public class GyroDrive extends Command {
 
         angleCOT = this.getAngleCOT(prevGyroAngle, gyroAngle);
 
-        //Equation that decreases speed as the the robot approached the angle goal with precision
-	    /*
-	    0.4 = min speed
-	    0.25 = speed. (Increase for speed increase/ decrease for speed decrease)
-	    The parentheses stuff is an equation that goes from 1 to 0 as the angle approaches the goal
-	     */
-        speed = 0.4 + ( 0.55 * ((angleGoal - gyroAngle)/angleGoal));
-
+        if(Robot.getCurrentTick() >= 20 && Robot.drivetrain.getGyro().getAngle() == 0) {
+        	speed = 0;
+		}
+		else {
+			//Equation that decreases speed as the the robot approached the angle goal with precision
+	    	/*
+	    	0.4 = min speed
+	    	0.25 = speed. (Increase for speed increase/ decrease for speed decrease)
+	    	The parentheses stuff is an equation that goes from 1 to 0 as the angle approaches the goal
+	    	 */
+			speed = 0.4 + (0.55 * ((angleGoal - gyroAngle) / angleGoal));
+		}
         if (dir == Direction.dLeft) {
             Robot.drivetrain.tankDrive(-speed, speed);
         }
