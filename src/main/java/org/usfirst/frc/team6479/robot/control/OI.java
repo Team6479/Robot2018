@@ -65,6 +65,7 @@ public class OI {
 		SmartDashboard.putData("RESET", new Reset());
 		SmartDashboard.putData("Restart Jetson", new RestartJetsonCode());
 		SmartDashboard.putData("Move Elevator", new MoveElevator(MoveElevator.PreSetHeight.Switch));
+		SmartDashboard.putData("Move Elev To Scale", new MoveElevator(MoveElevator.PreSetHeight.Scale));
 		//SmartDashboard.putData("Grab Cube Auto", new GrabCube());
 	}
 

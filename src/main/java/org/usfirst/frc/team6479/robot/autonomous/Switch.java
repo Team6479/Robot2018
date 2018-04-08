@@ -169,7 +169,7 @@ public class Switch extends BaseAutonomous {
 		addParallel(new WheelyBarDown());
 		addSequential(new StraightDrive(StraightDrive.Mode.sonarDrive, 6));
 		addParallel(new GrabberRelease());
-		addSequential(new DeadReckonDrive(0.6, 0.65, DeadReckonDrive.Direction.dForward));
+		addSequential(new DeadReckonDrive(0.8, 0.75, DeadReckonDrive.Direction.dForward));
 	}
 
 	private void reverse() {

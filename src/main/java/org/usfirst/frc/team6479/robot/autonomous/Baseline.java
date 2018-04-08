@@ -49,7 +49,7 @@ public class Baseline extends BaseAutonomous {
 	@Override
 	protected void left() {
 		Robot.eventLogger.writeToLog("Baseline Left Autonomous");
-		addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 240));
+		addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 190));
 		addSequential(new WaitCommand(0.25));
 	}
 
@@ -57,7 +57,7 @@ public class Baseline extends BaseAutonomous {
 	@Override
 	protected void right() {
 		Robot.eventLogger.writeToLog("Baseline Right Autonomous");
-		addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 240));
+		addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 190));
 		addSequential(new WaitCommand(0.25));
 	}
 

@@ -56,6 +56,7 @@ public class StraightDrive extends Command {
 	 */
 	@Override
 	protected void initialize() {
+		Robot.eventLogger.writeToLog("Straight Drive Started");
 	    Robot.drivetrain.getGyro().reset();
 	    Robot.drivetrain.getEncoder().reset();
 	    speed = 0.2;
@@ -170,5 +171,6 @@ public class StraightDrive extends Command {
 	@Override
 	protected void end() {
 		Robot.drivetrain.stop();
+		Robot.eventLogger.writeToLog("Straight Drive Finished");
 	}
 }

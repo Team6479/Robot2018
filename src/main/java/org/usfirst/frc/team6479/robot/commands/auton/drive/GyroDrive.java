@@ -9,6 +9,7 @@ public class GyroDrive extends Command {
         dLeft, dRight
     }
 
+    private double ticks;
     private double gyroAngle;
     private double prevGyroAngle;
     private double angleGoal;
@@ -35,7 +36,10 @@ public class GyroDrive extends Command {
      */
     @Override
     protected void initialize() {
+		Robot.eventLogger.writeToLog("GyroDrive Starting");
         Robot.drivetrain.getGyro().reset();
+
+        ticks = 0;
 
         speed = 0.75;
     }
@@ -67,12 +71,14 @@ public class GyroDrive extends Command {
      */
     @Override
     protected void execute() {
+    	ticks++;
         prevGyroAngle = gyroAngle;
         gyroAngle = Math.abs(Robot.drivetrain.getGyro().getAngle());
 
         angleCOT = this.getAngleCOT(prevGyroAngle, gyroAngle);
 
-        if(Robot.getCurrentTick() >= 20 && Robot.drivetrain.getGyro().getAngle() == 0) {
+        if(ticks >= 20 && Robot.drivetrain.getGyro().getAngle() == 0) {
+        	Robot.eventLogger.writeToLog("GyroDrive Fail Safe Triggered");
         	speed = 0;
 		}
 		else {
@@ -125,5 +131,6 @@ public class GyroDrive extends Command {
     @Override
     protected void end() {
         Robot.drivetrain.stop();
+        Robot.eventLogger.writeToLog("GyroDrive Finished");
     }
 }

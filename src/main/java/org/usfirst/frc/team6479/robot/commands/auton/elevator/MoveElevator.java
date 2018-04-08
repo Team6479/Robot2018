@@ -3,6 +3,7 @@ package org.usfirst.frc.team6479.robot.commands.auton.elevator;
 import org.usfirst.frc.team6479.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import org.usfirst.frc.team6479.robot.commands.auton.drive.StraightDrive;
 
 //move elevator to a height
 public class MoveElevator extends Command {
@@ -10,7 +11,7 @@ public class MoveElevator extends Command {
 	public enum PreSetHeight {
 		PrepSwitch(400),
 		Switch(1700),
-		Scale(3200),
+		Scale(2800),
 		Home(0),
 		Vision(10);
 
@@ -21,6 +22,7 @@ public class MoveElevator extends Command {
 
 	}
 
+	private int ticks;
     private double speed;
     private boolean needToMoveUp;
     private PreSetHeight height;
@@ -40,11 +42,14 @@ public class MoveElevator extends Command {
 	 */
 	@Override
 	protected void initialize() {
+		Robot.eventLogger.writeToLog("MoveElevator Starting at: " + height.name());
 		Robot.elevator.unlock();
 		Robot.elevator.switchToWinch();
 
+		ticks = 0;
+
 	    speed = 0.7;
-	    encoderValue = PreSetHeight.Switch.value;
+	    encoderValue = height.value;
 	    //if the current height is higher than the setpoint, needToMoveUp is false
 	    needToMoveUp = Robot.elevator.getEncoder().get() < height.value;
 	}
@@ -56,7 +61,15 @@ public class MoveElevator extends Command {
 	 */
 	@Override
 	protected void execute() {
-		speed = 0.85 + 0.15 * ((encoderValue - Robot.elevator.getEncoder().get()) / encoderValue);
+		ticks++;
+		if(ticks >= 20 && Robot.elevator.getEncoder().get() == 0) {
+			Robot.eventLogger.writeToLog("MoveElevator Fail Safe Triggered");
+			speed = 0;
+		}
+		else {
+			speed = 0.85 + 0.15 * ((encoderValue - Robot.elevator.getEncoder().get()) / encoderValue);
+		}
+
 		if(needToMoveUp) {
 			Robot.elevator.move(speed);
 		}
@@ -105,7 +118,8 @@ public class MoveElevator extends Command {
 	 */
 	@Override
 	protected void end() {
-		Robot.elevator.lock();
+		//Robot.elevator.lock();
 		Robot.elevator.stop();
+		Robot.eventLogger.writeToLog("MoveElevator Finished");
 	}
 }
