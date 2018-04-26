@@ -9,12 +9,12 @@ plugins {
 repositories {
     mavenCentral()
     maven {
-         url  "https://dl.bintray.com/team6479/RobotRepo"
+         url  "https://jitpack.io"
     }
 }
 
 dependencies {
-    compile group: 'team6479.robotrepo', name: 'robotlib', version: '1.2.0'
+    compile group: 'com.github.team6479', name: 'RobotLibrary', version: '1.0.0'
     compile wpilib()
     compile ctre()
     //compile navx()
