@@ -1,5 +1,6 @@
 package org.usfirst.frc.team6479.robot.subsystems;
 
+import org.usfirst.frc.team6479.robot.commands.teleop.ToggleGrabberDirections;
 import org.usfirst.frc.team6479.robot.commands.teleop.ToggleGrabberSuck;
 import org.usfirst.frc.team6479.robot.config.RobotMap;
 
@@ -18,6 +19,9 @@ public class Grabber extends Subsystem implements SafeSubsystem {
 	private SpeedController rightMotor;
 	private SpeedController grabber;
 
+	public final double GRABBER_SUCK_SPEED = 0.5;
+	public final double GRABBER_SPIT_SPEED = 1;
+
 	public Grabber() {
 		leftMotor = new Spark(RobotMap.grabberLeftPort);
 		rightMotor = new Spark(RobotMap.grabberRightPort);
@@ -26,7 +30,7 @@ public class Grabber extends Subsystem implements SafeSubsystem {
 
     @Override
     protected void initDefaultCommand() {
-		// setDefaultCommand(new ToggleGrabberSuck());
+		setDefaultCommand(new ToggleGrabberDirections());
 	}
 
 	public void suck(double speed) {
