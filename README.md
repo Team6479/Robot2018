@@ -9,7 +9,6 @@ This is Team 6479's code for the 2018 FIRST Robotics Competition season.
 | Library               | Creator   |
 |:--------------------- |:--------- |
 | [Robot Library][1]    | Team 6479 |
-| [Protocol Buffers][5] | Google    |
 
 
 ## About The Code
