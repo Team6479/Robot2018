@@ -16,33 +16,19 @@ import robot.xbox.XboxMap;
 
 public class OI {
 	private XboxControllerDeadzone driverController;
-	private XboxControllerDeadzone assistantController;
 	private ButtonTracker driverRightBumper;
 	private ButtonTracker driverLeftBumper;
 	private ButtonTracker driverBButton;
-	private ButtonTracker assistantRightBumper;
-	private ButtonTracker assistantLeftBumper;
-	private ButtonTracker assistantXButton;
-	private ButtonTracker assistantBButton;
 
 	//initialization
 	public OI() {
 		driverController = new XboxControllerDeadzone(RobotMap.driverController);
-		// assistantController = new XboxControllerDeadzone(RobotMap.assistantController);
 
 		//Driver Button Trackers
 		driverRightBumper = new ButtonTracker(driverController, XboxMap.RightBumper);
 	    driverLeftBumper = new ButtonTracker(driverController, XboxMap.LeftBumper);
 	    driverBButton = new ButtonTracker(driverController, XboxMap.BButton);
 
-
-	    //Assistant Button Trackers
-	    // assistantLeftBumper = new ButtonTracker(assistantController, XboxMap.LeftBumper);
-	    // assistantRightBumper = new ButtonTracker(assistantController, XboxMap.RightBumper);
-	    // assistantXButton = new ButtonTracker(assistantController, XboxMap.XButton);
-	    // assistantXButton.toggleWhenPressed(new ToggleStopper());
-	    // assistantBButton = new ButtonTracker(assistantController, XboxMap.BButton);
-	    // assistantBButton.toggleWhenPressed(new ToggleShifter());
 
 	    //Testing Commands
         /*SmartDashboard.putData("Camera Drive", new CameraDrive());
@@ -81,21 +67,6 @@ public class OI {
 	}
 	public ButtonTracker getDriverBButton() {
 		return driverBButton;
-	}
-	public XboxControllerDeadzone getAssistantController() {
-		return assistantController;
-	}
-	public ButtonTracker getAssistantRightBumper() {
-	    return assistantRightBumper;
-	}
-	public ButtonTracker getAssistantLeftBumper() {
-	    return assistantLeftBumper;
-	}
-	public ButtonTracker getAssistantXButton() {
-	    return assistantXButton;
-	}
-	public ButtonTracker getAssistantBButton() {
-	    return assistantBButton;
 	}
 
 }
