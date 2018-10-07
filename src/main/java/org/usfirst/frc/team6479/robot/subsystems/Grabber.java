@@ -1,7 +1,6 @@
 package org.usfirst.frc.team6479.robot.subsystems;
 
 import org.usfirst.frc.team6479.robot.commands.teleop.ToggleGrabberDirections;
-import org.usfirst.frc.team6479.robot.commands.teleop.ToggleGrabberSuck;
 import org.usfirst.frc.team6479.robot.config.RobotMap;
 
 import edu.wpi.first.wpilibj.Spark;

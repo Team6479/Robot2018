@@ -1,12 +1,9 @@
 package org.usfirst.frc.team6479.robot.control;
 
 import org.usfirst.frc.team6479.robot.commands.Reset;
-import org.usfirst.frc.team6479.robot.commands.auton.drive.StraightDrive;
-import org.usfirst.frc.team6479.robot.commands.auton.elevator.MoveElevator;
 import org.usfirst.frc.team6479.robot.commands.auton.intake.GrabberSpit;
 import org.usfirst.frc.team6479.robot.commands.auton.intake.GrabberStop;
 import org.usfirst.frc.team6479.robot.commands.auton.intake.GrabberSuck;
-import org.usfirst.frc.team6479.robot.commands.teleop.ToggleGrabberSuck;
 import org.usfirst.frc.team6479.robot.config.RobotMap;
 import org.usfirst.frc.team6479.robot.util.XboxControllerDeadzone;
 
