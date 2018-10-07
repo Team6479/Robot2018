@@ -1,42 +1,73 @@
 package org.usfirst.frc.team6479.robot.subsystems;
 
-import org.usfirst.frc.team6479.robot.commands.teleop.ToggleGrabber;
+import org.usfirst.frc.team6479.robot.commands.teleop.ToggleGrabberSuck;
 import org.usfirst.frc.team6479.robot.config.RobotMap;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-//subsystem for the cube grabber
+/**
+ * @author Jacob Abraham
+ * @author Thomas Quillan
+ */
 public class Grabber extends Subsystem implements SafeSubsystem {
 
-	private DoubleSolenoid dubSol;
+	private SpeedController leftMotor;
+	private SpeedController rightMotor;
+	private SpeedController grabber;
 
 	public Grabber() {
-		dubSol = new DoubleSolenoid(RobotMap.grabberOnPort, RobotMap.grabberOffPort);
+		leftMotor = new Spark(RobotMap.grabberLeftPort);
+		rightMotor = new Spark(RobotMap.grabberRightPort);
+		grabber = new SpeedControllerGroup(leftMotor, rightMotor);
 	}
+
     @Override
     protected void initDefaultCommand() {
-		setDefaultCommand(new ToggleGrabber());
-    }
-	public void grab() {
-		dubSol.set(Value.kForward);
+		// setDefaultCommand(new ToggleGrabberSuck());
 	}
-	public void release() {
-		dubSol.set(Value.kReverse);
+
+	public void suck(double speed) {
+		if (speed > 0.85) {
+			speed = 0.85;
+		}
+		grabber.set(-speed);
 	}
-	public boolean isGrabbing() {
-		//whether or not it is currently grabbing
-		boolean isGrabbing = dubSol.get() == Value.kForward;
-		return isGrabbing;
+
+	public void spit(double speed) {
+		grabber.set(speed);
 	}
-	public DoubleSolenoid getDubSolenoid() {
-		return dubSol;
+
+	/**
+	 * @return If the grabber is sucking
+	 */
+	public boolean isSucking() {
+		boolean isSucking = grabber.get() > 0;
+		return isSucking;
+	}
+
+	public boolean isSpitting() {
+		boolean isSpitting = grabber.get() < 0;
+		return isSpitting;
+	}
+
+	public SpeedController getLeftMotor() {
+		return leftMotor;
+	}
+
+	public SpeedController getRightMotor() {
+		return rightMotor;
+	}
+
+	public SpeedController getGrabberMotors() {
+		return grabber;
 	}
 
 	@Override
 	public void stop() {
-		dubSol.set(Value.kOff);
+		grabber.set(0);
 	}
 
 }

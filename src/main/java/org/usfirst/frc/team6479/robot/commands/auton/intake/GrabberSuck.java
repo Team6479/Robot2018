@@ -1,12 +1,12 @@
-package org.usfirst.frc.team6479.robot.commands.auton.elevator;
+package org.usfirst.frc.team6479.robot.commands.auton.intake;
 
 import org.usfirst.frc.team6479.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
 
-public class GrabberRelease extends InstantCommand {
+public class GrabberSuck extends InstantCommand {
 
-    public GrabberRelease() {
+    public GrabberSuck() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.grabber);
     }
@@ -17,7 +17,6 @@ public class GrabberRelease extends InstantCommand {
      */
     @Override
     protected void execute() {
-    		Robot.grabber.release();
-    		System.out.println("RELEASE: " + Robot.grabber.isGrabbing());
+    		Robot.grabber.suck(0.5);
     }
 }

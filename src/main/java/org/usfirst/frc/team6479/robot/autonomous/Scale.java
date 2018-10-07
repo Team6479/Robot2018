@@ -1,15 +1,14 @@
 package org.usfirst.frc.team6479.robot.autonomous;
 
-import edu.wpi.first.wpilibj.command.CommandGroup;
 import org.usfirst.frc.team6479.robot.Robot;
 import org.usfirst.frc.team6479.robot.autonomous.manager.StartPosition;
 import org.usfirst.frc.team6479.robot.commands.auton.drive.GyroDrive;
 import org.usfirst.frc.team6479.robot.commands.auton.drive.StraightDrive;
-import org.usfirst.frc.team6479.robot.commands.auton.elevator.GrabberGrab;
-import org.usfirst.frc.team6479.robot.commands.auton.elevator.GrabberRelease;
 import org.usfirst.frc.team6479.robot.commands.auton.elevator.MoveElevator;
-import org.usfirst.frc.team6479.robot.commands.auton.wheelybar.WheelyBarDown;
+import org.usfirst.frc.team6479.robot.commands.auton.intake.GrabberSpit;
+import org.usfirst.frc.team6479.robot.commands.auton.intake.GrabberSuck;
 
+import edu.wpi.first.wpilibj.command.CommandGroup;
 import openrio.powerup.MatchData;
 
 public class Scale extends BaseAutonomous {
@@ -44,14 +43,14 @@ public class Scale extends BaseAutonomous {
 			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 240));
 			CommandGroup raiseTurn = new CommandGroup();
 			raiseTurn.addParallel(new MoveElevator(MoveElevator.PreSetHeight.Scale));
-			raiseTurn.addParallel(new WheelyBarDown());
+			// raiseTurn.addParallel(new WheelyBarDown());
 			raiseTurn.addSequential(new GyroDrive(34, GyroDrive.Direction.dRight));
 			addSequential(raiseTurn);
 
 			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 34, true));
-			addSequential(new GrabberRelease());
+			addSequential(new GrabberSpit());
 			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, StraightDrive.Direction.backward, 34, true));
-			addSequential(new GrabberGrab());
+			addSequential(new GrabberSuck());
 			addSequential(new MoveElevator(MoveElevator.PreSetHeight.Home));
 		}
 		else {
@@ -61,13 +60,13 @@ public class Scale extends BaseAutonomous {
 			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 220));
 			CommandGroup raiseTurn = new CommandGroup();
 			raiseTurn.addParallel(new MoveElevator(MoveElevator.PreSetHeight.Scale));
-			raiseTurn.addParallel(new WheelyBarDown());
+			// raiseTurn.addParallel(new WheelyBarDown());
 			raiseTurn.addSequential(new GyroDrive(115, GyroDrive.Direction.dLeft));
 			addSequential(raiseTurn);
 			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 62, true));
-			addSequential(new GrabberRelease());
+			addSequential(new GrabberSpit());
 			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, StraightDrive.Direction.backward, 34, true));
-			addSequential(new GrabberGrab());
+			addSequential(new GrabberSuck());
 			addSequential(new MoveElevator(MoveElevator.PreSetHeight.Home));
 		}
 	}
@@ -86,13 +85,13 @@ public class Scale extends BaseAutonomous {
 			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 220));
 			CommandGroup raiseTurn = new CommandGroup();
 			raiseTurn.addParallel(new MoveElevator(MoveElevator.PreSetHeight.Scale));
-			raiseTurn.addParallel(new WheelyBarDown());
+			// raiseTurn.addParallel(new WheelyBarDown());
 			raiseTurn.addSequential(new GyroDrive(115, GyroDrive.Direction.dRight));
 			addSequential(raiseTurn);
 			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 62, true));
-			addSequential(new GrabberRelease());
+			addSequential(new GrabberSpit());
 			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, StraightDrive.Direction.backward, 34, true));
-			addSequential(new GrabberGrab());
+			addSequential(new GrabberSuck());
 			addSequential(new MoveElevator(MoveElevator.PreSetHeight.Home));
 		}
 		else {
@@ -101,14 +100,14 @@ public class Scale extends BaseAutonomous {
 			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 240));
 			CommandGroup raiseTurn = new CommandGroup();
 			raiseTurn.addParallel(new MoveElevator(MoveElevator.PreSetHeight.Scale));
-			raiseTurn.addParallel(new WheelyBarDown());
+			// raiseTurn.addParallel(new WheelyBarDown());
 			raiseTurn.addSequential(new GyroDrive(34, GyroDrive.Direction.dLeft));
 			addSequential(raiseTurn);
 
 			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 34, true));
-			addSequential(new GrabberRelease());
+			addSequential(new GrabberSpit());
 			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, StraightDrive.Direction.backward, 34, true));
-			addSequential(new GrabberGrab());
+			addSequential(new GrabberSuck());
 			addSequential(new MoveElevator(MoveElevator.PreSetHeight.Home));
 		}
 	}

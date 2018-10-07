@@ -3,7 +3,6 @@ package org.usfirst.frc.team6479.robot.commands.auton.elevator;
 import org.usfirst.frc.team6479.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
-import org.usfirst.frc.team6479.robot.commands.auton.drive.StraightDrive;
 
 //move elevator to a height
 public class MoveElevator extends Command {
@@ -43,8 +42,8 @@ public class MoveElevator extends Command {
 	@Override
 	protected void initialize() {
 		Robot.eventLogger.writeToLog("MoveElevator Starting at: " + height.name());
-		Robot.elevator.unlock();
-		Robot.elevator.switchToWinch();
+		// Robot.elevator.unlock();
+		// Robot.elevator.switchToWinch();
 
 		ticks = 0;
 

@@ -2,19 +2,30 @@ package org.usfirst.frc.team6479.robot.sensors;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SendableBase;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableBuilder;
+import org.usfirst.frc.team6479.robot.util.Units;
 
 //class to control two encoders so that they can be averaged nicely
 public class DrivetrainEncoder extends SendableBase {
-
-
 	private AdjustedEncoder left;
 	private AdjustedEncoder right;
+	private Timer timer;
+	private double fallbackDistance;
+	private double prevRate;
+	private double prevTime;
+
 	public DrivetrainEncoder(AdjustedEncoder left, AdjustedEncoder right) {
 		this.left = left;
 		this.right = right;
 		right.setSamplesToAverage(20);
 		left.setSamplesToAverage(25);
+
+		timer = new Timer();
+		timer.start();
+
+		prevRate = 0;
+		prevTime = 0;
 	}
 	public DrivetrainEncoder(int leftA, int leftB, boolean reverseLeft, int rightA, int rightB, boolean reverseRight, Encoder.EncodingType encoding) {
 		this(new AdjustedEncoder(leftA, leftB, reverseLeft, encoding), new AdjustedEncoder(rightA, rightB, reverseRight, encoding));
@@ -26,6 +37,9 @@ public class DrivetrainEncoder extends SendableBase {
 	public Encoder getRight() {
 		return right;
 	}
+	public Timer getTimer() {
+		return timer;
+	}
 
 
 	//accesor methods take avergaes
@@ -34,6 +48,17 @@ public class DrivetrainEncoder extends SendableBase {
 	}
 	public double getDistancePerPulse() {
 		return (left.getDistancePerPulse() + right.getDistancePerPulse()) / 2;
+	}
+	public double getFallbackDistance() {
+		return fallbackDistance;
+	}
+	public void calcFallbackDistance() {
+			//fallbackDistance = getRate() * timer.get();
+		double currentTime = timer.get();
+		double currentRate = getRate();
+		fallbackDistance += (Math.abs(currentRate - prevRate) * 10) * Math.abs(currentTime - prevTime);
+		prevRate = currentRate;
+		prevTime = currentTime;
 	}
 	public double getRate() {
 		return (left.getRate() + right.getRate()) / 2;
@@ -71,6 +96,10 @@ public class DrivetrainEncoder extends SendableBase {
 	public void reset() {
 		left.reset();
 		right.reset();
+		timer.reset();
+		prevRate= 0;
+		prevTime = 0;
+		fallbackDistance = 0;
 	}
 
 

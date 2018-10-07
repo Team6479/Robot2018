@@ -13,25 +13,19 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 //the elevator, which uses a winch, this is controlled by two cims and a piston
 public class Elevator extends Subsystem implements SafeSubsystem {
 
-	private SpeedController winchMotorTop;
-	private SpeedController winchMotorBottom;
+	private SpeedController elevatorMotorFront;
+	private SpeedController elevatorMotorBack;
 
-	private SpeedController winch;
-	//when solenoid is on, the winch is stopped
-	private Solenoid winchSol;
-	//when the solenoid is on, power will go to the winch
-	private Solenoid gearboxSol;
+	private SpeedController elevator;
 	private Encoder encoder;
 
 	public Elevator() {
-		winchMotorTop = new Spark(RobotMap.winchTopPort);
-		winchMotorBottom = new Spark(RobotMap.winchBottomPort);
+		elevatorMotorFront = new Spark(RobotMap.elevatorFrontPort);
+		elevatorMotorBack = new Spark(RobotMap.elevatorBackPort);
 
-		winch = new SpeedControllerGroup(winchMotorTop, winchMotorBottom);
-		winchSol = new Solenoid(RobotMap.winchSolPort);
-		gearboxSol = new Solenoid(RobotMap.gearboxSolPort);
-		encoder = new Encoder(RobotMap.pulleyEncoderAPort, RobotMap.pulleyEncoderBPort);
-		unlock();
+		elevator = new SpeedControllerGroup(elevatorMotorFront, elevatorMotorBack);
+		encoder = new Encoder(RobotMap.elevatorEncoderAPort, RobotMap.elevatorEncoderBPort);
+		// unlock();
 	}
 
 	@Override
@@ -39,55 +33,26 @@ public class Elevator extends Subsystem implements SafeSubsystem {
 		setDefaultCommand(new ElevatorControl());
 	}
 	public void move(double speed) {
+		elevator.set(speed);
+		// if(isLocked() && isOnWinch()) {
+		// 	elevator.set(0.5 * speed);
+		// }
+		// else if(isLocked() && isOnClimber()) {
+		// 	elevator.set(0);
+		// }
+		// else if(isUnLocked() && isOnWinch()) {
+		// 	elevator.set(speed);
+		// }
+		// else if(isUnLocked() && isOnClimber()) {
+		// 	elevator.set(speed);
+		// }
+		// else {
+		// 	elevator.set(0);
+		// }
+	}
 
-		if(isLocked() && isOnWinch()) {
-			winch.set(0.5 * speed);
-		}
-		else if(isLocked() && isOnClimber()) {
-			winch.set(0);
-		}
-		else if(isUnLocked() && isOnWinch()) {
-			winch.set(speed);
-		}
-		else if(isUnLocked() && isOnClimber()) {
-			winch.set(speed);
-		}
-		else {
-			winch.set(0);
-		}
-	}
-	public void switchToWinch() {
-		gearboxSol.set(true);
-	}
-	public void switchToClimber() {
-		gearboxSol.set(false);
-	}
-	public boolean isOnWinch() {
-		return gearboxSol.get();
-	}
-	public boolean isOnClimber() {
-		return !isOnWinch();
-	}
-	public void lock() {
-		winchSol.set(true);
-	}
-	public void unlock() {
-		winchSol.set(false);
-	}
-	public boolean isLocked() {
-		return winchSol.get();
-	}
-	public boolean isUnLocked() {
-		return !isLocked();
-	}
-	public SpeedController getWinch() {
-		return winch;
-	}
-	public Solenoid getStopperSolenoid() {
-		return winchSol;
-	}
-	public Solenoid getGearboxSolenoid() {
-		return gearboxSol;
+	public SpeedController getElevator() {
+		return elevator;
 	}
 
 	public Encoder getEncoder() {
@@ -96,8 +61,7 @@ public class Elevator extends Subsystem implements SafeSubsystem {
 
 	@Override
 	public void stop() {
-		winch.set(0);
-		unlock();
+		elevator.set(0);
 	}
 
 }

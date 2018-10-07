@@ -1,12 +1,8 @@
 package org.usfirst.frc.team6479.robot.autonomous;
 
 import org.usfirst.frc.team6479.robot.autonomous.manager.StartPosition;
-import org.usfirst.frc.team6479.robot.commands.auton.elevator.GrabberGrab;
-import org.usfirst.frc.team6479.robot.commands.auton.elevator.PistonPush;
-import org.usfirst.frc.team6479.robot.commands.auton.elevator.PistonRetract;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-
 import openrio.powerup.MatchData;
 import openrio.powerup.MatchData.GameFeature;
 import openrio.powerup.MatchData.OwnedSide;
@@ -60,7 +56,7 @@ public abstract class BaseAutonomous extends CommandGroup {
 	}
 
 	private void base() {
-		addSequential(new GrabberGrab());
+		// addSequential(new GrabberGrab());
 		//addSequential(new PistonRetract());
 	}
 

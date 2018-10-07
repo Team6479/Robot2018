@@ -1,17 +1,16 @@
 package org.usfirst.frc.team6479.robot.autonomous;
 
-import edu.wpi.first.wpilibj.command.CommandGroup;
 import org.usfirst.frc.team6479.robot.Robot;
 import org.usfirst.frc.team6479.robot.autonomous.manager.StartPosition;
 import org.usfirst.frc.team6479.robot.commands.auton.drive.DeadReckonDrive;
 import org.usfirst.frc.team6479.robot.commands.auton.drive.FlushTurn;
 import org.usfirst.frc.team6479.robot.commands.auton.drive.GyroDrive;
 import org.usfirst.frc.team6479.robot.commands.auton.drive.StraightDrive;
-import org.usfirst.frc.team6479.robot.commands.auton.elevator.GrabberRelease;
 import org.usfirst.frc.team6479.robot.commands.auton.elevator.MoveElevator;
+import org.usfirst.frc.team6479.robot.commands.auton.intake.GrabberSpit;
 
+import edu.wpi.first.wpilibj.command.CommandGroup;
 import openrio.powerup.MatchData;
-import org.usfirst.frc.team6479.robot.commands.auton.wheelybar.WheelyBarDown;
 
 public class Switch extends BaseAutonomous {
 
@@ -141,7 +140,7 @@ public class Switch extends BaseAutonomous {
 		if(isLeft) {
 			addSequential(new FlushTurn());
 			addSequential(new MoveElevator(MoveElevator.PreSetHeight.Switch));
-			addSequential(new WheelyBarDown());
+			// addSequential(new WheelyBarDown());
 			deliverCube();
 		}
 		else {
@@ -160,15 +159,15 @@ public class Switch extends BaseAutonomous {
 		else {
 			addSequential(new FlushTurn());
 			addSequential(new MoveElevator(MoveElevator.PreSetHeight.Switch));
-			addSequential(new WheelyBarDown());
+			// addSequential(new WheelyBarDown());
 			deliverCube();
 		}
 	}
 
 	private void deliverCube() {
-		addParallel(new WheelyBarDown());
+		// addParallel(new WheelyBarDown());
 		addSequential(new StraightDrive(StraightDrive.Mode.sonarDrive, 6));
-		addParallel(new GrabberRelease());
+		addParallel(new GrabberSpit());
 		addSequential(new DeadReckonDrive(0.8, 0.75, DeadReckonDrive.Direction.dForward));
 	}
 

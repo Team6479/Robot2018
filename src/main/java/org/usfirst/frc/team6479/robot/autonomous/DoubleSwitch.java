@@ -6,8 +6,8 @@ import org.usfirst.frc.team6479.robot.commands.auton.drive.DeadReckonDrive;
 import org.usfirst.frc.team6479.robot.commands.auton.drive.FlushTurn;
 import org.usfirst.frc.team6479.robot.commands.auton.drive.GyroDrive;
 import org.usfirst.frc.team6479.robot.commands.auton.drive.StraightDrive;
-import org.usfirst.frc.team6479.robot.commands.auton.elevator.GrabberRelease;
 import org.usfirst.frc.team6479.robot.commands.auton.elevator.MoveElevator;
+import org.usfirst.frc.team6479.robot.commands.auton.intake.GrabberSpit;
 
 import openrio.powerup.MatchData;
 
@@ -161,7 +161,7 @@ public class DoubleSwitch extends BaseAutonomous {
 
 	private void deliverCube() {
 		addSequential(new StraightDrive(StraightDrive.Mode.sonarDrive, 1));
-		addParallel(new GrabberRelease());
+		addParallel(new GrabberSpit());
 		addSequential(new DeadReckonDrive(0.6, 0.6, DeadReckonDrive.Direction.dForward));
 	}
 

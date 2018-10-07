@@ -15,20 +15,23 @@ public class RobotMap {
 	public static final int rightBackPort = 1;
 	public static final int leftFrontPort = 2;
 	public static final int rightFrontPort = 3;
-	 //pulley motors
-    public static final int winchTopPort = 4;
-    public static final int winchBottomPort = 5;
+	// Grabber Motors
+	public static final int grabberLeftPort = 7;
+	public static final int grabberRightPort = 6;
+	// Elevator motors
+    public static final int elevatorFrontPort = 4;
+    public static final int elevatorBackPort = 5;
     //END PWM
 
     //DIO
 	//encoders for the drive train
-	public static final int leftEncoderAPort = 0;
-	public static final int leftEncoderBPort = 1;
-	public static final int rightEncoderAPort = 2;
-	public static final int rightEncoderBPort = 3;
-	//encoder for pulley
-    public static final int pulleyEncoderAPort = 4;
-    public static final int pulleyEncoderBPort = 5;
+	public static final int leftEncoderAPort = 2;
+	public static final int leftEncoderBPort = 3;
+	public static final int rightEncoderAPort = 1;
+	public static final int rightEncoderBPort = 0;
+	//encoder for elevator
+    public static final int elevatorEncoderAPort = 4;
+    public static final int elevatorEncoderBPort = 5;
     //vex sonar
     public static final int leftInputPing = 6;
     public static final int leftOutputEcho = 7;
@@ -37,7 +40,7 @@ public class RobotMap {
     //END DIO
 
     //ANALOG
-    
+
     //END ANALOG
 
     //RELAY

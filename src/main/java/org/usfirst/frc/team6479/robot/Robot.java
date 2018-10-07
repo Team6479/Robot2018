@@ -6,18 +6,14 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.usfirst.frc.team6479.robot.autonomous.manager.AutonomousManager;
-import org.usfirst.frc.team6479.robot.commands.auton.GrabCube;
 import org.usfirst.frc.team6479.robot.control.OI;
 import org.usfirst.frc.team6479.robot.logger.DataLogger;
 import org.usfirst.frc.team6479.robot.logger.EventLogger;
 import org.usfirst.frc.team6479.robot.logger.RobotEvent;
-import org.usfirst.frc.team6479.robot.subsystems.Camera;
 import org.usfirst.frc.team6479.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team6479.robot.subsystems.Elevator;
 import org.usfirst.frc.team6479.robot.subsystems.Grabber;
-import org.usfirst.frc.team6479.robot.subsystems.Pusher;
 import org.usfirst.frc.team6479.robot.subsystems.SafeSubsystem;
-import org.usfirst.frc.team6479.robot.subsystems.WheelyBar;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -32,9 +28,9 @@ public class Robot extends IterativeRobot {
 	public static Drivetrain drivetrain;
 	public static Elevator elevator;
 	public static Grabber grabber;
-	public static Pusher pusher;
-	public static WheelyBar wheely;
-	public static Camera camera;
+	// public static Pusher pusher;
+	// public static WheelyBar wheely;
+	// public static Camera camera;
 	private static Map<String, SafeSubsystem> subsystemManager;
 	private static AutonomousManager autoManager;
 	public static Compressor compressor;
@@ -53,30 +49,30 @@ public class Robot extends IterativeRobot {
 		data.put("RightDistance", String.format("%+05.2f", drivetrain.getEncoder().getRight().getDistance()));
 		data.put("LeftVelocity", String.format("%+05.2f", drivetrain.getEncoder().getLeft().getRate()));
 		data.put("RightVelocity", String.format("%+05.2f", drivetrain.getEncoder().getRight().getRate()));
-		data.put("Gyro", String.format("%+04.2f", drivetrain.getGyro().getAngle()));
+		// data.put("Gyro", String.format("%+04.2f", drivetrain.getGyro().getAngle()));
 		data.put("LeftSonar", String.format("%+02.2f", drivetrain.getUltrasonic().getLeft()));
 		data.put("RightSonar", String.format("%+02.2f", drivetrain.getUltrasonic().getRight()));
 
 		//elevator
-		data.put("Winch", String.format("%+01.2f", elevator.getWinch().get()));
+		// data.put("Winch", String.format("%+01.2f", elevator.getWinch().get()));
 		data.put("ElevatorHeight", String.format("%+05.2f", elevator.getEncoder().getDistance()));
 		data.put("ElevatorVelocity", String.format("%+05.2f", elevator.getEncoder().getRate()));
-		data.put("GearboxToWinch", elevator.isOnWinch() ? "T" : "F");
-		data.put("WinchLocked", elevator.isLocked() ? "T" : "F");
+		// data.put("GearboxToWinch", elevator.isOnWinch() ? "T" : "F");
+		// data.put("WinchLocked", elevator.isLocked() ? "T" : "F");
 
 		//grabber
-		data.put("Grabbing", grabber.isGrabbing() ? "T" : "F");
+		// data.put("Grabbing", grabber.isGrabbing() ? "T" : "F");
 
 		//pusher
-		data.put("Pushing", pusher.isExtend() ? "T" : "F");
+		// data.put("Pushing", pusher.isExtend() ? "T" : "F");
 
 		//wheely bar
-		data.put("WheelyBarDown", wheely.isDown() ? "T" : "F");
+		// data.put("WheelyBarDown", wheely.isDown() ? "T" : "F");
 
 		//camera
-		data.put("LightOn", camera.isLightOn() ? "T" : "F");
-		data.put("CameraMode", camera.currentCameraMode().name());
-		data.put("CameraDistance", String.format("%+02.2f", camera.getCurrentDistance()));
+		// data.put("LightOn", camera.isLightOn() ? "T" : "F");
+		// data.put("CameraMode", camera.currentCameraMode().name());
+		// data.put("CameraDistance", String.format("%+02.2f", camera.getCurrentDistance()));
 
 		//power
 		/*data.put("PDPTemperature", String.format("%+02.2f", pdp.getTemperature()));
@@ -110,9 +106,9 @@ public class Robot extends IterativeRobot {
 		eventLogger.writeToLog(RobotEvent.GYRO_CALIBRATED);
 		elevator = new Elevator();
 		grabber = new Grabber();
-		pusher = new Pusher();
-		wheely = new WheelyBar();
-		camera = new Camera();
+		// pusher = new Pusher();
+		// wheely = new WheelyBar();
+		// camera = new Camera();
 
 		setRobotDefault();
 
@@ -120,9 +116,9 @@ public class Robot extends IterativeRobot {
 		subsystemManager.put("Drivetrain", drivetrain);
 		subsystemManager.put("Elevator", elevator);
 		subsystemManager.put("Grabber", grabber);
-		subsystemManager.put("Pusher", pusher);
-		subsystemManager.put("Wheely", wheely);
-		subsystemManager.put("Camera", camera);
+		// subsystemManager.put("Pusher", pusher);
+		// subsystemManager.put("Wheely", wheely);
+		// subsystemManager.put("Camera", camera);
 
 
 		//init the controls in oi
@@ -130,8 +126,8 @@ public class Robot extends IterativeRobot {
 
         autoManager = new AutonomousManager();
 
-        compressor = new Compressor();
-        compressor.setClosedLoopControl(true);
+        // compressor = new Compressor();
+        // compressor.setClosedLoopControl(true);
 
 
         //Initialize SmartDashboard tracking
@@ -150,29 +146,29 @@ public class Robot extends IterativeRobot {
 	public void setRobotDefault() {
 		drivetrain.setLimiter(false);
 		drivetrain.setHyper(false);
-		elevator.switchToWinch();
-		elevator.unlock();
-		pusher.retract();
-		grabber.release();
-		wheely.up();
+		// elevator.switchToWinch();
+		// elevator.unlock();
+		// pusher.retract();
+		// grabber.release();
+		// wheely.up();
 	}
 	public void setAutonomousDefault() {
 		drivetrain.setLimiter(false);
 		drivetrain.setHyper(true);
-		elevator.switchToWinch();
-		elevator.unlock();
-		pusher.extend();
-		grabber.release();
-		wheely.up();
+		// elevator.switchToWinch();
+		// elevator.unlock();
+		// pusher.extend();
+		// grabber.release();
+		// wheely.up();
 	}
 	public void setTeleopDefault() {
 		drivetrain.setLimiter(true);
 		drivetrain.setHyper(false);
-		elevator.switchToWinch();
-		elevator.unlock();
-		pusher.retract();
-		grabber.release();
-		wheely.up();
+		// elevator.switchToWinch();
+		// elevator.unlock();
+		// pusher.retract();
+		// grabber.release();
+		// wheely.up();
 	}
 
 	@Override
@@ -183,21 +179,22 @@ public class Robot extends IterativeRobot {
 
 	    SmartDashboard.putData("encoder left", Robot.drivetrain.getEncoder().getLeft());
 	    SmartDashboard.putData("encoder right", Robot.drivetrain.getEncoder().getRight());
+	    SmartDashboard.putNumber("FallbackDistance", Robot.drivetrain.getEncoder().getFallbackDistance());
+	    SmartDashboard.putNumber("Timer", Robot.drivetrain.getEncoder().getTimer().get());
 	    SmartDashboard.putData("elevator encoder", Robot.elevator.getEncoder());
 	    SmartDashboard.putNumber("Sonar left", Robot.drivetrain.getUltrasonic().getLeft());
 		SmartDashboard.putNumber("Sonar Right", Robot.drivetrain.getUltrasonic().getRight());
-		SmartDashboard.putNumber("Gyro", Robot.drivetrain.getGyro().getAngle());
+		// SmartDashboard.putNumber("Gyro", Robot.drivetrain.getGyro().getAngle());
 
-		SmartDashboard.putBoolean("Grabber:", grabber.isGrabbing());
-		SmartDashboard.putBoolean("Pusher:", pusher.isExtend());
-		SmartDashboard.putBoolean("Locked:", elevator.isLocked());
-		SmartDashboard.putBoolean("Winch:", elevator.isOnWinch());
+		// SmartDashboard.putBoolean("Grabber:", grabber.isGrabbing());
+		// SmartDashboard.putBoolean("Pusher:", pusher.isExtend());
 
 		//System.out.println(Robot.camera.getCurrentDistance());
 
-		SmartDashboard.putBoolean("Pressure:", compressor.getPressureSwitchValue());
+		// SmartDashboard.putBoolean("Pressure:", compressor.getPressureSwitchValue());
 
 		driveLog();
+		drivetrain.getEncoder().calcFallbackDistance();
 	}
 	@Override
 	public void autonomousInit() {
