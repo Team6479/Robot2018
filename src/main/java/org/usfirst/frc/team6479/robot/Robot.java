@@ -178,13 +178,14 @@ public class Robot extends IterativeRobot {
 	    ButtonTracker.updateAll();
 
 	    SmartDashboard.putData("encoder left", Robot.drivetrain.getEncoder().getLeft());
-	    SmartDashboard.putData("encoder right", Robot.drivetrain.getEncoder().getRight());
+        SmartDashboard.putData("encoder right", Robot.drivetrain.getEncoder().getRight());
+        SmartDashboard.putData("encoder", Robot.drivetrain.getEncoder());
 	    SmartDashboard.putNumber("FallbackDistance", Robot.drivetrain.getEncoder().getFallbackDistance());
 	    SmartDashboard.putNumber("Timer", Robot.drivetrain.getEncoder().getTimer().get());
 	    SmartDashboard.putData("elevator encoder", Robot.elevator.getEncoder());
 	    SmartDashboard.putNumber("Sonar left", Robot.drivetrain.getUltrasonic().getLeft());
 		SmartDashboard.putNumber("Sonar Right", Robot.drivetrain.getUltrasonic().getRight());
-		// SmartDashboard.putNumber("Gyro", Robot.drivetrain.getGyro().getAngle());
+		SmartDashboard.putNumber("Gyro", Robot.drivetrain.getGyro().getAngle());
 
 		// SmartDashboard.putBoolean("Grabber:", grabber.isGrabbing());
 		// SmartDashboard.putBoolean("Pusher:", pusher.isExtend());

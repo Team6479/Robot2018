@@ -5,7 +5,6 @@ public class RobotMap {
     //DS
 	//controllers
 	public static final int driverController = 0;
-	public static final int assistantController = 1;
 	//END DS
 
 
@@ -27,8 +26,8 @@ public class RobotMap {
 	//encoders for the drive train
 	public static final int leftEncoderAPort = 2;
 	public static final int leftEncoderBPort = 3;
-	public static final int rightEncoderAPort = 1;
-	public static final int rightEncoderBPort = 0;
+	public static final int rightEncoderAPort = 0;
+	public static final int rightEncoderBPort = 1;
 	//encoder for elevator
     public static final int elevatorEncoderAPort = 4;
     public static final int elevatorEncoderBPort = 5;
@@ -48,19 +47,8 @@ public class RobotMap {
     public static final int lightSpikePort = 0;
     //END RELAY
 
-	//PCM
-	//pulley single solenoid
-	public static final int winchSolPort = 0;
-	public static final int gearboxSolPort = 1;
-	//grabber piston
-    public static final int grabberOnPort = 2;
-    public static final int grabberOffPort = 3;
-    //Pusher Piston
-    public static final int pusherOnPort = 4;
-    public static final int pusherOffPort = 5;
-    //wheely bar piston
-    public static final int wheelyOnPort = 6;
-    public static final int wheelyOffPort = 7;
+    //PCM
+    
     //END PCM
 
 	//compressor

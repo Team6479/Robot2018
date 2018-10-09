@@ -20,15 +20,4 @@ public class GrabberSpit extends InstantCommand {
     		Robot.grabber.spit(1);;
     		//System.out.println("RELEASE: " + Robot.grabber.isSpitting());
 	}
-
-	  // Make this return true when this Command no longer needs to run execute()
-	  @Override
-	  protected boolean isFinished() {
-		return false;
-	  }
-
-	  // Called once after isFinished returns true
-	  @Override
-	  protected void end() {
-	  }
 }

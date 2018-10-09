@@ -24,7 +24,6 @@ public class OI {
 		//Driver Button Trackers
 		driverRightBumper = new ButtonTracker(driverController, XboxMap.RightBumper);
 	    driverLeftBumper = new ButtonTracker(driverController, XboxMap.LeftBumper);
-	    driverBButton = new ButtonTracker(driverController, XboxMap.BButton);
 
 
 	    //Testing Commands
@@ -61,9 +60,6 @@ public class OI {
 	}
 	public ButtonTracker getDriverRightBumper() {
 		return driverRightBumper;
-	}
-	public ButtonTracker getDriverBButton() {
-		return driverBButton;
 	}
 
 }

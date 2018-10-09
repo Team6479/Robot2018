@@ -167,8 +167,7 @@ public class Switch extends BaseAutonomous {
 	private void deliverCube() {
 		// addParallel(new WheelyBarDown());
 		addSequential(new StraightDrive(StraightDrive.Mode.sonarDrive, 6));
-		addParallel(new GrabberSpit());
-		addSequential(new DeadReckonDrive(0.8, 0.75, DeadReckonDrive.Direction.dForward));
+		addSequential(new GrabberSpit());
 	}
 
 	private void reverse() {

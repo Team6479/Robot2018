@@ -23,7 +23,8 @@ public class Elevator extends Subsystem implements SafeSubsystem {
 		elevatorMotorFront = new Spark(RobotMap.elevatorFrontPort);
 		elevatorMotorBack = new Spark(RobotMap.elevatorBackPort);
 
-		elevator = new SpeedControllerGroup(elevatorMotorFront, elevatorMotorBack);
+        elevator = new SpeedControllerGroup(elevatorMotorFront, elevatorMotorBack);
+        elevator.setInverted(true);
 		encoder = new Encoder(RobotMap.elevatorEncoderAPort, RobotMap.elevatorEncoderBPort);
 		// unlock();
 	}
