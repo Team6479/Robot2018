@@ -13,6 +13,7 @@ import org.usfirst.frc.team6479.robot.logger.RobotEvent;
 import org.usfirst.frc.team6479.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team6479.robot.subsystems.Elevator;
 import org.usfirst.frc.team6479.robot.subsystems.Grabber;
+import org.usfirst.frc.team6479.robot.subsystems.NavX;
 import org.usfirst.frc.team6479.robot.subsystems.SafeSubsystem;
 
 import edu.wpi.first.wpilibj.Compressor;
@@ -24,7 +25,8 @@ import robot.xbox.ButtonTracker;
 
 public class Robot extends IterativeRobot {
 
-    public static OI oi;
+	public static OI oi;
+	public static NavX navX;
 	public static Drivetrain drivetrain;
 	public static Elevator elevator;
 	public static Grabber grabber;
@@ -100,6 +102,7 @@ public class Robot extends IterativeRobot {
 		eventLogger.writeToLog(RobotEvent.ROBOT_START);
 
 		//init subsystems
+		navX = new NavX();
 		drivetrain = new Drivetrain();
 		eventLogger.writeToLog(RobotEvent.START_GYRO_CALIBRATE);
 		drivetrain.getGyro().calibrate();

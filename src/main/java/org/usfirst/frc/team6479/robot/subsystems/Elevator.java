@@ -35,21 +35,6 @@ public class Elevator extends Subsystem implements SafeSubsystem {
 	}
 	public void move(double speed) {
 		elevator.set(speed);
-		// if(isLocked() && isOnWinch()) {
-		// 	elevator.set(0.5 * speed);
-		// }
-		// else if(isLocked() && isOnClimber()) {
-		// 	elevator.set(0);
-		// }
-		// else if(isUnLocked() && isOnWinch()) {
-		// 	elevator.set(speed);
-		// }
-		// else if(isUnLocked() && isOnClimber()) {
-		// 	elevator.set(speed);
-		// }
-		// else {
-		// 	elevator.set(0);
-		// }
 	}
 
 	public SpeedController getElevator() {

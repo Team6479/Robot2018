@@ -6,9 +6,12 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class ToggleGrabberDirections extends Command {
 
+	private boolean driverLeftBumperToggle;
+
 	public ToggleGrabberDirections() {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.grabber);
+		driverLeftBumperToggle = false;
 	}
 
 	/**
@@ -22,12 +25,16 @@ public class ToggleGrabberDirections extends Command {
 		boolean isDriverLeftBumperPressed = Robot.oi.getDriverLeftBumper().isPressed();
 		boolean isDriverRightBumperPressed = Robot.oi.getDriverRightBumper().isPressed();
 
-		if(isDriverLeftBumperPressed && !isDriverRightBumperPressed) {
+		if(Robot.oi.getDriverLeftBumper().wasJustPressed()) {
+			driverLeftBumperToggle = !driverLeftBumperToggle;
+		}
+
+		if(driverLeftBumperToggle && !isDriverRightBumperPressed) {
 			if(!isSucking && !isSpitting) {
 				Robot.grabber.suck(Robot.grabber.GRABBER_SUCK_SPEED);
 			}
 		}
-		else if(!isDriverLeftBumperPressed && isDriverRightBumperPressed) {
+		else if(!driverLeftBumperToggle && isDriverRightBumperPressed) {
 			if(!isSucking && !isSpitting) {
 				Robot.grabber.spit(Robot.grabber.GRABBER_SPIT_SPEED);
 			}

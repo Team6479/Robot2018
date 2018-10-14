@@ -50,7 +50,6 @@ public class Scale extends BaseAutonomous {
 			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 34, true));
 			addSequential(new GrabberSpit());
 			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, StraightDrive.Direction.backward, 34, true));
-			addSequential(new GrabberSuck());
 			addSequential(new MoveElevator(MoveElevator.PreSetHeight.Home));
 		}
 		else {
@@ -66,7 +65,6 @@ public class Scale extends BaseAutonomous {
 			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 62, true));
 			addSequential(new GrabberSpit());
 			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, StraightDrive.Direction.backward, 34, true));
-			addSequential(new GrabberSuck());
 			addSequential(new MoveElevator(MoveElevator.PreSetHeight.Home));
 		}
 	}
@@ -91,7 +89,6 @@ public class Scale extends BaseAutonomous {
 			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 62, true));
 			addSequential(new GrabberSpit());
 			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, StraightDrive.Direction.backward, 34, true));
-			addSequential(new GrabberSuck());
 			addSequential(new MoveElevator(MoveElevator.PreSetHeight.Home));
 		}
 		else {
@@ -107,7 +104,6 @@ public class Scale extends BaseAutonomous {
 			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 34, true));
 			addSequential(new GrabberSpit());
 			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, StraightDrive.Direction.backward, 34, true));
-			addSequential(new GrabberSuck());
 			addSequential(new MoveElevator(MoveElevator.PreSetHeight.Home));
 		}
 	}

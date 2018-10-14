@@ -32,7 +32,8 @@ public class StraightDrive extends Command {
     public StraightDrive(Mode mode, Direction direction , double distance, boolean precision) {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
-        requires(Robot.drivetrain);
+		requires(Robot.drivetrain);
+		requires(Robot.navX);
         this.mode = mode;
         this.direction = direction;
         this.distanceGoal = Math.abs(distance);
@@ -57,8 +58,8 @@ public class StraightDrive extends Command {
 	@Override
 	protected void initialize() {
 		Robot.eventLogger.writeToLog("Straight Drive Started");
-	    Robot.drivetrain.getGyro().reset();
-	    Robot.drivetrain.getEncoder().reset();
+		Robot.navX.getNavX().reset();
+		Robot.drivetrain.getEncoder().reset();
 	    speed = 0.2;
 
 	    //Distance that needs to be traveled
@@ -74,7 +75,7 @@ public class StraightDrive extends Command {
 	protected void execute() {
         //kP = constant to prevent jerky angle correction
 		double kP = 0.03;
-	    double angle = Robot.drivetrain.getGyro().getAngle();
+	    double angle = Robot.navX.getNavX().getYaw();
 
 	    if (mode == Mode.sonarDrive) {
 		    distance = Robot.drivetrain.getUltrasonic().get() - 10;
@@ -94,9 +95,9 @@ public class StraightDrive extends Command {
 	    		/*if (Robot.drivetrain.getUltrasonic().get() <= 30) {
 	    			speed = 0;
 		        }*/
-		    //else
+		    	//else
 				//distance = Math.abs(Robot.drivetrain.getEncoder().getDistance());
-			    distance = Math.abs(Robot.drivetrain.getEncoder().getRight().getDistance());
+			    distance = Math.abs(Robot.drivetrain.getEncoder().getLeft().getDistance());
 
 			    //Safety for if encoders do not return a value
 			    prevDistanceNum++;

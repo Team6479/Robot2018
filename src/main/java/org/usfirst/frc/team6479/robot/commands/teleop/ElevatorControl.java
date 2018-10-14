@@ -14,6 +14,10 @@ public class ElevatorControl extends Command {
 		requires(Robot.elevator);
 	}
 
+	@Override
+	protected void initialize() {
+		Robot.elevator.getEncoder().reset();
+	}
 
 	/**
 	 * The execute method is called repeatedly when this Command is
@@ -22,6 +26,13 @@ public class ElevatorControl extends Command {
 	@Override
 	protected void execute() {
 		double speed = Robot.oi.getDriverController().getRawAxis(XboxMap.RightJoyStickY) * -1;
+
+		// if(speed > 0.3) {
+		// 	speed = 0.3;
+		// }
+		// else if(speed < -0.3) {
+		// 	speed = -0.3;
+		// }
 
 		Robot.elevator.move(speed);
 	}

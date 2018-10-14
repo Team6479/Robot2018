@@ -24,7 +24,8 @@ public class GyroDrive extends Command {
     public GyroDrive(double angle, Direction dir) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        requires(Robot.drivetrain);
+		requires(Robot.drivetrain);
+		requires(Robot.navX);
         angleGoal = angle;
 
         this.dir = dir;
@@ -37,7 +38,7 @@ public class GyroDrive extends Command {
     @Override
     protected void initialize() {
 		Robot.eventLogger.writeToLog("GyroDrive Starting");
-        Robot.drivetrain.getGyro().reset();
+		Robot.navX.getNavX().reset();
 
         ticks = 0;
 
@@ -73,11 +74,13 @@ public class GyroDrive extends Command {
     protected void execute() {
     	ticks++;
         prevGyroAngle = gyroAngle;
-        gyroAngle = Math.abs(Robot.drivetrain.getGyro().getAngle());
+		// gyroAngle = Math.abs(Robot.drivetrain.getGyro().getAngle());
+		double tmpAngle = Robot.navX.getNavX().getYaw();
+		gyroAngle = Math.abs(tmpAngle);
 
         angleCOT = this.getAngleCOT(prevGyroAngle, gyroAngle);
 
-        if(ticks >= 20 && Robot.drivetrain.getGyro().getAngle() == 0) {
+        if(ticks >= 20 && tmpAngle == 0) {
         	Robot.eventLogger.writeToLog("GyroDrive Fail Safe Triggered");
         	speed = 0;
 		}

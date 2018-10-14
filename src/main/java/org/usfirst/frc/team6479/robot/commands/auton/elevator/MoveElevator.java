@@ -9,7 +9,7 @@ public class MoveElevator extends Command {
 
 	public enum PreSetHeight {
 		PrepSwitch(400),
-		Switch(1700),
+		Switch(1255),
 		Scale(2800),
 		Home(0),
 		Vision(10);
@@ -25,7 +25,7 @@ public class MoveElevator extends Command {
     private double speed;
     private boolean needToMoveUp;
     private PreSetHeight height;
-    private double encoderValue;
+    private double goalValue;
 
     public MoveElevator(PreSetHeight height) {
 		// Use requires() here to declare subsystem dependencies
@@ -48,7 +48,7 @@ public class MoveElevator extends Command {
 		ticks = 0;
 
 	    speed = 0.7;
-	    encoderValue = height.value;
+	    goalValue = height.value;
 	    //if the current height is higher than the setpoint, needToMoveUp is false
 	    needToMoveUp = Robot.elevator.getEncoder().get() < height.value;
 	}
@@ -66,7 +66,7 @@ public class MoveElevator extends Command {
 			speed = 0;
 		}
 		else {
-			speed = 0.85 + 0.15 * ((encoderValue - Robot.elevator.getEncoder().get()) / encoderValue);
+			speed = 0.3 + 0.15 * ((goalValue - Robot.elevator.getEncoder().get()) / goalValue);
 		}
 
 		if(needToMoveUp) {

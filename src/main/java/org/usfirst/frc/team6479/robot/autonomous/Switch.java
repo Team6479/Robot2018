@@ -2,11 +2,11 @@ package org.usfirst.frc.team6479.robot.autonomous;
 
 import org.usfirst.frc.team6479.robot.Robot;
 import org.usfirst.frc.team6479.robot.autonomous.manager.StartPosition;
-import org.usfirst.frc.team6479.robot.commands.auton.drive.DeadReckonDrive;
 import org.usfirst.frc.team6479.robot.commands.auton.drive.FlushTurn;
 import org.usfirst.frc.team6479.robot.commands.auton.drive.GyroDrive;
 import org.usfirst.frc.team6479.robot.commands.auton.drive.StraightDrive;
 import org.usfirst.frc.team6479.robot.commands.auton.elevator.MoveElevator;
+import org.usfirst.frc.team6479.robot.commands.auton.elevator.TimedMoveElevator;
 import org.usfirst.frc.team6479.robot.commands.auton.intake.GrabberSpit;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -39,13 +39,13 @@ public class Switch extends BaseAutonomous {
 		if (isLeft) {
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dLeft));
 			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 69));
-			addParallel(new MoveElevator(MoveElevator.PreSetHeight.Switch));
+			addParallel(new TimedMoveElevator(3, 0.5));
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dRight));
 		}
 		else {
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dRight));
 			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 36));
-			addParallel(new MoveElevator(MoveElevator.PreSetHeight.Switch));
+			addParallel(new TimedMoveElevator(3, 0.5));
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dLeft));
 		}
 
@@ -67,7 +67,7 @@ public class Switch extends BaseAutonomous {
 
 		if(isLeft) {
 			//Go forward 3 ft.
-			addParallel(new MoveElevator(MoveElevator.PreSetHeight.Switch));
+			addParallel(new TimedMoveElevator(3, 0.5));
 			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 143));
 
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dRight));
@@ -79,10 +79,10 @@ public class Switch extends BaseAutonomous {
 			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 216));
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dRight));
 			CommandGroup raise = new CommandGroup();
-			raise.addParallel(new MoveElevator(MoveElevator.PreSetHeight.PrepSwitch));
+			raise.addParallel(new TimedMoveElevator(1.5, 0.5));
 			raise.addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 220));
 			addSequential(raise);
-			addParallel(new MoveElevator(MoveElevator.PreSetHeight.Switch));
+			addParallel(new TimedMoveElevator(1.5, 0.5));
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dRight));
 			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 72));
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dRight));
@@ -104,10 +104,10 @@ public class Switch extends BaseAutonomous {
 			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 216));
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dLeft));
 			CommandGroup raise = new CommandGroup();
-			raise.addParallel(new MoveElevator(MoveElevator.PreSetHeight.PrepSwitch));
+			raise.addParallel(new TimedMoveElevator(1.5, 0.5));
 			raise.addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 228));
 			addSequential(raise);
-			addParallel(new MoveElevator(MoveElevator.PreSetHeight.Switch));
+			addParallel(new TimedMoveElevator(1.5, 0.5));
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dLeft));
 			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 68));
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dLeft));
@@ -117,7 +117,7 @@ public class Switch extends BaseAutonomous {
 		}
 		else {
 			//Go forward 3 ft.
-			addParallel(new MoveElevator(MoveElevator.PreSetHeight.Switch));
+			addParallel(new TimedMoveElevator(3, 0.5));
 			addSequential(new StraightDrive(StraightDrive.Mode.encoderDrive, 147));
 
 			addSequential(new GyroDrive(90, GyroDrive.Direction.dLeft));
