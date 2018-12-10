@@ -1,12 +1,16 @@
 package org.usfirst.frc.team6479.robot.commands.teleop;
 
+import org.usfirst.frc.team6479.robot.JoystickMap;
 import org.usfirst.frc.team6479.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import robot.xbox.ButtonTracker;
 
 public class ToggleGrabberDirections extends Command {
 
 	private boolean driverLeftBumperToggle;
+	public ButtonTracker trigger = new ButtonTracker(Robot.oi.stick, JoystickMap.joystickButton1);
+	public ButtonTracker sideButton = new ButtonTracker(Robot.oi.stick, JoystickMap.joystickButton2);
 
 	public ToggleGrabberDirections() {
 		// Use requires() here to declare subsystem dependencies
@@ -22,10 +26,10 @@ public class ToggleGrabberDirections extends Command {
 	protected void execute() {
 		boolean isSucking = Robot.grabber.isSucking();
 		boolean isSpitting = Robot.grabber.isSpitting();
-		boolean isDriverLeftBumperPressed = Robot.oi.getDriverLeftBumper().isPressed();
-		boolean isDriverRightBumperPressed = Robot.oi.getDriverRightBumper().isPressed();
+		boolean isDriverLeftBumperPressed = sideButton.isPressed();
+		boolean isDriverRightBumperPressed = trigger.isPressed();
 
-		if(Robot.oi.getDriverLeftBumper().wasJustPressed()) {
+		if(sideButton.wasJustPressed()) {
 			driverLeftBumperToggle = !driverLeftBumperToggle;
 		}
 

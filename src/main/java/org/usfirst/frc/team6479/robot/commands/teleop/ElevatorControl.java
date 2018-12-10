@@ -25,7 +25,12 @@ public class ElevatorControl extends Command {
 	 */
 	@Override
 	protected void execute() {
-		double speed = Robot.oi.getDriverController().getRawAxis(XboxMap.RightJoyStickY) * -1;
+		double speed = 0;
+		if (Robot.oi.stick.getPOV() == 0) {
+			speed = 0.7;
+		} else if (Robot.oi.stick.getPOV() == 180) {
+			speed = -0.7;
+		}
 
 		// if(speed > 0.3) {
 		// 	speed = 0.3;
